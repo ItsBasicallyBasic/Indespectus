@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Invisibillity
+  m_Shader: {fileID: -6465566751694194690, guid: c65b2aad92d15d042aa70b614d301e55,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Floats:
+    - Vector1_3BD901B7: 0.05
+    - Vector1_47C58618: 50
+    - Vector1_AF316E5E: 0.295
+    m_Colors:
+    - Color_4B5FD191: {r: 90.50967, g: 0, b: 10.703923, a: 0}
+    - Color_5E21B4AB: {r: 1, g: 0.32236847, b: 0, a: 0}
+    - Color_958B00EA: {r: 1, g: 0.59607846, b: 0.40392157, a: 0}
+    - Color_9A168E5E: {r: 0.051960785, g: 0.051960785, b: 0.051960785, a: 0}
