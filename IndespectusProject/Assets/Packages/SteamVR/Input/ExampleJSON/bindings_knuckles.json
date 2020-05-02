@@ -4,6 +4,24 @@
          "sources" : [
             {
                "inputs" : {
+                  "position" : {
+                     "output" : "/actions/buggy/in/steering"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/left/input/thumbstick"
+            },
+            {
+               "inputs" : {
+                  "position" : {
+                     "output" : "/actions/buggy/in/steering"
+                  }
+               },
+               "mode" : "joystick",
+               "path" : "/user/hand/right/input/thumbstick"
+            },
+            {
+               "inputs" : {
                   "pull" : {
                      "output" : "/actions/buggy/in/throttle"
                   }
@@ -24,25 +42,19 @@
                "inputs" : {
                   "click" : {
                      "output" : "/actions/buggy/in/brake"
-                  },
-                  "position" : {
-                     "output" : "/actions/buggy/in/steering"
                   }
                },
-               "mode" : "trackpad",
-               "path" : "/user/hand/left/input/trackpad"
+               "mode" : "button",
+               "path" : "/user/hand/left/input/a"
             },
             {
                "inputs" : {
                   "click" : {
                      "output" : "/actions/buggy/in/brake"
-                  },
-                  "position" : {
-                     "output" : "/actions/buggy/in/steering"
                   }
                },
-               "mode" : "trackpad",
-               "path" : "/user/hand/right/input/trackpad"
+               "mode" : "button",
+               "path" : "/user/hand/right/input/a"
             },
             {
                "inputs" : {
@@ -51,7 +63,7 @@
                   }
                },
                "mode" : "button",
-               "path" : "/user/hand/left/input/application_menu"
+               "path" : "/user/hand/left/input/b"
             },
             {
                "inputs" : {
@@ -60,7 +72,7 @@
                   }
                },
                "mode" : "button",
-               "path" : "/user/hand/right/input/application_menu"
+               "path" : "/user/hand/right/input/b"
             }
          ]
       },
@@ -108,31 +120,30 @@
           },
           {
             "inputs": {
-              "click": {
-                "output": "/actions/default/in/grabgrip"
+              "force": {
+                "output": "/actions/default/in/squeeze"
               }
             },
-            "mode": "button",
-            "parameters": {
-              "click_activate_threshold": "0.05",
-              "click_deactivate_threshold": "0",
-              "force_input": "force"
-            },
+            "mode": "force_sensor",
             "path": "/user/hand/left/input/grip"
           },
           {
             "inputs": {
+              "force": {
+                "output": "/actions/default/in/squeeze"
+              }
+            },
+            "mode": "force_sensor",
+            "path": "/user/hand/right/input/grip"
+          },
+          {
+            "inputs": {
               "click": {
-                "output": "/actions/default/in/grabpinch"
+                "output": "/actions/default/in/teleport"
               }
             },
             "mode": "button",
-            "parameters": {
-              "click_activate_threshold": "0.75",
-              "click_deactivate_threshold": "0.7",
-              "force_input": "value"
-            },
-            "path": "/user/hand/left/input/trigger"
+            "path": "/user/hand/left/input/trackpad"
           },
           {
             "inputs": {
@@ -146,99 +157,125 @@
           {
             "inputs": {
               "click": {
-                "output": "/actions/default/in/grabpinch"
+                "output": "/actions/default/in/teleport"
               }
             },
             "mode": "button",
-            "parameters": {
-              "click_activate_threshold": "0.75",
-              "click_deactivate_threshold": "0.7"
-            },
-            "path": "/user/hand/right/input/trigger"
-          },
-          {
-            "inputs": {
-              "center": {
-                "output": "/actions/default/in/teleport"
-              },
-              "east": {
-                "output": "/actions/default/in/snapturnright"
-              },
-              "north": {
-                "output": "/actions/default/in/teleport"
-              },
-              "south": {
-                "output": "/actions/default/in/teleport"
-              },
-              "west": {
-                "output": "/actions/default/in/snapturnleft"
-              }
-            },
-            "mode": "dpad",
-            "parameters": {
-              "deadzone_pct": "90",
-              "overlap_pct": "15",
-              "sub_mode": "click"
-            },
-            "path": "/user/hand/left/input/trackpad"
-          },
-          {
-            "inputs": {
-              "center": {
-                "output": "/actions/default/in/teleport"
-              },
-              "east": {
-                "output": "/actions/default/in/snapturnright"
-              },
-              "north": {
-                "output": "/actions/default/in/teleport"
-              },
-              "south": {
-                "output": "/actions/default/in/teleport"
-              },
-              "west": {
-                "output": "/actions/default/in/snapturnleft"
-              }
-            },
-            "mode": "dpad",
-            "parameters": {
-              "deadzone_pct": "90",
-              "overlap_pct": "15",
-              "sub_mode": "click"
-            },
             "path": "/user/hand/right/input/trackpad"
           },
           {
             "inputs": {
-              "click": {
+              "north": {
+                "output": "/actions/default/in/teleport"
+              }
+            },
+            "mode": "dpad",
+            "parameters": {
+              "deadzone_pct": "25",
+              "overlap_pct": "30",
+              "sub_mode": "touch"
+            },
+            "path": "/user/hand/left/input/thumbstick"
+          },
+          {
+            "inputs": {
+              "north": {
+                "output": "/actions/default/in/teleport"
+              }
+            },
+            "mode": "dpad",
+            "parameters": {
+              "deadzone_pct": "25",
+              "overlap_pct": "30",
+              "sub_mode": "touch"
+            },
+            "path": "/user/hand/right/input/thumbstick"
+          },
+          {
+            "inputs": {
+              "east": {
+                "output": "/actions/default/in/snapturnright"
+              },
+              "west": {
+                "output": "/actions/default/in/snapturnleft"
+              }
+            },
+            "mode": "dpad",
+            "parameters": {
+              "deadzone_pct": "85",
+              "overlap_pct": "0",
+              "sub_mode": "touch"
+            },
+            "path": "/user/hand/left/input/thumbstick"
+          },
+          {
+            "inputs": {
+              "east": {
+                "output": "/actions/default/in/snapturnright"
+              },
+              "west": {
+                "output": "/actions/default/in/snapturnleft"
+              }
+            },
+            "mode": "dpad",
+            "parameters": {
+              "deadzone_pct": "85",
+              "overlap_pct": "0",
+              "sub_mode": "touch"
+            },
+            "path": "/user/hand/right/input/thumbstick"
+          },
+          {
+            "inputs": {
+              "grab": {
                 "output": "/actions/default/in/grabgrip"
               }
             },
-            "mode": "button",
+            "mode": "grab",
             "parameters": {
-              "click_activate_threshold": "0.05",
-              "click_deactivate_threshold": "0",
-              "force_input": "force"
+              "force_hold_threshold": "0.02",
+              "force_release_threshold": "0.01"
+            },
+            "path": "/user/hand/left/input/grip"
+          },
+          {
+            "inputs": {
+              "grab": {
+                "output": "/actions/default/in/grabgrip"
+              }
+            },
+            "mode": "grab",
+            "parameters": {
+              "force_hold_threshold": "0.02",
+              "force_release_threshold": "0.01"
             },
             "path": "/user/hand/right/input/grip"
           },
           {
             "inputs": {
-              "pull": {
-                "output": "/actions/default/in/squeeze"
+              "grab": {
+                "output": "/actions/default/in/grabpinch"
               }
             },
-            "mode": "trigger",
-            "path": "/user/hand/left/input/trigger"
+            "mode": "grab",
+            "parameters": {
+              "force_hold_threshold": "0.02",
+              "force_release_threshold": "0.01"
+            },
+            "path": "/user/hand/left/input/pinch"
           },
           {
             "inputs": {
-              "pull": {
-                "output": "/actions/default/in/squeeze"
+              "grab": {
+                "output": "/actions/default/in/grabpinch"
               }
             },
-            "mode": "trigger",
-            "path": "/user/hand/right/input/trigger"
+            "mode": "grab",
+            "parameters": {
+              "force_hold_threshold": "0.02",
+              "force_release_threshold": "0.01"
+            },
+            "path": "/user/hand/right/input/pinch"
           }
         ]
       },
@@ -246,21 +283,12 @@
          "sources" : [
             {
                "inputs" : {
-                  "click" : {
-                     "output" : "/actions/platformer/in/jump"
+                  "position" : {
+                     "output" : "/actions/platformer/in/move"
                   }
                },
-               "mode" : "button",
-               "path" : "/user/hand/left/input/trackpad"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/platformer/in/jump"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/trackpad"
+               "mode" : "joystick",
+               "path" : "/user/hand/left/input/thumbstick"
             },
             {
                "inputs" : {
@@ -268,22 +296,31 @@
                      "output" : "/actions/platformer/in/move"
                   }
                },
-               "mode" : "trackpad",
-               "path" : "/user/hand/left/input/trackpad"
+               "mode" : "joystick",
+               "path" : "/user/hand/right/input/thumbstick"
             },
             {
                "inputs" : {
-                  "position" : {
-                     "output" : "/actions/platformer/in/move"
+                  "click" : {
+                     "output" : "/actions/platformer/in/jump"
                   }
                },
-               "mode" : "trackpad",
-               "path" : "/user/hand/right/input/trackpad"
+               "mode" : "button",
+               "path" : "/user/hand/left/input/trigger"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/platformer/in/jump"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/trigger"
             }
          ]
       }
    },
-   "controller_type" : "vive_controller",
+   "controller_type" : "knuckles",
    "description" : "",
-   "name" : "vive_controller"
+   "name" : "knuckles_default"
 }
