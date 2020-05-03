@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b2425a2284af743826c689403a4924, type: 3}
+  m_Name: Noise
+  m_EditorClassIdentifier: 
+  m_functionInfo: "// Made with Amplify Shader Editor\n// Available at the Unity
+    Asset Store - http://u3d.as/y3X \n/*ASEBEGIN\nVersion=16700\n-1680;110;798;906;225.8776;741.4904;2.640468;False;False\nNode;AmplifyShaderEditor.RangedFloatNode;3;-554.752,71.85669;Float;False;Property;_Speed;Speed;1;0;Create;True;0;0;False;0;1;10;0;0;0;1;FLOAT;0\nNode;AmplifyShaderEditor.SimpleTimeNode;4;-378.752,79.85669;Float;False;1;0;FLOAT;1;False;1;FLOAT;0\nNode;AmplifyShaderEditor.PannerNode;5;-152.752,57.85669;Float;False;3;0;FLOAT2;0,0;False;2;FLOAT2;0,-1;False;1;FLOAT;1;False;1;FLOAT2;0\nNode;AmplifyShaderEditor.Vector2Node;6;-102.6489,-267.1432;Float;True;Property;_Tiling;Tiling;2;0;Create;True;0;0;False;0;5,5;100,100;0;3;FLOAT2;0;FLOAT;1;FLOAT;2\nNode;AmplifyShaderEditor.TextureCoordinatesNode;7;161.3511,-239.1432;Float;True;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.RangedFloatNode;8;445.0901,26.09045;Float;False;Constant;_Booster;Booster;2;0;Create;True;0;0;False;0;1;0;0;0;0;1;FLOAT;0\nNode;AmplifyShaderEditor.NoiseGeneratorNode;9;429.3511,-261.1432;Float;True;Simplex2D;1;0;FLOAT2;0,0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.SimpleAddOpNode;10;705.2746,-57.61143;Float;True;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0\nNode;AmplifyShaderEditor.FunctionOutput;0;1033.92,-66.2421;Float;False;True;Output;0;False;1;0;FLOAT;0;False;1;FLOAT;0\nWireConnection;4;0;3;0\nWireConnection;5;1;4;0\nWireConnection;7;0;6;0\nWireConnection;7;1;5;0\nWireConnection;9;0;7;0\nWireConnection;10;0;9;0\nWireConnection;10;1;8;0\nWireConnection;0;0;10;0\nASEEND*/\n//CHKSM=A97ED081A70A7BD65479B89CC5FA8DCDD82E1B89"
+  m_functionName: 
+  m_description: 
+  m_additionalIncludes:
+    m_additionalIncludes: []
+    m_outsideIncludes: []
+  m_additionalPragmas:
+    m_additionalPragmas: []
+    m_outsidePragmas: []
+  m_additionalDirectives:
+    m_validData: 0
+    m_isDirty: 0
+    m_moduleName: ' Additional Directives'
+    m_independentModule: 1
+    m_additionalDirectives: []
+    m_shaderFunctionDirectives: []
+    m_nativeDirectives: []
+    m_nativeDirectivesFoldout: 0
+    m_directivesSaveItems: []
+  m_nodeCategory: 3
+  m_customNodeCategory: 
+  m_previewPosition: 0
+  m_hidden: 0
