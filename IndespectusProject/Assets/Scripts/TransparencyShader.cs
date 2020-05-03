@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TransparencyShader : MonoBehaviour
-{
+public class TransparencyShader : MonoBehaviour {
+    
+    public Renderer meshRenderer;
+    public Material material;
+
+    public float TransparancyTransition;
+
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
+        meshRenderer = gameObject.GetComponent<Renderer>();
+        material = meshRenderer.material;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+        material.SetFloat("_Transition", TransparancyTransition);
     }
 }

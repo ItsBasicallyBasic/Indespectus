@@ -10,7 +10,7 @@ Material:
   m_Name: Indespectus_GlowShader
   m_Shader: {fileID: 4800000, guid: 95f526dfde024fe4c8ef0babfc84a27d, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 0
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -27,6 +27,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Distortion:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissiveTex:
+        m_Texture: {fileID: 2800000, guid: 9e2ed0a463ae2ef488ddf30afc146f96, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Normal:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -38,14 +46,18 @@ Material:
     m_Floats:
     - _Cutoff: 0.5
     - _Dir: 10
+    - _DistortionScale: 0.01
     - _Float0: 0.1
-    - _Metalic: 0
+    - _Intensity: 1.5142272
+    - _Metalic: 1
     - _Range: 3
-    - _Smoothness: 0
+    - _Smoothness: 1
     - _Speed: 10
     - _Teleport: -12.7
     - __dirty: 0
     m_Colors:
     - _Color0: {r: 0.54901963, g: 1.5529412, b: 0.87058824, a: 1}
+    - _EmissiveTint: {r: 0, g: 1, b: 0.9278722, a: 0}
+    - _GlowColor: {r: 215.6256, g: 26.184002, b: 0, a: 0}
     - _Tiling: {r: 100, g: 100, b: 0, a: 0}
     - _Tint: {r: 0, g: 0.9056604, b: 0.71654654, a: 1}
