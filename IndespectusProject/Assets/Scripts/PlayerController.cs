@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        // If input from controller is greater than 0.1 then the player is moved in that direction.
         if(input.axis.magnitude > 0.1f)
         {
             Vector3 direction = Player.instance.hmdTransform.TransformDirection(new Vector3(input.axis.x, 0, input.axis.y));
