@@ -32,95 +32,108 @@ public class WeaponBehaviour : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        nextShot = nextShot + fireRate;
         currSelected = 0;
+        SwitchWeapons(3);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Weapon state switch
-        switch (currSelected)
+        if (Input.GetKeyDown("1"))
         {
-            case 1:
-                SwordBroken();
-                if (changeWeapon.stateDown)
-                {
-                    currSelected = 3;
-                }
-                break;
-            case 2:
-                SwordEquipped();
-                if (changeWeapon.stateDown)
-                {
-                    currSelected = 3;
-                }
-                break;
-            case 3:
-                GunEquipped();
-                if (changeWeapon.stateDown)
-                {
-                    currSelected = 2;
-                }
-                break;
+            SwitchWeapons(1);
+        }
+        if (Input.GetKeyDown("2"))
+        {
+            SwitchWeapons(2);
+        }
+        if (Input.GetKeyDown("3"))
+        {
+            SwitchWeapons(3);
         }
 
-        if (fireWeapon.stateDown && currSelected == 3)
+        if (changeWeapon.stateDown && currSelected == 2)
         {
-            Fire();
+            SwitchWeapons(3);
+            return;
+        }
+
+        if (changeWeapon.stateDown && currSelected == 3)
+        {
+            SwitchWeapons(2);
+            return;
+        }
+
+        //SteamVR_Input_Sources source = interactable.attachedToHand.handType;
+        if (Input.GetButtonDown("Fire1") || fireWeapon.stateDown)
+        {
+            if(currSelected == 3) Fire();
         }
     }
 
-    // Sword broken state
-    void SwordBroken()
+    void SwitchWeapons(int selected)
     {
-        swordDisappear.Play();
-        sword.SetActive(false);
-        swordParticles.SetActive(false);
+        if (selected == 1)
+        {
+            if(currSelected == 2)
+            {
+                swordDisappear.Play();
+                sword.SetActive(false);
+                swordParticles.SetActive(false);
+            }
+            if(currSelected == 3)
+            {
+                gunDisappear.Play();
+                gun.SetActive(false);
+                gunParticles.SetActive(false);
+            }
+            currSelected = 1;
+            return;
+        }
+
+        if (selected == 2)
+        {
+            if (currSelected == 3)
+            {
+                gunDisappear.Play();
+                gun.SetActive(false);
+                gunParticles.SetActive(false);
+            }
+            currSelected = 2;
+            swordAppear.Play();
+            sword.SetActive(true);
+            swordParticles.SetActive(true);
+            return;
+        }
+
+        if (selected == 3)
+        {
+            if(currSelected == 2)
+            {
+                swordDisappear.Play();
+                sword.SetActive(false);
+                swordParticles.SetActive(false);
+            }
+            currSelected = 3;
+            gunAppear.Play();
+            gun.gameObject.SetActive(true);
+            gunParticles.SetActive(true);
+            return;
+        }
     }
 
-    // Sword equipped state
-    void SwordEquipped()
-    {
-        gunDisappear.Play();
-        gun.SetActive(false);
-        gunParticles.SetActive(false);
-
-        swordAppear.Play();
-        sword.SetActive(true);
-        swordParticles.SetActive(true);
-    }
-
-    // Gun equipped state
-    void GunEquipped()
-    {
-        swordDisappear.Play();
-        sword.SetActive(false);
-        swordParticles.SetActive(false);
-
-        gunAppear.Play();
-        gun.gameObject.SetActive(true);
-        gunParticles.SetActive(true);
-    }
-
-    // Fire gun
     void Fire()
     {
-        // If statement to limit firerate
         if(Time.time > nextShot)
         {
-            nextShot = Time.time + fireRate;
-            // Create bullet instance, set the velocity of the rigidbody
+            nextShot = nextShot + fireRate;
             GameObject bulletObject = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
             Rigidbody rb = bulletObject.GetComponent<Rigidbody>();
             rb.velocity = bulletSpawn.transform.forward * 1000 * Time.deltaTime;
-
-            // Destroy after 5 seconds to cleanup bullet instances that go out of bounds
             Destroy(bulletObject, 5f);
-
-            // Play recoil animation
             animator.Play("Recoil");
-
-            // Sound??
+            //Sound??
         }
     }
 }
