@@ -7,33 +7,35 @@ public class BulletCollision : MonoBehaviour
 
     public GameObject bulletHit;
     private int rebounds = 0;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int maxRebounds = 1;
 
     private void OnCollisionEnter(Collision collision)
     {
+        // If bullet hits player it calls Hit and destroys itself.
+        if (collision.gameObject.tag == "Player")
+        {
+            Hit(collision);
+            Destroy(gameObject);
+        }
+
+        // Adding to rebound
         rebounds++;
+
+        // If the bullet collides with a sword, then rebound is reduced by 1 to allow for an extra rebound for bullet deflection.
         if (collision.gameObject.tag == "Sword")
         {
             rebounds --;
         }
-        if (rebounds > 1 || collision.gameObject.tag == "Shield")
+
+        // If the current amount of rebounds is more than the maximum allowed rebounds OR the bullet collides with the shield.
+        if (rebounds > maxRebounds || collision.gameObject.tag == "Shield")
         {
             Hit(collision);
             Destroy(gameObject);
         }
     }
 
+    // Creates a particle effect at a collision contact location.
     void Hit(Collision collision)
     {
         ContactPoint contact = collision.contacts[0];
