@@ -30,7 +30,7 @@ Material:
     m_Floats:
     - _Distort: 0.039
     - _DistortionScale: 0.01
-    - _Transition: 5
+    - _Transition: 0
     - _TransparencyScale: 0
     - __dirty: 0
     m_Colors:
