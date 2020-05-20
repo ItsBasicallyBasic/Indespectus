@@ -33952,7 +33952,7 @@ GameObject:
   - component: {fileID: 6629707804474125754}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34040,7 +34040,7 @@ MonoBehaviour:
     actionPath: /actions/default/in/TouchPad
     needsReinit: 0
   speed: 1
-  head: {fileID: 0}
+  head: {fileID: 4189521607148617164}
 --- !u!114 &6629707804474125754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34059,6 +34059,7 @@ MonoBehaviour:
   rightHand: {fileID: 4189521607148656772}
   leftHand: {fileID: 4189521607148664178}
   material: {fileID: 0}
+  material2: {fileID: 0}
 --- !u!1 &4189521607148804716
 GameObject:
   m_ObjectHideFlags: 0
@@ -35269,7 +35270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4189521607148663714
 Transform:
   m_ObjectHideFlags: 0

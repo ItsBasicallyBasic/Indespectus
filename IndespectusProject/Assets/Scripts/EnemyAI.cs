@@ -12,7 +12,8 @@ public class EnemyAI : MonoBehaviour
         Idle,
         Attacking,
         Fleeing,
-        Scouting
+        Scouting,
+        Dead
     }
 
     public EnemyBehaviours enemyBehaviour;
@@ -62,6 +63,10 @@ public class EnemyAI : MonoBehaviour
 
     // Animation variables
     public Animator anim;
+
+    // Attack timer variables
+    public float attackTime;
+    private float attackTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -117,6 +122,9 @@ public class EnemyAI : MonoBehaviour
             case EnemyBehaviours.Fleeing:
                 Fleeing();
                 break;
+            case EnemyBehaviours.Dead:
+                Dead();
+                break;
         }
     }
 
@@ -157,8 +165,12 @@ public class EnemyAI : MonoBehaviour
             enemyNavMeshAgent.enabled = false;
             GetComponent<PlayerVelocity>().velocity = 1;
             
-            anim.SetTrigger("isAttacking");
-            StartCoroutine(attackWait());
+            if (Time.time > attackTimer)
+            {
+                attackTimer = Time.time + attackTime;
+                
+                // INSERT ATTACK ANIMATION TRIGGER HERE
+            }
         }
         else if(Vector3.Distance(transform.position, playerLastKnownLocation) > attackDistance && Vector3.Distance(transform.position, playerLastKnownLocation) > runDistance)
         {
@@ -166,7 +178,6 @@ public class EnemyAI : MonoBehaviour
             enemyNavMeshAgent.enabled = true;
             enemyNavMeshAgent.speed = stealthSpeed;
             enemyNavMeshAgent.destination = playerLastKnownLocation;
-            //anim.SetTrigger("isWalking");
         }
         else if (Vector3.Distance(transform.position, playerLastKnownLocation) < runDistance)
         {
@@ -174,7 +185,6 @@ public class EnemyAI : MonoBehaviour
             enemyNavMeshAgent.enabled = true;
             enemyNavMeshAgent.speed = runSpeed;
             enemyNavMeshAgent.destination = playerLastKnownLocation;
-            //anim.SetTrigger("isRunning");
         }
     }
 
@@ -188,6 +198,11 @@ public class EnemyAI : MonoBehaviour
         {
             enemyBehaviour = EnemyBehaviours.Scouting;
         }
+    }
+
+    void Dead()
+    {
+        enemyNavMeshAgent.enabled = false;
     }
 
     void RotateTowardsTarget(Vector3 targetPos)
@@ -207,12 +222,5 @@ public class EnemyAI : MonoBehaviour
             enemyNavMeshAgent.enabled = false;
             rb.isKinematic = false;
         }
-    }
-
-    private IEnumerator attackWait()
-    {
-        yield return new WaitForSeconds(2);
-        anim.ResetTrigger("isAttacking");
-        enemyBehaviour = EnemyBehaviours.Fleeing;
     }
 }

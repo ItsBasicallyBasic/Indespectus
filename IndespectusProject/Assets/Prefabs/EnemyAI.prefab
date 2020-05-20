@@ -1634,6 +1634,7 @@ GameObject:
   - component: {fileID: 4174752027731376964}
   - component: {fileID: 4174752027731376965}
   - component: {fileID: 4174752027731376962}
+  - component: {fileID: 8381148830967184673}
   - component: {fileID: 4174752027731376963}
   - component: {fileID: 4482079724404634990}
   m_Layer: 0
@@ -1709,9 +1710,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 0
   desiredVelocity: 0
-  head: {fileID: 0}
-  rightHand: {fileID: 0}
-  leftHand: {fileID: 0}
+  head: {fileID: 8977088129533675176}
+  rightHand: {fileID: 8977088129533675176}
+  leftHand: {fileID: 8977088129533675176}
   material: {fileID: 2100000, guid: f00f70832e534154d8aa3d35e29885a0, type: 2}
   material2: {fileID: 2100000, guid: c460c5ab4cf44974da5f8b75c8f6e362, type: 2}
 --- !u!114 &4174752027731376962
@@ -1740,6 +1741,21 @@ MonoBehaviour:
   attacking: 0
   rb: {fileID: 0}
   anim: {fileID: 0}
+  attackTime: 0
+--- !u!114 &8381148830967184673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5390351149787116731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78508c8b223ee02459e6847e2312ed84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MAX_HEALTH: 100
+  MAX_ESSENCE: 0
 --- !u!195 &4174752027731376963
 NavMeshAgent:
   m_ObjectHideFlags: 0
