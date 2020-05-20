@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.viveplayground.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "F:\\Unity3D Projects\\Vive Playground\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "D:\\Unity Projects\\Indespectus\\IndespectusProject\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "Vive Playground [Testing]"
