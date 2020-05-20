@@ -25,7 +25,10 @@ public class PlayerVelocity : MonoBehaviour
     public Material material;
     public Material material2;
 
+    [SerializeField]
     private float lerpSpeed = 0.1f;
+
+    public int scale = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -46,8 +49,8 @@ public class PlayerVelocity : MonoBehaviour
     {
         if(gameObject.tag != "Player")
         {
-            material.SetFloat("_Transition", velocity);
-            material2.SetFloat("_Transition", velocity);
+            material.SetFloat("_Transition", velocity/scale);
+            material2.SetFloat("_Transition", velocity/scale);
         }
 
         // Assign velocity based off previous frame position
@@ -80,6 +83,10 @@ public class PlayerVelocity : MonoBehaviour
         }
 
         velocity = Mathf.Lerp(velocity, desiredVelocity, lerpSpeed);
+        
+        desiredVelocity = desiredVelocity/100;
+
         if (desiredVelocity > 1) desiredVelocity = 1;
+        //if (desiredVelocity > 1) desiredVelocity = 1;
     }
 }

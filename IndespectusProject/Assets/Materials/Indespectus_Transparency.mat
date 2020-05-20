@@ -28,8 +28,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _ChromaticAberration: 0.1
     - _Distort: 0.039
     - _DistortionScale: 0.01
+    - _Float0: 0.38526052
     - _Transition: 0
     - _TransparencyScale: 0
     - __dirty: 0
