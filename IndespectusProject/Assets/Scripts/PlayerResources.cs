@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +25,13 @@ public class PlayerResources : MonoBehaviour {
     // Reduce Current Health of the player
     public void LooseHealth(int dmg) {
         currentHealth -= dmg;
+        if(currentHealth <= 0) {
+            Die();
+        }
+    }
+
+    private void Die() {
+        throw new NotImplementedException();
     }
 
     // Increase Current Health of the player
@@ -54,6 +62,16 @@ public class PlayerResources : MonoBehaviour {
     // Reduce Current Essence of the player
     public void LooseEssence(int dmg) {
         currentEssence -= dmg;
+    }
+
+    // Use Current Essence of the player
+    public bool UseEssence(int val) {
+        if(currentEssence > val) {
+            currentEssence -= val;
+            return true; // enough essence, can do action, essence used
+        } else {
+            return false; // not enough essence, cant do action, no essence used
+        }
     }
 
     // Increase Current Essence of the player
