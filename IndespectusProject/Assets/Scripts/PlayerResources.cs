@@ -23,7 +23,7 @@ public class PlayerResources : MonoBehaviour {
     }
 
     // Reduce Current Health of the player
-    public void LooseHealth(int healthLost) {
+    public void LoseHealth(int healthLost) {
         currentHealth -= healthLost;
         if(currentHealth <= 0) {
             Die();
@@ -60,7 +60,7 @@ public class PlayerResources : MonoBehaviour {
     }
 
     // Reduce Current Essence of the player
-    public void LooseEssence(int essenceLost) {
+    public void LoseEssence(int essenceLost) {
         currentEssence -= essenceLost;
     }
 
