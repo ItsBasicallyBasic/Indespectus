@@ -111,6 +111,11 @@ public class EnemyAI : MonoBehaviour
             enemyBehaviour = EnemyBehaviours.Dead;
         }
 
+        if (enemyResources.GetHealth() <= 10 && enemyResources.GetHealth() > 0 && enemyBehaviour == EnemyBehaviours.Attacking)
+        {
+            enemyBehaviour = EnemyBehaviours.Fleeing;
+        }
+
         playerVelocity = player.GetComponent<PlayerVelocity>().velocity;
 
         if (!attacking)
@@ -119,7 +124,7 @@ public class EnemyAI : MonoBehaviour
             RotateTowardsTarget(new Vector3(target.x, transform.position.y, target.z));
         }
 
-        if (playerVelocity > 0.5f && enemyBehaviour != EnemyBehaviours.Fleeing)
+        if (playerVelocity > 0.5f && enemyBehaviour != EnemyBehaviours.Fleeing && enemyBehaviour != EnemyBehaviours.Dead)
         {
             playerLastKnownLocation = player.GetComponent<PlayerVelocity>().head.transform.position;
             enemyBehaviour = EnemyBehaviours.Attacking;
@@ -181,9 +186,10 @@ public class EnemyAI : MonoBehaviour
 
         if (Vector3.Distance(transform.position, playerLastKnownLocation) <= attackDistance)
         {
+
             enemyNavMeshAgent.isStopped = true;
             GetComponent<PlayerVelocity>().velocity = 1;
-            
+
             if (Time.time > attackTimer)
             {
                 attackTimer = Time.time + attackTime;
@@ -205,6 +211,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (Vector3.Distance(transform.position, playerLastKnownLocation) < runDistance && Vector3.Distance(transform.position, playerLastKnownLocation) > attackDistance)
         {
+
             // Enable NavMeshAgent, set speed and set destination
             enemyNavMeshAgent.isStopped = false;
             enemyNavMeshAgent.speed = runSpeed;
@@ -257,6 +264,7 @@ public class EnemyAI : MonoBehaviour
         {
             fleeLocationFound = false;
             enemyBehaviour = EnemyBehaviours.Scouting;
+            enemyResources.GainHealth(40);
         }
     }
 
@@ -323,19 +331,20 @@ public class EnemyAI : MonoBehaviour
     {
         if(other.gameObject.tag == "Sword")
         {
-            print("hit");
-
-            //Temporary line for this week's showcase
-            enemyBehaviour = EnemyBehaviours.Fleeing;
-
             // Deal damage
-            //print("Dealt damage!");
-            //enemyResources.LooseHealth(30);
+            print("Dealt damage!");
+            enemyResources.LooseHealth(30);
 
             // Feedback systems:
             // Enemy hit animation
             // Particle effect
             // Sound
+        }
+
+        if (other.gameObject.tag == "Bullet")
+        {
+            print("Dealt damage!");
+            enemyResources.LooseHealth(30);
         }
     }
 }
