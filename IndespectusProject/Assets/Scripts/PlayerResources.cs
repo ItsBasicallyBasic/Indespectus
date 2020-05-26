@@ -71,6 +71,6 @@ public class PlayerResources : MonoBehaviour {
     
     // Start is called before the first frame update
     void Start() {
-        ResetResources();
+        //ResetResources();
     }
 }

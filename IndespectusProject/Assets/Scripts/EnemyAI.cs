@@ -37,6 +37,11 @@ public class EnemyAI : MonoBehaviour
     public float locationTimer = 10;
     private float locationTime;
 
+    // Flee variables
+    public Transform fleeLocationsParent;
+    public List<Transform> fleeLocations;
+    private bool fleeLocationFound = false;
+
     // Enemy attack range
     public float attackDistance = 1;
 
@@ -58,9 +63,6 @@ public class EnemyAI : MonoBehaviour
     // Player velocity variables
     private float playerVelocity;
 
-    // Rigidbody
-    public Rigidbody rb;
-
     // Animation variables
     public Animator anim;
 
@@ -68,9 +70,14 @@ public class EnemyAI : MonoBehaviour
     public float attackTime;
     private float attackTimer;
 
+    // Health components
+    public PlayerResources enemyResources;
+
     // Start is called before the first frame update
     void Start()
     {
+        enemyResources = GetComponent<PlayerResources>();
+        enemyResources.SetHealth(100);
         enemyBehaviour = EnemyBehaviours.Scouting;
 
         // Get nav mesh agent from gameobject
@@ -82,12 +89,15 @@ public class EnemyAI : MonoBehaviour
             scoutLocations.Add(child);
         }
 
+        // Add each flee point to fleeLocations list
+        foreach (Transform child in fleeLocationsParent)
+        {
+            fleeLocations.Add(child);
+        }
+
         // Assign first scout location
         int randomIndex = Random.Range(0, scoutLocations.Count);
         nextLocation = scoutLocations[randomIndex];
-
-        rb = GetComponent<Rigidbody>();
-        rb.isKinematic = false;
 
         anim = GetComponent<Animator>();
     }
@@ -95,6 +105,11 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(enemyResources.GetHealth() <= 0)
+        {
+            enemyBehaviour = EnemyBehaviours.Dead;
+        }
 
         playerVelocity = player.GetComponent<PlayerVelocity>().velocity;
 
@@ -104,7 +119,7 @@ public class EnemyAI : MonoBehaviour
             RotateTowardsTarget(new Vector3(target.x, transform.position.y, target.z));
         }
 
-        if (playerVelocity > 0.5f)
+        if (playerVelocity > 0.5f && enemyBehaviour != EnemyBehaviours.Fleeing)
         {
             playerLastKnownLocation = player.GetComponent<PlayerVelocity>().head.transform.position;
             enemyBehaviour = EnemyBehaviours.Attacking;
@@ -131,11 +146,15 @@ public class EnemyAI : MonoBehaviour
     void Scouting()
     {
 
+        // INSERT WALK TRIGGER HERE
+        anim.SetBool("isWalking", true);
+        anim.SetBool("isRunning", false);
+
         // Setting position to scout toward
         target = nextLocation.position;
 
         // Enable NavMeshAgent
-        enemyNavMeshAgent.enabled = true;
+        enemyNavMeshAgent.isStopped = false;
 
         // Set NavMeshAgent Speed
         enemyNavMeshAgent.speed = stealthSpeed;
@@ -162,46 +181,90 @@ public class EnemyAI : MonoBehaviour
 
         if (Vector3.Distance(transform.position, playerLastKnownLocation) <= attackDistance)
         {
-            enemyNavMeshAgent.enabled = false;
+            enemyNavMeshAgent.isStopped = true;
             GetComponent<PlayerVelocity>().velocity = 1;
             
             if (Time.time > attackTimer)
             {
                 attackTimer = Time.time + attackTime;
-                
-                // INSERT ATTACK ANIMATION TRIGGER HERE
+
+                anim.SetTrigger("isAttacking");
             }
+            return;
         }
-        else if(Vector3.Distance(transform.position, playerLastKnownLocation) > attackDistance && Vector3.Distance(transform.position, playerLastKnownLocation) > runDistance)
+        if(Vector3.Distance(transform.position, playerLastKnownLocation) > attackDistance && Vector3.Distance(transform.position, playerLastKnownLocation) > runDistance)
         {
             // Enable NavMeshAgent, set speed and set destination
-            enemyNavMeshAgent.enabled = true;
+            enemyNavMeshAgent.isStopped = false;
             enemyNavMeshAgent.speed = stealthSpeed;
             enemyNavMeshAgent.destination = playerLastKnownLocation;
+
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isRunning", false);
+            return;
         }
-        else if (Vector3.Distance(transform.position, playerLastKnownLocation) < runDistance)
+        if (Vector3.Distance(transform.position, playerLastKnownLocation) < runDistance && Vector3.Distance(transform.position, playerLastKnownLocation) > attackDistance)
         {
             // Enable NavMeshAgent, set speed and set destination
-            enemyNavMeshAgent.enabled = true;
+            enemyNavMeshAgent.isStopped = false;
             enemyNavMeshAgent.speed = runSpeed;
             enemyNavMeshAgent.destination = playerLastKnownLocation;
+
+            anim.SetBool("isRunning", true);
+            anim.SetBool("isWalking", false);
+            return;
         }
     }
 
     void Fleeing()
     {
-        enemyNavMeshAgent.enabled = false;
-        target = playerLastKnownLocation;
-        transform.Translate(Vector3.forward * -runSpeed * Time.deltaTime);
-
-        if(Vector3.Distance(target, transform.position) > 5)
+        if (!fleeLocationFound)
         {
+            // Prevent repeated calls
+            fleeLocationFound = true;
+
+            // Returns flee location to move towards
+            target = FindFleeLocation(fleeLocationsParent);
+            enemyNavMeshAgent.isStopped = false;
+            enemyNavMeshAgent.destination = target;
+        }
+
+        // ...player location and flee location as Vector3s
+        Vector3 origin = player.transform.position;
+        Vector3 fleePos = target;
+
+        // ...Calculate direction and distance from the player to the flee location
+        Vector3 dir = fleePos - origin;
+
+        Debug.DrawRay(transform.position, dir, Color.red);
+
+        anim.SetBool("isRunning", true);
+        anim.SetBool("isWalking", false);
+
+        enemyNavMeshAgent.speed = runSpeed;
+        GetComponent<PlayerVelocity>().velocity = 1;
+
+        //enemyNavMeshAgent.isStopped = true;
+        //target = playerLastKnownLocation;
+        //transform.Translate(Vector3.forward * -runSpeed * Time.deltaTime);
+
+        //if(Vector3.Distance(target, transform.position) > 5)
+        //{
+            //enemyBehaviour = EnemyBehaviours.Scouting;
+        //}
+
+        if(Vector3.Distance(transform.position, target) < 1)
+        {
+            fleeLocationFound = false;
             enemyBehaviour = EnemyBehaviours.Scouting;
         }
     }
 
     void Dead()
     {
+        Destroy(gameObject);
+        // INSERT DEATH TRIGGER HERE
+
         enemyNavMeshAgent.enabled = false;
     }
 
@@ -213,14 +276,66 @@ public class EnemyAI : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, adjRotSpeed);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private Vector3 FindFleeLocation(Transform locations)
     {
-        if(collision.gameObject.tag == "Sword")
+        // Fallback variables used in case no flee locations can be found
+        float maxDistance = 0;
+        Transform fallbackPos = locations;
+
+        // Sort through each flee location...
+        foreach (Transform fleeLocation in locations)
         {
 
-            enemyBehaviour = EnemyBehaviours.Idle;
-            enemyNavMeshAgent.enabled = false;
-            rb.isKinematic = false;
+            // ...player location and flee location as Vector3s
+            Vector3 origin = playerLastKnownLocation;
+            Vector3 fleePos = fleeLocation.position;
+
+            // ...Calculate direction and distance from the player to the flee location
+            Vector3 dir = fleePos - origin;
+
+            // Bitshifting layer 8 & then telling the layermask to hit everything except layer 8
+            int layerMask = 1 << 8;
+            layerMask = ~layerMask;
+
+            // ...Cast a ray from the player to the flee location and if it hits something return position
+            if (Physics.Raycast(origin, dir, layerMask))
+            {
+                print("flee location found!");
+                return fleeLocation.position;
+            }
+
+            // ...Calculate distance between player and flee location..
+            float dist = Vector3.Distance(origin, fleePos);
+
+            //  ...If that distance is greater than the current maximumDistance, replace it
+            if (dist > maxDistance)
+            {
+                maxDistance = dist;
+                fallbackPos = fleeLocation;
+            }
+        }
+
+        // Fallback in case flee locations out of line of sight can be found
+        return fallbackPos.position;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Sword")
+        {
+            print("hit");
+
+            //Temporary line for this week's showcase
+            enemyBehaviour = EnemyBehaviours.Fleeing;
+
+            // Deal damage
+            //print("Dealt damage!");
+            //enemyResources.LooseHealth(30);
+
+            // Feedback systems:
+            // Enemy hit animation
+            // Particle effect
+            // Sound
         }
     }
 }

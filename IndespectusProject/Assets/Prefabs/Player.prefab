@@ -34060,6 +34060,8 @@ MonoBehaviour:
   leftHand: {fileID: 4189521607148664178}
   material: {fileID: 0}
   material2: {fileID: 0}
+  lerpSpeed: 0.1
+  scale: 1
 --- !u!1 &4189521607148804716
 GameObject:
   m_ObjectHideFlags: 0
