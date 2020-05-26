@@ -1,6 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:IndespectusProject/Assets/Stadium/StadiumPrefabs/Platform.prefab.meta
 guid: eaf6f95cfdbaace41b5dcae247b48368
 PrefabImporter:
+=======
+guid: ebdbdcfb5e402d04ea4fe2cf43598d19
+DefaultImporter:
+>>>>>>> 1ed051267b58454a8763afb44f3b4cdd96c6705a:IndespectusProject/Assets/Scenes/Networking Scenes/TestNetworkingScene.unity.meta
+=======
+guid: eaf6f95cfdbaace41b5dcae247b48368
+PrefabImporter:
+>>>>>>> 1ed051267b58454a8763afb44f3b4cdd96c6705a
   externalObjects: {}
   userData: 
   assetBundleName: 
