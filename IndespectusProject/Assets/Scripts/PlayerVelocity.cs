@@ -24,6 +24,8 @@ public class PlayerVelocity : MonoBehaviour
 
     public Material material;
     public Material material2;
+    public Material material3;
+    public Material material4;
 
     [SerializeField]
     private float lerpSpeed = 0.01f;
@@ -51,6 +53,8 @@ public class PlayerVelocity : MonoBehaviour
         {
             material.SetFloat("_Transition", velocity/scale);
             material2.SetFloat("_Transition", velocity/scale);
+            material3.SetFloat("_Transition", velocity/scale);
+            material4.SetFloat("_Transition", velocity/scale);
         }
 
         // Assign velocity based off previous frame position
