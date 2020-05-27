@@ -1778,7 +1778,9 @@ MonoBehaviour:
   leftHand: {fileID: 8977088129533675176}
   material: {fileID: 2100000, guid: f00f70832e534154d8aa3d35e29885a0, type: 2}
   material2: {fileID: 2100000, guid: c460c5ab4cf44974da5f8b75c8f6e362, type: 2}
-  lerpSpeed: 0.1
+  material3: {fileID: 2100000, guid: f72d94a525581eb47bc017ad1761b420, type: 2}
+  material4: {fileID: 2100000, guid: 8b128f0dfcadef14088f4be0df7ceb59, type: 2}
+  lerpSpeed: 0.01
   scale: 1
 --- !u!114 &4174752027731376962
 MonoBehaviour:
