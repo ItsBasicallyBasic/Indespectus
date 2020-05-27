@@ -188,7 +188,7 @@ public class EnemyAI : MonoBehaviour
         {
 
             enemyNavMeshAgent.isStopped = true;
-            GetComponent<PlayerVelocity>().velocity = 1;
+            GetComponent<PlayerVelocity>().velocity = 1.5f;
 
             if (Time.time > attackTimer)
             {

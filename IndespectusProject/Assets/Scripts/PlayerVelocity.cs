@@ -26,9 +26,9 @@ public class PlayerVelocity : MonoBehaviour
     public Material material2;
 
     [SerializeField]
-    private float lerpSpeed = 0.1f;
+    private float lerpSpeed = 0.01f;
 
-    public int scale = 1;
+    public int scale = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -84,9 +84,10 @@ public class PlayerVelocity : MonoBehaviour
 
         velocity = Mathf.Lerp(velocity, desiredVelocity, lerpSpeed);
         
-        desiredVelocity = desiredVelocity/100;
+        //desiredVelocity = desiredVelocity/100;
+        desiredVelocity = Mathf.Clamp(desiredVelocity, 0, 1.5f);
+        
 
-        if (desiredVelocity > 1) desiredVelocity = 1;
         //if (desiredVelocity > 1) desiredVelocity = 1;
     }
 }
