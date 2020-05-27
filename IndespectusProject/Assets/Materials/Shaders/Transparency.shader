@@ -113,7 +113,7 @@ Shader "Indespectus/Transparency"
 }
 /*ASEBEGIN
 Version=16700
-590;120;643;547;921.6201;1240.069;3.36642;True;False
+132.6667;87.33334;644;581;923.3033;1297.298;3.36642;True;False
 Node;AmplifyShaderEditor.SamplerNode;47;116.9393,-593.7168;Float;True;Property;_TextureSample0;Texture Sample 0;2;0;Create;True;0;0;False;0;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.ColorNode;5;168.3667,-385.1268;Float;False;Property;_BaseColor;BaseColor;1;0;Create;True;0;0;False;0;0,0,0,1;0,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.RangedFloatNode;39;157.8005,-41.4216;Float;False;Property;_Transition;Transition;0;0;Create;True;0;0;False;0;1;0;0;1;0;1;FLOAT;0
@@ -124,4 +124,4 @@ WireConnection;48;1;5;0
 WireConnection;0;0;48;0
 WireConnection;0;9;39;0
 ASEEND*/
-//CHKSM=84ADC9DADD574A0B07583031026EF80F7B1DA940
+//CHKSM=980D6BE5FCD08B18EF04C952E0B53B1239CF9621
