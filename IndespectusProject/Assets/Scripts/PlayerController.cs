@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public SteamVR_Action_Vector2 input;
     public float speed = 1;
     private CharacterController characterController;
+    private CapsuleCollider capsuleCollider;
 
     public Transform head;
 
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        capsuleCollider = GetComponent<CapsuleCollider>();
     }
 
     // Update is called once per frame
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
         // Get head height in local space
         float headHeight = Mathf.Clamp(head.localPosition.y, 1, 2);
         characterController.height = headHeight;
+        capsuleCollider.height = headHeight;
 
         // Cut in half
         Vector3 newCenter = Vector3.zero;
@@ -46,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
         // Apply
         characterController.center = newCenter;
+        capsuleCollider.center = newCenter;
     }
 }
 

@@ -19,19 +19,14 @@ public class PlayerCollisionController : MonoBehaviour
         if(playerResources.GetHealth() <= 0)
         {
             SceneManager.LoadScene(0);
+            Destroy(gameObject);
         }
     }
 
     // Triggers
     private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Collisions
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Sword")
+        if (other.gameObject.tag == "Sword")
         {
             print("You've been damaged!");
             playerResources.LooseHealth(30);
@@ -39,5 +34,11 @@ public class PlayerCollisionController : MonoBehaviour
             // Play sound
             // Play visual effect
         }
+    }
+
+    // Collisions
+    private void OnCollisionEnter(Collision collision)
+    {
+
     }
 }

@@ -24,6 +24,9 @@ public class EnemyAI : MonoBehaviour
     // Target GameObject
     public GameObject player;
 
+    // Target's collider
+    public Transform collider;
+
     // Target Location
     public Vector3 target;
 
@@ -126,8 +129,20 @@ public class EnemyAI : MonoBehaviour
 
         if (playerVelocity > 0.5f && enemyBehaviour != EnemyBehaviours.Fleeing && enemyBehaviour != EnemyBehaviours.Dead)
         {
-            playerLastKnownLocation = player.GetComponent<PlayerVelocity>().head.transform.position;
-            enemyBehaviour = EnemyBehaviours.Attacking;
+            // ...player location and AI location as Vector3s
+            //Vector3 origin = transform.position;
+            //Vector3 position = collider.position + Vector3.up * -1;
+
+            // ...Calculate direction and distance from the AI to the location
+            //Vector3 dir = position - origin;
+
+            //RaycastHit hit;
+
+            //if(Physics.Raycast(origin, dir, out hit) && hit.transform.gameObject.tag == "Player")
+            //{
+                playerLastKnownLocation = player.GetComponent<PlayerVelocity>().head.transform.position;
+                enemyBehaviour = EnemyBehaviours.Attacking;
+            //}
         }
 
         // Enemy Behaviours State Switch
@@ -186,6 +201,8 @@ public class EnemyAI : MonoBehaviour
 
         if (Vector3.Distance(transform.position, playerLastKnownLocation) <= attackDistance)
         {
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isRunning", false);
 
             enemyNavMeshAgent.isStopped = true;
             GetComponent<PlayerVelocity>().velocity = 1.5f;
@@ -264,7 +281,7 @@ public class EnemyAI : MonoBehaviour
         {
             fleeLocationFound = false;
             enemyBehaviour = EnemyBehaviours.Scouting;
-            enemyResources.GainHealth(40);
+            enemyResources.SetHealth(100);
         }
     }
 
@@ -343,8 +360,14 @@ public class EnemyAI : MonoBehaviour
 
         if (other.gameObject.tag == "Bullet")
         {
+            // Deal damage
             print("Dealt damage!");
             enemyResources.LooseHealth(30);
+
+            // Feedback systems:
+            // Enemy hit animation
+            // Particle effect
+            // Sound
         }
     }
 }
