@@ -57,10 +57,15 @@ public class PlayerVelocity : MonoBehaviour
             material4.SetFloat("_Transition", velocity/scale);
         }
 
+        SetVelocity();
+    }
+
+    void SetVelocity()
+    {
         // Assign velocity based off previous frame position
-        leftHandVelocity = Vector3.Distance(leftHand.position, leftHandPreviousPos) * 5000 * Time.deltaTime;
-        rightHandVelocity = Vector3.Distance(rightHand.position, rightHandPreviousPos) * 5000 * Time.deltaTime;
-        headVelocity = Vector3.Distance(head.position, headPreviousPos) * 5000 * Time.deltaTime;
+        leftHandVelocity = Vector3.Distance(leftHand.position, leftHandPreviousPos) * 10000 * Time.deltaTime;
+        rightHandVelocity = Vector3.Distance(rightHand.position, rightHandPreviousPos) * 10000 * Time.deltaTime;
+        headVelocity = Vector3.Distance(head.position, headPreviousPos) * 10000 * Time.deltaTime;
 
         // Update previous frame with current frame position for next frame
         headPreviousPos = head.position;
@@ -68,7 +73,7 @@ public class PlayerVelocity : MonoBehaviour
         rightHandPreviousPos = rightHand.position;
 
         // Update player velocity with sensory output that was the highest
-        if(leftHandVelocity > rightHandVelocity || leftHandVelocity > headVelocity)
+        if (leftHandVelocity > rightHandVelocity || leftHandVelocity > headVelocity)
         {
             desiredVelocity = leftHandVelocity;
         }
@@ -87,11 +92,14 @@ public class PlayerVelocity : MonoBehaviour
         }
 
         velocity = Mathf.Lerp(velocity, desiredVelocity, lerpSpeed);
-        
+
         //desiredVelocity = desiredVelocity/100;
         desiredVelocity = Mathf.Clamp(desiredVelocity, 0, 1.5f);
-        
+    }
 
-        //if (desiredVelocity > 1) desiredVelocity = 1;
+    public void OverrideVelocity(float v)
+    {
+        desiredVelocity = v;
+        velocity = v;
     }
 }

@@ -1796,6 +1796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBehaviour: 0
   player: {fileID: 0}
+  collider: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
   scoutLocationsParent: {fileID: 0}
   scoutLocations: []

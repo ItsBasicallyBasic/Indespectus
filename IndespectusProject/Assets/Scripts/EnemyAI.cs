@@ -201,11 +201,13 @@ public class EnemyAI : MonoBehaviour
 
         if (Vector3.Distance(transform.position, playerLastKnownLocation) <= attackDistance)
         {
+
+            GetComponent<PlayerVelocity>().OverrideVelocity(1.5f);
+
             anim.SetBool("isWalking", false);
             anim.SetBool("isRunning", false);
 
             enemyNavMeshAgent.isStopped = true;
-            GetComponent<PlayerVelocity>().velocity = 1.5f;
 
             if (Time.time > attackTimer)
             {
@@ -229,6 +231,8 @@ public class EnemyAI : MonoBehaviour
         if (Vector3.Distance(transform.position, playerLastKnownLocation) < runDistance && Vector3.Distance(transform.position, playerLastKnownLocation) > attackDistance)
         {
 
+            //GetComponent<PlayerVelocity>().OverrideVelocity(1.5f);
+
             // Enable NavMeshAgent, set speed and set destination
             enemyNavMeshAgent.isStopped = false;
             enemyNavMeshAgent.speed = runSpeed;
@@ -242,6 +246,9 @@ public class EnemyAI : MonoBehaviour
 
     void Fleeing()
     {
+
+        //GetComponent<PlayerVelocity>().OverrideVelocity(1.5f);
+
         if (!fleeLocationFound)
         {
             // Prevent repeated calls
@@ -266,7 +273,6 @@ public class EnemyAI : MonoBehaviour
         anim.SetBool("isWalking", false);
 
         enemyNavMeshAgent.speed = runSpeed;
-        GetComponent<PlayerVelocity>().velocity = 1;
 
         //enemyNavMeshAgent.isStopped = true;
         //target = playerLastKnownLocation;
@@ -274,10 +280,10 @@ public class EnemyAI : MonoBehaviour
 
         //if(Vector3.Distance(target, transform.position) > 5)
         //{
-            //enemyBehaviour = EnemyBehaviours.Scouting;
+        //enemyBehaviour = EnemyBehaviours.Scouting;
         //}
 
-        if(Vector3.Distance(transform.position, target) < 1)
+        if (Vector3.Distance(transform.position, target) < 1)
         {
             fleeLocationFound = false;
             enemyBehaviour = EnemyBehaviours.Scouting;
@@ -287,6 +293,7 @@ public class EnemyAI : MonoBehaviour
 
     void Dead()
     {
+        GetComponent<PlayerVelocity>().desiredVelocity = 1.5f;
         Destroy(gameObject);
         // INSERT DEATH TRIGGER HERE
 
@@ -354,6 +361,8 @@ public class EnemyAI : MonoBehaviour
 
             // Feedback systems:
             // Enemy hit animation
+            anim.SetTrigger("isHit");
+
             // Particle effect
             // Sound
         }
@@ -366,6 +375,8 @@ public class EnemyAI : MonoBehaviour
 
             // Feedback systems:
             // Enemy hit animation
+            anim.SetTrigger("isHit");
+
             // Particle effect
             // Sound
         }
