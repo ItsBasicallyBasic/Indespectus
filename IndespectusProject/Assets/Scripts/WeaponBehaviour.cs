@@ -21,6 +21,13 @@ public class WeaponBehaviour : MonoBehaviour
     public GameObject bullet;
     public GameObject bulletSpawn;
 
+    public bool swordBroken = false;
+    private bool swordActive = true;
+
+    private bool brokenTimeStart;
+    private float brokenTime = 5;
+    private float brokenTimer;
+
     public ParticleSystem swordDisappear;
     public ParticleSystem swordAppear;
     public ParticleSystem gunDisappear;
@@ -28,99 +35,142 @@ public class WeaponBehaviour : MonoBehaviour
 
     public Animator animator;
 
+    // Multitool States
+    public enum MultitoolStates
+    {
+        Sword,
+        Gun
+    }
+
+    public MultitoolStates multitoolState;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         nextShot = nextShot + fireRate;
-        currSelected = 0;
-        SwitchWeapons(3);
+        currSelected = 1;
+        multitoolState = MultitoolStates.Sword;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("1"))
+
+        switch (multitoolState)
         {
-            SwitchWeapons(1);
-        }
-        if (Input.GetKeyDown("2"))
-        {
-            SwitchWeapons(2);
-        }
-        if (Input.GetKeyDown("3"))
-        {
-            SwitchWeapons(3);
+            case MultitoolStates.Sword:
+                SwordEquipped();
+                break;
+            case MultitoolStates.Gun:
+                GunEquipped();
+                break;
         }
 
-        if (changeWeapon.stateDown && currSelected == 2)
+        if (swordBroken)
         {
-            SwitchWeapons(3);
-            return;
-        }
+            if (!brokenTimeStart)
+            {
+                brokenTimeStart = true;
+                brokenTimer = Time.time + brokenTime;
+            }
 
-        if (changeWeapon.stateDown && currSelected == 3)
-        {
-            SwitchWeapons(2);
-            return;
-        }
-
-        //SteamVR_Input_Sources source = interactable.attachedToHand.handType;
-        if (Input.GetButtonDown("Fire1") || fireWeapon.stateDown)
-        {
-            if(currSelected == 3) Fire();
+            if (Time.time > brokenTimer)
+            {
+                swordBroken = false;
+            }
         }
     }
 
-    void SwitchWeapons(int selected)
+    void SwordEquipped()
     {
-        if (selected == 1)
+        if (changeWeapon.stateDown)
         {
-            if(currSelected == 2)
+            multitoolState = MultitoolStates.Gun;
+        }
+
+        if (currSelected == 1)
+        {
+            currSelected = 0;
+
+            DeactivateGun();
+
+            if (!swordBroken)
             {
-                swordDisappear.Play();
-                sword.SetActive(false);
-                swordParticles.SetActive(false);
+                ActivateSword();
             }
-            if(currSelected == 3)
+
+            if (swordBroken)
             {
-                gunDisappear.Play();
-                gun.SetActive(false);
-                gunParticles.SetActive(false);
+                swordActive = false;
             }
+        }
+
+        if(swordBroken && swordActive)
+        {
+            DeactivateSword();
+        }
+
+        if(!swordBroken && !swordActive)
+        {
+            ActivateSword();
+        }
+    }
+
+    void GunEquipped()
+    {
+        if (changeWeapon.stateDown)
+        {
+            multitoolState = MultitoolStates.Sword;
+        }
+
+        if (currSelected == 0)
+        {
             currSelected = 1;
-            return;
+
+            ActivateGun();
+
+            if (!swordBroken)
+            {
+                DeactivateSword();
+            }
+
         }
 
-        if (selected == 2)
+        if (fireWeapon.stateDown)
         {
-            if (currSelected == 3)
-            {
-                gunDisappear.Play();
-                gun.SetActive(false);
-                gunParticles.SetActive(false);
-            }
-            currSelected = 2;
-            swordAppear.Play();
-            sword.SetActive(true);
-            swordParticles.SetActive(true);
-            return;
+            Fire();
         }
+    }
 
-        if (selected == 3)
-        {
-            if(currSelected == 2)
-            {
-                swordDisappear.Play();
-                sword.SetActive(false);
-                swordParticles.SetActive(false);
-            }
-            currSelected = 3;
-            gunAppear.Play();
-            gun.gameObject.SetActive(true);
-            gunParticles.SetActive(true);
-            return;
-        }
+    void ActivateGun()
+    {
+        gunAppear.Play();
+        gun.gameObject.SetActive(true);
+        gunParticles.SetActive(true);
+    }
+
+    void DeactivateGun()
+    {
+        gunDisappear.Play();
+        gun.SetActive(false);
+        gunParticles.SetActive(false);
+    }
+
+    void ActivateSword()
+    {
+        swordActive = true;
+        swordAppear.Play();
+        sword.SetActive(true);
+        swordParticles.SetActive(true);
+    }
+
+    void DeactivateSword()
+    {
+        swordActive = false;
+        swordDisappear.Play();
+        sword.SetActive(false);
+        swordParticles.SetActive(false);
     }
 
     void Fire()

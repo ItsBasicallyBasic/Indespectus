@@ -73,6 +73,9 @@ public class EnemyAI : MonoBehaviour
     public float attackTime;
     private float attackTimer;
 
+    [SerializeField]
+    private WeaponBehaviour weaponBehaviour;
+
     // Health components
     public PlayerResources enemyResources;
 
@@ -127,7 +130,7 @@ public class EnemyAI : MonoBehaviour
             RotateTowardsTarget(new Vector3(target.x, transform.position.y, target.z));
         }
 
-        if (playerVelocity > 0.5f && enemyBehaviour != EnemyBehaviours.Fleeing && enemyBehaviour != EnemyBehaviours.Dead)
+        if (playerVelocity > 0.5f && enemyBehaviour != EnemyBehaviours.Fleeing && enemyBehaviour != EnemyBehaviours.Dead && !weaponBehaviour.swordBroken)
         {
             // ...player location and AI location as Vector3s
             //Vector3 origin = transform.position;
@@ -199,7 +202,7 @@ public class EnemyAI : MonoBehaviour
         // Setting target to attack
         target = playerLastKnownLocation;
 
-        if (Vector3.Distance(transform.position, playerLastKnownLocation) <= attackDistance)
+        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(playerLastKnownLocation.x, 0, playerLastKnownLocation.z)) <= attackDistance)
         {
 
             GetComponent<PlayerVelocity>().OverrideVelocity(1.5f);
@@ -215,9 +218,15 @@ public class EnemyAI : MonoBehaviour
 
                 anim.SetTrigger("isAttacking");
             }
+
+            if (weaponBehaviour.swordBroken)
+            {
+                enemyBehaviour = EnemyBehaviours.Fleeing;
+            }
+
             return;
         }
-        if(Vector3.Distance(transform.position, playerLastKnownLocation) > attackDistance && Vector3.Distance(transform.position, playerLastKnownLocation) > runDistance)
+        if(Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(playerLastKnownLocation.x, 0, playerLastKnownLocation.z)) > attackDistance && Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(playerLastKnownLocation.x, 0, playerLastKnownLocation.z)) > runDistance)
         {
             // Enable NavMeshAgent, set speed and set destination
             enemyNavMeshAgent.isStopped = false;
@@ -228,7 +237,7 @@ public class EnemyAI : MonoBehaviour
             anim.SetBool("isRunning", false);
             return;
         }
-        if (Vector3.Distance(transform.position, playerLastKnownLocation) < runDistance && Vector3.Distance(transform.position, playerLastKnownLocation) > attackDistance)
+        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(playerLastKnownLocation.x, 0, playerLastKnownLocation.z)) < runDistance && Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(playerLastKnownLocation.x, 0, playerLastKnownLocation.z)) > attackDistance)
         {
 
             //GetComponent<PlayerVelocity>().OverrideVelocity(1.5f);
