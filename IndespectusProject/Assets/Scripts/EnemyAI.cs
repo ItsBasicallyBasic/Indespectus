@@ -188,18 +188,6 @@ public class EnemyAI : MonoBehaviour
                 Dead();
                 break;
         }
-
-        // check hit or miss
-        if(attacking) {
-            if(Time.time > missTimer) {
-                if(!hitOrMiss) {
-                    enemyBehaviour = EnemyBehaviours.Fleeing;
-                }
-                hitOrMiss = false;
-                attacking = false;
-            }
-        }
-
     }
 
     void Scouting()
@@ -253,10 +241,6 @@ public class EnemyAI : MonoBehaviour
                 attackTimer = Time.time + attackTime;
 
                 anim.SetTrigger("isAttacking");
-                
-                // hit or miss
-                attacking = true;
-                missTimer = Time.time + missTime;
             }
 
             if (weaponBehaviour.swordBroken)
