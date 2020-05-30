@@ -50,6 +50,8 @@ public class WeaponBehaviour : MonoBehaviour
 
     public MultitoolStates multitoolState;
 
+    private PlayerResources playerResources;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +59,8 @@ public class WeaponBehaviour : MonoBehaviour
         nextShot = nextShot + fireRate;
         currSelected = 1;
         multitoolState = MultitoolStates.Sword;
+
+        playerResources = GetComponentInParent<PlayerResources>();
     }
 
     // Update is called once per frame
@@ -90,12 +94,15 @@ public class WeaponBehaviour : MonoBehaviour
         // Shoot Reveal
         if(shotReveal) {
 
-            GetComponent<PlayerVelocity>().OverrideVelocity(1.5f);
+            GetComponentInParent<PlayerVelocity>().OverrideVelocity(1.5f);
 
             if(Time.time > sRevealTimer) {
                 shotReveal = false;
             }
         }
+
+        // Increase essence gradually
+        playerResources.GainEssence(1 * Time.deltaTime);
     }
 
     void SwordEquipped()
@@ -191,8 +198,10 @@ public class WeaponBehaviour : MonoBehaviour
 
     void Fire()
     {
-        if(Time.time > nextShot)
+        if(Time.time > nextShot && playerResources.GetEssence() > 0)
         {
+            playerResources.LooseEssence(20);
+
             nextShot = nextShot + fireRate;
             GameObject bulletObject = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
             Rigidbody rb = bulletObject.GetComponent<Rigidbody>();

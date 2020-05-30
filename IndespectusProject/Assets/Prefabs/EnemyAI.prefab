@@ -10155,6 +10155,7 @@ MonoBehaviour:
   gunDisappear: {fileID: 0}
   gunAppear: {fileID: 0}
   animator: {fileID: 0}
+  sRevealTime: 0
   multitoolState: 0
 --- !u!1 &1949863352618171606
 GameObject:
@@ -16117,6 +16118,9 @@ MonoBehaviour:
   attackTime: 0
   weaponBehaviour: {fileID: 7840447465808354391}
   enemyResources: {fileID: 0}
+  hitOrMiss: 0
+  attaking: 0
+  missTime: 2
 --- !u!114 &8381148830967184673
 MonoBehaviour:
   m_ObjectHideFlags: 0
