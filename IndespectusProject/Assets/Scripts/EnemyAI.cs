@@ -134,15 +134,17 @@ public class EnemyAI : MonoBehaviour
         {
             // ...player location and AI location as Vector3s
             //Vector3 origin = transform.position;
-            //Vector3 position = collider.position + Vector3.up * -1;
+            //Vector3 position = collider.position;
 
             // ...Calculate direction and distance from the AI to the location
             //Vector3 dir = position - origin;
 
             //RaycastHit hit;
 
+            // If player can be seen...
             //if(Physics.Raycast(origin, dir, out hit) && hit.transform.gameObject.tag == "Player")
             //{
+                // Update player last known location & attack
                 playerLastKnownLocation = player.GetComponent<PlayerVelocity>().head.transform.position;
                 enemyBehaviour = EnemyBehaviours.Attacking;
             //}

@@ -44,13 +44,15 @@ public class WeaponBehaviour : MonoBehaviour
 
     public MultitoolStates multitoolState;
 
+    private PlayerResources playerResources;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        nextShot = nextShot + fireRate;
         currSelected = 1;
         multitoolState = MultitoolStates.Sword;
+        playerResources = GetComponentInParent<PlayerResources>();
     }
 
     // Update is called once per frame
@@ -80,11 +82,13 @@ public class WeaponBehaviour : MonoBehaviour
                 swordBroken = false;
             }
         }
+
+        playerResources.GainEssence(1 * Time.deltaTime);
     }
 
     void SwordEquipped()
     {
-        if (changeWeapon.stateDown)
+        if (changeWeapon.stateDown && gameObject.tag == "Player")
         {
             multitoolState = MultitoolStates.Gun;
         }
@@ -119,7 +123,7 @@ public class WeaponBehaviour : MonoBehaviour
 
     void GunEquipped()
     {
-        if (changeWeapon.stateDown)
+        if (changeWeapon.stateDown && gameObject.tag == "Player")
         {
             multitoolState = MultitoolStates.Sword;
         }
@@ -137,7 +141,7 @@ public class WeaponBehaviour : MonoBehaviour
 
         }
 
-        if (fireWeapon.stateDown)
+        if (fireWeapon.stateDown && gameObject.tag == "Player")
         {
             Fire();
         }
@@ -175,9 +179,11 @@ public class WeaponBehaviour : MonoBehaviour
 
     void Fire()
     {
-        if(Time.time > nextShot)
+        if(Time.time > nextShot && playerResources.GetEssence() > 0)
         {
-            nextShot = nextShot + fireRate;
+            playerResources.LooseEssence(20);
+
+            nextShot = Time.time + fireRate;
             GameObject bulletObject = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
             Rigidbody rb = bulletObject.GetComponent<Rigidbody>();
             rb.velocity = bulletSpawn.transform.forward * 1000 * Time.deltaTime;

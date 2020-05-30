@@ -8,26 +8,26 @@ public class PlayerResources : MonoBehaviour {
 
     [SerializeField]
     [Tooltip("Maximum Health of player - int")]
-    private int MAX_HEALTH; // Maximum Health of player - int
-    private int currentHealth; // Current Health of player - int
+    private float MAX_HEALTH; // Maximum Health of player - int
+    private float currentHealth; // Current Health of player - int
 
     // Fetch Current Health of the player
-    public int GetHealth() {
+    public float GetHealth() {
         return currentHealth;
     }
 
     // Set Current Health of the player
-    public void SetHealth(int newHealth) {
+    public void SetHealth(float newHealth) {
         currentHealth = newHealth;
     }
 
     // Reduce Current Health of the player
-    public void LooseHealth(int dmg) {
+    public void LooseHealth(float dmg) {
         currentHealth -= dmg;
     }
 
     // Increase Current Health of the player
-    public void GainHealth(int val) {
+    public void GainHealth(float val) {
         currentHealth += val;
     }
 
@@ -38,26 +38,26 @@ public class PlayerResources : MonoBehaviour {
 
     [SerializeField]
     [Tooltip("Maximum Essence of player - int")]
-    private int MAX_ESSENCE; // Maximum Essence of player - int
-    private int currentEssence; // Current Essence of player - int
+    private float MAX_ESSENCE; // Maximum Essence of player - int
+    private float currentEssence; // Current Essence of player - int
 
     // Fetch Current Essence of the player
-    public int GetEssence() {
+    public float GetEssence() {
         return currentEssence;
     }
 
     // Set Current Essence of the player
-    public void SetEssence(int newEssence) {
+    public void SetEssence(float newEssence) {
         currentEssence = newEssence;
     }
 
     // Reduce Current Essence of the player
-    public void LooseEssence(int dmg) {
+    public void LooseEssence(float dmg) {
         currentEssence -= dmg;
     }
 
     // Increase Current Essence of the player
-    public void GainEssence(int val) {
+    public void GainEssence(float val) {
         currentEssence -= val;
     }
 
@@ -66,11 +66,11 @@ public class PlayerResources : MonoBehaviour {
     // Reset Current Essence ans Health values to MAX values
     public void ResetResources() {
         currentHealth = MAX_HEALTH;
-        currentHealth = MAX_ESSENCE;
+        currentEssence = MAX_ESSENCE;
     }
     
     // Start is called before the first frame update
     void Start() {
-        //ResetResources();
+        ResetResources();
     }
 }
