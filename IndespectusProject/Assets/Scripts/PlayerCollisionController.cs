@@ -7,6 +7,9 @@ public class PlayerCollisionController : MonoBehaviour
 {
 
     private PlayerResources playerResources;
+    
+    [SerializeField]
+    private EnemyAI enemy;
 
     private void Start()
     {
@@ -30,6 +33,8 @@ public class PlayerCollisionController : MonoBehaviour
         {
             print("You've been damaged!");
             playerResources.LooseHealth(30);
+
+            enemy.hitOrMiss = true;
 
             // Play sound
             // Play visual effect
