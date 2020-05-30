@@ -35,6 +35,12 @@ public class WeaponBehaviour : MonoBehaviour
 
     public Animator animator;
 
+    // Shoot Reveal Vars
+    private bool shotReveal; 
+    [SerializeField]
+    private float sRevealTime;
+    private float sRevealTimer;
+
     // Multitool States
     public enum MultitoolStates
     {
@@ -44,15 +50,13 @@ public class WeaponBehaviour : MonoBehaviour
 
     public MultitoolStates multitoolState;
 
-    private PlayerResources playerResources;
-
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        nextShot = nextShot + fireRate;
         currSelected = 1;
         multitoolState = MultitoolStates.Sword;
-        playerResources = GetComponentInParent<PlayerResources>();
     }
 
     // Update is called once per frame
@@ -83,12 +87,20 @@ public class WeaponBehaviour : MonoBehaviour
             }
         }
 
-        playerResources.GainEssence(1 * Time.deltaTime);
+        // Shoot Reveal
+        if(shotReveal) {
+
+            GetComponent<PlayerVelocity>().OverrideVelocity(1.5f);
+
+            if(Time.time > sRevealTimer) {
+                shotReveal = false;
+            }
+        }
     }
 
     void SwordEquipped()
     {
-        if (changeWeapon.stateDown && gameObject.tag == "Player")
+        if (changeWeapon.stateDown)
         {
             multitoolState = MultitoolStates.Gun;
         }
@@ -123,7 +135,7 @@ public class WeaponBehaviour : MonoBehaviour
 
     void GunEquipped()
     {
-        if (changeWeapon.stateDown && gameObject.tag == "Player")
+        if (changeWeapon.stateDown)
         {
             multitoolState = MultitoolStates.Sword;
         }
@@ -141,7 +153,7 @@ public class WeaponBehaviour : MonoBehaviour
 
         }
 
-        if (fireWeapon.stateDown && gameObject.tag == "Player")
+        if (fireWeapon.stateDown)
         {
             Fire();
         }
@@ -179,17 +191,18 @@ public class WeaponBehaviour : MonoBehaviour
 
     void Fire()
     {
-        if(Time.time > nextShot && playerResources.GetEssence() > 0)
+        if(Time.time > nextShot)
         {
-            playerResources.LooseEssence(20);
-
-            nextShot = Time.time + fireRate;
+            nextShot = nextShot + fireRate;
             GameObject bulletObject = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
             Rigidbody rb = bulletObject.GetComponent<Rigidbody>();
             rb.velocity = bulletSpawn.transform.forward * 1000 * Time.deltaTime;
             Destroy(bulletObject, 5f);
             animator.Play("Recoil");
             //Sound??
+
+            shotReveal = true;
+            sRevealTimer = Time.time +sRevealTime;
         }
     }
 }
