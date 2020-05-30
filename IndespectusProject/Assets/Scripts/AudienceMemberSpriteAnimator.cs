@@ -9,7 +9,7 @@ public class AudienceMemberSpriteAnimator : MonoBehaviour
     [SerializeField]
     private GameObject frame2;
 
-    private float mSecondsInBetweenFrames = 1f;
+    private float mSecondsInBetweenFrames = 0.5f;
     private float timer;
 
     private int currFrame = 0;
