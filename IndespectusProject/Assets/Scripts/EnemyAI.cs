@@ -81,14 +81,32 @@ public class EnemyAI : MonoBehaviour
 
     // Retreat if Miss Vars
     public bool hitOrMiss =  false;
-    public bool attaking;
+    public bool attackingMiss;
     private float missTimer;
     [SerializeField]
     private float missTime;
 
+    [SerializeField]
+    private AISpawner spawner;
+
     // Start is called before the first frame update
     void Start()
     {
+        
+        if(player == null)
+            player = GameObject.FindGameObjectWithTag("Player");
+        if(scoutLocationsParent == null)
+            scoutLocationsParent = GameObject.FindGameObjectWithTag("ScoutLocations").transform;
+        if(fleeLocationsParent == null)
+            fleeLocationsParent = GameObject.FindGameObjectWithTag("FleeLocations").transform;
+        if(collider == null)
+            collider = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        if(anim == null)
+            anim = GetComponent<Animator>();
+        if(spawner == null)
+            spawner = GameObject.FindGameObjectWithTag("Spawner").GetComponent<AISpawner>();
+
+        
         enemyResources = GetComponent<PlayerResources>();
         enemyResources.SetHealth(100);
         enemyBehaviour = EnemyBehaviours.Scouting;
@@ -112,7 +130,7 @@ public class EnemyAI : MonoBehaviour
         int randomIndex = Random.Range(0, scoutLocations.Count);
         nextLocation = scoutLocations[randomIndex];
 
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -175,13 +193,13 @@ public class EnemyAI : MonoBehaviour
         }
 
         // check hit or miss
-        if(attacking) {
+        if(attackingMiss) {
             if(Time.time > missTimer) {
                 if(!hitOrMiss) {
                     enemyBehaviour = EnemyBehaviours.Fleeing;
                 }
                 hitOrMiss = false;
-                attacking = false;
+                attackingMiss = false;
             }
         }
 
@@ -240,7 +258,7 @@ public class EnemyAI : MonoBehaviour
                 anim.SetTrigger("isAttacking");
                 
                 // hit or miss
-                attacking = true;
+                attackingMiss = true;
                 missTimer = Time.time + missTime;
             }
 
@@ -330,6 +348,7 @@ public class EnemyAI : MonoBehaviour
         GetComponent<PlayerVelocity>().desiredVelocity = 1.5f;
         Destroy(gameObject);
         // INSERT DEATH TRIGGER HERE
+        spawner.Spawnable();
 
         enemyNavMeshAgent.enabled = false;
     }
