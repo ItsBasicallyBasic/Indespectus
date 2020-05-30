@@ -8,8 +8,8 @@ public class PlayerResources : MonoBehaviour {
 
     [SerializeField]
     [Tooltip("Maximum Health of player - int")]
-    private int MAX_HEALTH; // Maximum Health of player - int
-    [SerializeField]    private int currentHealth; // Current Health of player - int
+    private float MAX_HEALTH; // Maximum Health of player - int
+    private float currentHealth; // Current Health of player - int
 
     // Fetch Current Health of the player
     public float GetHealth() {

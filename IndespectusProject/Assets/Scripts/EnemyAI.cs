@@ -86,27 +86,12 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     private float missTime;
 
-    [SerializeField]
-    private AISpawner spawner;
-
     // Start is called before the first frame update
     void Start()
     {
         enemyResources = GetComponent<PlayerResources>();
         enemyResources.SetHealth(100);
         enemyBehaviour = EnemyBehaviours.Scouting;
-        if(player == null)
-            player = GameObject.FindGameObjectWithTag("Player");
-        if(scoutLocationsParent == null)
-            scoutLocationsParent = GameObject.FindGameObjectWithTag("ScoutLocations").transform;
-        if(fleeLocationsParent == null)
-            fleeLocationsParent = GameObject.FindGameObjectWithTag("FleeLocations").transform;
-        if(collider == null)
-            collider = GameObject.FindGameObjectWithTag("MainCamera").transform;
-        if(anim == null)
-            anim = GetComponent<Animator>();
-        if(spawner == null)
-            spawner = GameObject.FindGameObjectWithTag("Spawner").GetComponent<AISpawner>();
 
         // Get nav mesh agent from gameobject
         enemyNavMeshAgent = GetComponent<NavMeshAgent>();
@@ -127,7 +112,7 @@ public class EnemyAI : MonoBehaviour
         int randomIndex = Random.Range(0, scoutLocations.Count);
         nextLocation = scoutLocations[randomIndex];
 
-        
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -188,6 +173,18 @@ public class EnemyAI : MonoBehaviour
                 Dead();
                 break;
         }
+
+        // check hit or miss
+        if(attacking) {
+            if(Time.time > missTimer) {
+                if(!hitOrMiss) {
+                    enemyBehaviour = EnemyBehaviours.Fleeing;
+                }
+                hitOrMiss = false;
+                attacking = false;
+            }
+        }
+
     }
 
     void Scouting()
@@ -241,6 +238,10 @@ public class EnemyAI : MonoBehaviour
                 attackTimer = Time.time + attackTime;
 
                 anim.SetTrigger("isAttacking");
+                
+                // hit or miss
+                attacking = true;
+                missTimer = Time.time + missTime;
             }
 
             if (weaponBehaviour.swordBroken)
@@ -329,7 +330,6 @@ public class EnemyAI : MonoBehaviour
         GetComponent<PlayerVelocity>().desiredVelocity = 1.5f;
         Destroy(gameObject);
         // INSERT DEATH TRIGGER HERE
-        spawner.Spawnable();
 
         enemyNavMeshAgent.enabled = false;
     }

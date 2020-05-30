@@ -35,6 +35,12 @@ public class WeaponBehaviour : MonoBehaviour
 
     public Animator animator;
 
+    // Shoot Reveal Vars
+    private bool shotReveal; 
+    [SerializeField]
+    private float sRevealTime;
+    private float sRevealTimer;
+
     // Multitool States
     public enum MultitoolStates
     {
@@ -50,6 +56,7 @@ public class WeaponBehaviour : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        nextShot = nextShot + fireRate;
         currSelected = 1;
         multitoolState = MultitoolStates.Sword;
 
@@ -100,7 +107,7 @@ public class WeaponBehaviour : MonoBehaviour
 
     void SwordEquipped()
     {
-        if (changeWeapon.stateDown && gameObject.tag == "Player")
+        if (changeWeapon.stateDown)
         {
             multitoolState = MultitoolStates.Gun;
         }
@@ -135,7 +142,7 @@ public class WeaponBehaviour : MonoBehaviour
 
     void GunEquipped()
     {
-        if (changeWeapon.stateDown && gameObject.tag == "Player")
+        if (changeWeapon.stateDown)
         {
             multitoolState = MultitoolStates.Sword;
         }
@@ -153,7 +160,7 @@ public class WeaponBehaviour : MonoBehaviour
 
         }
 
-        if (fireWeapon.stateDown && gameObject.tag == "Player")
+        if (fireWeapon.stateDown)
         {
             Fire();
         }
@@ -202,6 +209,9 @@ public class WeaponBehaviour : MonoBehaviour
             Destroy(bulletObject, 5f);
             animator.Play("Recoil");
             //Sound??
+
+            shotReveal = true;
+            sRevealTimer = Time.time +sRevealTime;
         }
     }
 }

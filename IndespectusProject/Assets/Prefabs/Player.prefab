@@ -34097,8 +34097,8 @@ MonoBehaviour:
   head: {fileID: 4189521607148634788}
   rightHand: {fileID: 4189521607148656772}
   leftHand: {fileID: 4189521607148664178}
-  material: {fileID: 2100000, guid: 2fe8e1c52ac24bb4b89b40878ccde2cb, type: 2}
-  material2: {fileID: 2100000, guid: 7b8bd0e0ec0e2134e8bb93481e9f04fd, type: 2}
+  material: {fileID: 0}
+  material2: {fileID: 0}
   material3: {fileID: 0}
   material4: {fileID: 0}
   lerpSpeed: 0.1
@@ -34116,7 +34116,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MAX_HEALTH: 100
-  currentHealth: 0
   MAX_ESSENCE: 100
 --- !u!114 &7503414610009969049
 MonoBehaviour:
