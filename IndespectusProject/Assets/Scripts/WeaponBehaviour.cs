@@ -35,6 +35,12 @@ public class WeaponBehaviour : MonoBehaviour
 
     public Animator animator;
 
+    // Shoot Reveal Vars
+    private bool shotReveal; 
+    [SerializeField]
+    private float sRevealTime;
+    private float sRevealTimer;
+
     // Multitool States
     public enum MultitoolStates
     {
@@ -78,6 +84,16 @@ public class WeaponBehaviour : MonoBehaviour
             if (Time.time > brokenTimer)
             {
                 swordBroken = false;
+            }
+        }
+
+        // Shoot Reveal
+        if(shotReveal) {
+
+            GetComponent<PlayerVelocity>().OverrideVelocity(1.5f);
+
+            if(Time.time > sRevealTimer) {
+                shotReveal = false;
             }
         }
     }
@@ -184,6 +200,9 @@ public class WeaponBehaviour : MonoBehaviour
             Destroy(bulletObject, 5f);
             animator.Play("Recoil");
             //Sound??
+
+            shotReveal = true;
+            sRevealTimer = Time.time +sRevealTime;
         }
     }
 }
