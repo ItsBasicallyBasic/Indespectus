@@ -27,4 +27,13 @@ public class SwordCollisionController : MonoBehaviour
             weaponBehaviour.swordBroken = true;
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Shield")
+        {
+            //print("Blocked!");
+            //weaponBehaviour.swordBroken = true;
+        }
+    }
 }
