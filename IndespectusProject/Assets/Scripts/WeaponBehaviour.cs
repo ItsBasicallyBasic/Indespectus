@@ -52,6 +52,9 @@ public class WeaponBehaviour : MonoBehaviour
 
     private PlayerResources playerResources;
 
+    [SerializeField]
+    private GameObject shield;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -103,6 +106,21 @@ public class WeaponBehaviour : MonoBehaviour
 
         // Increase essence gradually
         playerResources.GainEssence(10 * Time.deltaTime);
+
+        // If player has less than 10 essence
+        if(playerResources.GetEssence() <= 10)
+        {
+            // Disable shield
+            shield.SetActive(false);
+        }
+
+        // If player has more than 10 essence
+        if(playerResources.GetEssence() > 10)
+        {
+            // ENable shield
+            shield.SetActive(true);
+        }
+
     }
 
     void SwordEquipped()

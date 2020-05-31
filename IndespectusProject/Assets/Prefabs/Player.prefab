@@ -33692,6 +33692,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   sRevealTime: 5
   multitoolState: 0
+  shield: {fileID: 5261830140472809089}
 --- !u!95 &4189521606263786212
 Animator:
   serializedVersion: 3

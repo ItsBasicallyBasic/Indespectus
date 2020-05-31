@@ -317,6 +317,36 @@ Transform:
   m_Father: {fileID: 2792528994352685992}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1141998619693449728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1175818505386103033}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1175818505386103033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141998619693449728}
+  m_LocalRotation: {x: 1.45519135e-11, y: -1.45519135e-11, z: -0.7071068, w: 0.70710677}
+  m_LocalPosition: {x: -0.23888221, y: 0.9596755, z: 0.14196949}
+  m_LocalScale: {x: 0.34799743, y: 0.34799737, z: 0.34799746}
+  m_Children: []
+  m_Father: {fileID: 3178196488194498175}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1258926487638151931
 GameObject:
   m_ObjectHideFlags: 0
@@ -10076,6 +10106,7 @@ Transform:
   - {fileID: 1688823637248195493}
   - {fileID: 5424782630822171839}
   - {fileID: 3752092408641381239}
+  - {fileID: 1175818505386103033}
   m_Father: {fileID: 7683302180490953163}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.00001}
@@ -10157,6 +10188,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   sRevealTime: 0
   multitoolState: 0
+  shield: {fileID: 1141998619693449728}
 --- !u!1 &1949863352618171606
 GameObject:
   m_ObjectHideFlags: 0
@@ -16119,8 +16151,9 @@ MonoBehaviour:
   weaponBehaviour: {fileID: 7840447465808354391}
   enemyResources: {fileID: 0}
   hitOrMiss: 0
-  attaking: 0
+  attackingMiss: 0
   missTime: 2
+  spawner: {fileID: 0}
 --- !u!114 &8381148830967184673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16134,6 +16167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MAX_HEALTH: 100
+  currentHealth: 0
   MAX_ESSENCE: 0
 --- !u!195 &4174752027731376963
 NavMeshAgent:

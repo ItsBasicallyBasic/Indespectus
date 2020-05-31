@@ -63,9 +63,9 @@ public class PlayerVelocity : MonoBehaviour
     void SetVelocity()
     {
         // Assign velocity based off previous frame position
-        leftHandVelocity = Vector3.Distance(leftHand.position, leftHandPreviousPos) * 10000 * Time.deltaTime;
-        rightHandVelocity = Vector3.Distance(rightHand.position, rightHandPreviousPos) * 10000 * Time.deltaTime;
-        headVelocity = Vector3.Distance(head.position, headPreviousPos) * 10000 * Time.deltaTime;
+        leftHandVelocity = Vector3.Distance(leftHand.position, leftHandPreviousPos) * 7000 * Time.deltaTime;
+        rightHandVelocity = Vector3.Distance(rightHand.position, rightHandPreviousPos) * 7000 * Time.deltaTime;
+        headVelocity = Vector3.Distance(head.position, headPreviousPos) * 7000 * Time.deltaTime;
 
         // Update previous frame with current frame position for next frame
         headPreviousPos = head.position;
