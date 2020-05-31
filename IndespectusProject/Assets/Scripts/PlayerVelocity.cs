@@ -49,13 +49,13 @@ public class PlayerVelocity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameObject.tag != "Player")
-        {
+        //if(gameObject.tag != "Player")
+        //{
             material.SetFloat("_Transition", velocity/scale);
             material2.SetFloat("_Transition", velocity/scale);
             material3.SetFloat("_Transition", velocity/scale);
             material4.SetFloat("_Transition", velocity/scale);
-        }
+       // }
 
         SetVelocity();
     }
