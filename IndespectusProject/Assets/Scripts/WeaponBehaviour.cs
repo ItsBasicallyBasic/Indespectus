@@ -90,6 +90,7 @@ public class WeaponBehaviour : MonoBehaviour
             if (Time.time > brokenTimer)
             {
                 swordBroken = false;
+                brokenTimeStart = false;
             }
         }
 
@@ -149,16 +150,14 @@ public class WeaponBehaviour : MonoBehaviour
             }
         }
 
-        if(swordBroken && swordActive)
-        {
-            DeactivateSword();
-            return;
-        }
-
-        if(!swordBroken && !swordActive)
+        if (!swordBroken && !swordActive)
         {
             ActivateSword();
-            return;
+        }
+
+        if (swordBroken && swordActive)
+        {
+            DeactivateSword();
         }
     }
 
