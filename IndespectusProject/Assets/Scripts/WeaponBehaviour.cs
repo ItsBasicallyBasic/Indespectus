@@ -69,7 +69,6 @@ public class WeaponBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         switch (multitoolState)
         {
             case MultitoolStates.Sword:
@@ -125,7 +124,7 @@ public class WeaponBehaviour : MonoBehaviour
 
     void SwordEquipped()
     {
-        if (changeWeapon.stateDown)
+        if (changeWeapon.stateDown && gameObject.tag == "Player")
         {
             multitoolState = MultitoolStates.Gun;
         }
@@ -134,7 +133,10 @@ public class WeaponBehaviour : MonoBehaviour
         {
             currSelected = 0;
 
-            DeactivateGun();
+            if(gameObject.tag == "Player")
+            {
+                DeactivateGun();
+            }
 
             if (!swordBroken)
             {
@@ -150,11 +152,13 @@ public class WeaponBehaviour : MonoBehaviour
         if(swordBroken && swordActive)
         {
             DeactivateSword();
+            return;
         }
 
         if(!swordBroken && !swordActive)
         {
             ActivateSword();
+            return;
         }
     }
 

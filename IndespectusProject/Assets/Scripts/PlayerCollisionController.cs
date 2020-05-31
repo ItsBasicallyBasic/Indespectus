@@ -25,7 +25,7 @@ public class PlayerCollisionController : MonoBehaviour
             SceneManager.LoadScene(0);
             Destroy(gameObject);
         }
-        if(enemy == null) {enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();}
+        if(enemy == null && GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>()) {enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();}
     }
 
     // Triggers
