@@ -59,7 +59,7 @@ public class PlayerResources : MonoBehaviour {
 
     // Increase Current Essence of the player
     public void GainEssence(float val) {
-        currentEssence -= val;
+        currentEssence += val;
     }
 
     #endregion
@@ -73,5 +73,11 @@ public class PlayerResources : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         ResetResources();
+    }
+
+    private void Update()
+    {
+        if (currentEssence > MAX_ESSENCE) currentEssence = MAX_ESSENCE;
+        if (currentHealth > MAX_HEALTH) currentHealth = MAX_HEALTH;
     }
 }

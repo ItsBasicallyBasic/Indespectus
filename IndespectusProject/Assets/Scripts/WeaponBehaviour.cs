@@ -102,7 +102,7 @@ public class WeaponBehaviour : MonoBehaviour
         }
 
         // Increase essence gradually
-        playerResources.GainEssence(1 * Time.deltaTime);
+        playerResources.GainEssence(10 * Time.deltaTime);
     }
 
     void SwordEquipped()
