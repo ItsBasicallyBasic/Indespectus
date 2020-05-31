@@ -15,6 +15,7 @@ public class PlayerCollisionController : MonoBehaviour
     {
         playerResources = GetComponent<PlayerResources>();
         playerResources.SetHealth(100);
+        
     }
 
     private void Update()
@@ -24,6 +25,7 @@ public class PlayerCollisionController : MonoBehaviour
             SceneManager.LoadScene(0);
             Destroy(gameObject);
         }
+        if(enemy == null) {enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();}
     }
 
     // Triggers
