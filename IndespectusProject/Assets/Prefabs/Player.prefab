@@ -34571,7 +34571,7 @@ GameObject:
   - component: {fileID: 4189521607137593488}
   - component: {fileID: 4189521607139569368}
   - component: {fileID: 4189521607138599442}
-  - component: {fileID: 4189521606955036014}
+  - component: {fileID: 9195797717369323564}
   m_Layer: 8
   m_Name: VRCamera
   m_TagString: MainCamera
@@ -34664,7 +34664,7 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4189521607148821506}
   m_Enabled: 1
---- !u!114 &4189521606955036014
+--- !u!114 &9195797717369323564
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
