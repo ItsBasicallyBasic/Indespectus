@@ -346,6 +346,9 @@ public class EnemyAI : MonoBehaviour
     void Dead()
     {
         GetComponent<PlayerVelocity>().desiredVelocity = 1.5f;
+        // ------------------------------------------------
+        FindObjectOfType<AudioManager>().Play("PlayerDeath");
+        //----------------------------------------------
         Destroy(gameObject);
         // INSERT DEATH TRIGGER HERE
         spawner.Spawnable();
