@@ -35,7 +35,15 @@ public class BulletCollision : MonoBehaviour
         }
     }
 
-    // Creates a particle effect at a collision contact location.
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Enemy")
+        {
+            Instantiate(bulletHit, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
+    }
+
     void Hit(Collision collision)
     {
         ContactPoint contact = collision.contacts[0];
