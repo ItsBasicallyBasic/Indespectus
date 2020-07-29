@@ -149,7 +149,7 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
                     lessThanMaxPlayers -= Time.deltaTime;
                     timeToStart = lessThanMaxPlayers;
                 }
-                Debug.Log("Display Time to start to the players " + timeToStart);
+                //Debug.Log("Display Time to start to the players " + timeToStart);
                 if(timeToStart <= 0) {
                     StartGame();
                 }
