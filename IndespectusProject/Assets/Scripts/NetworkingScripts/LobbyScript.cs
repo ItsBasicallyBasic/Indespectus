@@ -9,6 +9,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
     public static LobbyScript lobby;
     public GameObject connectButton;
     public GameObject cancelButton;
+    public GameObject refreshButton;
 
     void Awake() {
         lobby = this;
@@ -22,7 +23,12 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
     public override void OnConnectedToMaster() {
         Debug.Log("Player has connected to master server");
         PhotonNetwork.AutomaticallySyncScene = true;
+        refreshButton.SetActive(false);
         connectButton.SetActive(true);
+    }
+
+    public void OnRefreshButtonClicked() {
+        PhotonNetwork.ConnectUsingSettings();
     }
 
     public void OnConnectButtonClicked() {
