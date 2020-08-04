@@ -95,12 +95,12 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Transition: 0
+    - _Transition: 0.064127386
     - _UVSec: 0
     - _ZWrite: 0
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 0, b: 0.7185302, a: 0.67058825}
     - _EmissionColor: {r: 1, g: 0, b: 0.7185302, a: 0.67058825}
-    - _GlowColor: {r: 1, g: 0, b: 0.7185302, a: 0.67058825}
-    - _Tint: {r: 1, g: 0, b: 0.7185302, a: 0.67058825}
+    - _GlowColor: {r: 0.29120362, g: 4.2709866, b: 4.4408555, a: 1}
+    - _Tint: {r: 0.39999998, g: 0.92941177, b: 1, a: 0.9372549}

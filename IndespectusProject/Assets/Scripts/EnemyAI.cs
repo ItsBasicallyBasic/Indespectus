@@ -347,7 +347,7 @@ public class EnemyAI : MonoBehaviour
     {
         GetComponent<PlayerVelocity>().desiredVelocity = 1.5f;
         // ------------------------------------------------
-        FindObjectOfType<AudioManager>().Play("PlayerDeath");
+        //FindObjectOfType<AudioManager>().Play("PlayerDeath");
         //----------------------------------------------
         Destroy(gameObject);
         // INSERT DEATH TRIGGER HERE
@@ -409,7 +409,7 @@ public class EnemyAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Sword")
+        if(other.gameObject.tag == "Sword" && other.gameObject.transform.root.GetComponent<PlayerVelocity>().GetRightHandVelocity() > 1)
         {
             // Deal damage
             print("Dealt damage!");

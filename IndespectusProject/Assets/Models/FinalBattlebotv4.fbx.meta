@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c3771de2bb769a34fbf52053782b538f
+guid: b0f06af57b5464242aea95e5ae30d2cf
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
@@ -328,30 +328,6 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: mixamorig:LeftLowerLeg
-      humanName: LeftLowerLeg
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:LeftFoot
-      humanName: LeftFoot
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:LeftToeBase
-      humanName: LeftToes
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
     - boneName: mixamorig:RightLowerLeg
       humanName: RightLowerLeg
       limit:
@@ -376,14 +352,38 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: mixamorig:LeftLowerLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     skeleton:
-    - name: FinalBattlebotv4(Clone)
+    - name: FinalBattlebotv5(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Armature
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0.000000081460335, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -633,269 +633,269 @@ ModelImporter:
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Cylinder.004
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.032701187, y: 6.8698173, z: -0.16686626}
       rotation: {x: 3.9960087e-11, y: 0, z: -0, w: 1}
       scale: {x: 0.68813676, y: 0.68813676, z: 0.68813676}
-    - name: Cylinder.010
-      parentName: FinalBattlebotv4(Clone)
+    - name: Left Shoulder Connecter
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -0.7964228, y: 8.805398, z: -0.2138809}
       rotation: {x: 0.70716256, y: 0.7070499, z: 0.0009206847, w: 0.0008551578}
       scale: {x: 0.5212772, y: 0.5212772, z: 0.5212773}
     - name: Cylinder.021
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.0039015287, y: 9.656518, z: 0.057137523}
       rotation: {x: 0.7072604, y: -0.70695317, z: 0.0000000063010934, w: -0.00000010044861}
       scale: {x: 0.110372, y: 0.46868506, z: 0.11037201}
     - name: Cylinder.028
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 2.2164984, y: 8.723903, z: -0.2686718}
       rotation: {x: 0.071040586, y: -0.047205154, z: 0.6952967, w: 0.7136437}
       scale: {x: 0.386307, y: 0.08770548, z: 0.3863069}
     - name: Cube.007
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -3.2856123, y: 8.711677, z: -0.21185502}
       rotation: {x: 0.00000006178102, y: 0.0000000836853, z: -0.6217287, w: 0.7832327}
       scale: {x: 0.3411851, y: 0.3411851, z: 0.34118506}
     - name: Cube.022
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -4.787663, y: 8.468413, z: -0.2104006}
       rotation: {x: 0.5636039, y: 0.8259848, z: -0.0057258992, w: -0.008194937}
       scale: {x: 0.047845803, y: 0.097819634, z: 0.15083416}
     - name: Cube.012
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 5.2115097, y: 8.920137, z: -0.3021816}
       rotation: {x: -0.029605782, y: 0.01794462, z: 0.7530243, w: 0.65708137}
       scale: {x: 0.06529899, y: 0.13350223, z: 0.23466109}
     - name: Cylinder.005
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.044760473, y: 7.686511, z: -0.16686606}
       rotation: {x: 0.00000007549791, y: 1, z: 1.1908022e-10, w: 0.0000000754979}
       scale: {x: -0.6982302, y: -0.043491893, z: -0.6982302}
-    - name: Cube.001
-      parentName: FinalBattlebotv4(Clone)
+    - name: 'Right Shoulder '
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 1.6181947, y: 8.692267, z: -0.24453616}
       rotation: {x: -0.4003605, y: 0.58806455, z: 0.37758204, w: 0.5927254}
       scale: {x: 0.58766395, y: 0.59564227, z: 0.62987995}
     - name: Cube.008
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 3.5050826, y: 8.685007, z: -0.27716586}
       rotation: {x: 0.000000015382163, y: -0.00000011834644, z: 0.5804254, w: 0.8143135}
       scale: {x: 0.34118512, y: 0.34118515, z: 0.34118506}
     - name: Cylinder.022
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.0038589372, y: 9.754468, z: -0.22111888}
       rotation: {x: 0.7072604, y: -0.70695317, z: 0.000000006301083, w: -0.000000100448624}
       scale: {x: -0.07767256, y: -0.4746363, z: -0.07767258}
     - name: Cylinder.029
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -2.1262107, y: 8.718999, z: -0.2124472}
       rotation: {x: -0.050170887, y: -0.030311238, z: -0.75130016, w: 0.65735245}
       scale: {x: 0.39147323, y: 0.0888784, z: 0.39147305}
     - name: Cube.002
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -4.53684, y: 8.569371, z: -0.21456599}
       rotation: {x: 0.5686019, y: 0.8226077, z: 0.0028940518, w: 0.000351765}
       scale: {x: 0.06529899, y: 0.13350224, z: 0.20585547}
     - name: Cylinder.014
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 5.326093, y: 8.935559, z: -0.2978064}
       rotation: {x: -0.05903581, y: 0.73072195, z: 0.67860526, w: -0.04533351}
       scale: {x: 0.06402466, y: 0.17964837, z: 0.066504106}
     - name: Cylinder.006
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.044760466, y: 7.854625, z: -0.16686603}
       rotation: {x: 0.00000007549791, y: 1, z: 1.1908022e-10, w: 0.0000000754979}
       scale: {x: -0.6982302, y: -0.043491893, z: -0.6982302}
-    - name: Cube.003
-      parentName: FinalBattlebotv4(Clone)
+    - name: 'Left Shoulder '
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -1.5168078, y: 8.664468, z: -0.2307999}
       rotation: {x: -0.41207054, y: -0.57427, z: -0.35953408, w: 0.6092184}
       scale: {x: 0.5876359, y: 0.5876358, z: 0.5876358}
     - name: Cylinder.024
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -0.3548151, y: 9.564172, z: 0.05253023}
       rotation: {x: 1.4302815e-14, y: 0, z: -0, w: 1}
       scale: {x: -0.055098224, y: -0.08645892, z: -0.055098224}
-    - name: Cylinder.034
-      parentName: FinalBattlebotv4(Clone)
+    - name: Left Wrist
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -4.2659054, y: 8.712596, z: -0.21645574}
       rotation: {x: -0.6073717, y: -0.36029944, z: 0.36202532, w: 0.6084584}
       scale: {x: 0.20012379, y: 0.23879519, z: 0.2001238}
     - name: Cylinder.030
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 3.7452035, y: 8.625277, z: -0.04811165}
       rotation: {x: 0.57215565, y: 0.44082618, z: 0.5560683, w: 0.41121554}
       scale: {x: 0.14149861, y: 0.041693583, z: 0.14149855}
     - name: Cube.013
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 5.45296, y: 8.962339, z: -0.29755434}
       rotation: {x: -0.033723533, y: 0.015292372, z: 0.7569442, w: 0.6524296}
       scale: {x: 0.047845792, y: 0.097819604, z: 0.17194067}
     - name: Torus
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.0333283, y: 7.138773, z: 0.49294516}
       rotation: {x: 0.70791095, y: 0, z: -0, w: 0.7063017}
       scale: {x: 0.24836767, y: 1.0134438, z: 0.24836764}
     - name: Cylinder.007
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.04476047, y: 8.005176, z: -0.16686597}
       rotation: {x: 0.00000007549791, y: 1, z: 1.1908022e-10, w: 0.0000000754979}
       scale: {x: -0.6982302, y: -0.043491893, z: -0.6982302}
     - name: Cylinder.026
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -0.3549286, y: 9.679959, z: -0.22492248}
       rotation: {x: 1.3755519e-14, y: 0, z: -0, w: 1}
       scale: {x: 0.056813262, y: 0.074776694, z: 0.056813262}
-    - name: Cylinder
-      parentName: FinalBattlebotv4(Clone)
+    - name: Ears
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.0035901158, y: 10.372722, z: 0.008463272}
       rotation: {x: 0.7072603, y: -0.7069532, z: 0.0000000063011103, w: -0.0000001004486}
       scale: {x: 0.277247, y: 0.7169529, z: 0.277247}
     - name: Cylinder.031
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -3.4408824, y: 8.684107, z: 0.03867372}
       rotation: {x: 0.61929405, y: -0.33673245, z: -0.4442058, w: 0.55296236}
       scale: {x: 0.14149857, y: 0.041693587, z: 0.14149857}
     - name: Cylinder.033
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -4.669444, y: 8.904852, z: -0.21767038}
       rotation: {x: -0.581408, y: -0.40132865, z: 0.40295237, w: 0.58183277}
       scale: {x: 0.11170282, y: 0.23536265, z: 0.11602865}
     - name: Cube.015
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 4.8810806, y: 8.547015, z: -0.28099775}
       rotation: {x: -0.02934787, y: 0.017071638, z: 0.5692337, w: 0.82147443}
       scale: {x: 0.06529898, y: 0.13350223, z: 0.20585547}
     - name: Cylinder.008
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.023569932, y: 5.89768, z: -0.1668662}
       rotation: {x: -1.4967574e-10, y: 1.0636023e-16, z: -6.529817e-10, w: 1}
       scale: {x: 1.8256145, y: 0.19164625, z: 1.8256145}
     - name: Torus.001
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.011537417, y: 5.9622283, z: -0.16713722}
       rotation: {x: 0.0006498099, y: 2.7300133e-12, z: -1.8838802e-16, w: 0.9999998}
       scale: {x: 0.85285574, y: 2.504888, z: 0.8528556}
     - name: Cylinder.027
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.36725605, y: 9.679959, z: -0.22492248}
       rotation: {x: 1.3755519e-14, y: 0, z: -0, w: 1}
       scale: {x: 0.056813262, y: 0.074776694, z: 0.056813262}
     - name: Cylinder.002
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.36170825, y: 9.564172, z: 0.05253023}
       rotation: {x: 1.4302815e-14, y: 0, z: -0, w: 1}
       scale: {x: -0.055098224, y: -0.08645892, z: -0.055098224}
     - name: Cylinder.032
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -4.982706, y: 8.957237, z: -0.22172914}
       rotation: {x: -0.7014993, y: 0.043208964, z: -0.059154585, w: 0.70889527}
       scale: {x: 0.06402466, y: 0.17964834, z: 0.06650409}
-    - name: Cylinder.011
-      parentName: FinalBattlebotv4(Clone)
+    - name: Right Wrist
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 4.6098347, y: 8.689459, z: -0.28854388}
       rotation: {x: 0.3493302, y: 0.627534, z: 0.5884498, w: 0.37134406}
       scale: {x: 0.20012382, y: 0.23879515, z: 0.20012376}
     - name: Cube.014
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 5.1321244, y: 8.44656, z: -0.2784258}
       rotation: {x: -0.02084517, y: 0.025462897, z: 0.56397736, w: 0.8251344}
       scale: {x: 0.0478458, y: 0.09781962, z: 0.15083417}
     - name: Cone
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.044894233, y: 7.1159654, z: -0.16645737}
       rotation: {x: -8.3645126e-11, y: -8.6736174e-19, z: 3.79259e-19, w: 1}
       scale: {x: 1, y: 1, z: 0.9999997}
     - name: Cube.004
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.03231956, y: 7.1339927, z: 0.6446635}
       rotation: {x: 0.0000000028951015, y: 0.038346622, z: 0.99926454, w: 0.00000007544238}
       scale: {x: -0.25579718, y: -0.27313012, z: -0.06611567}
     - name: Cylinder.012
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.90725523, y: 7.6258006, z: -0.16686605}
       rotation: {x: 0.000000075497894, y: 1, z: -1.3149025e-11, w: 0.0000000754979}
       scale: {x: -0.008928109, y: -0.54247516, z: -0.008928109}
     - name: Cube.025
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -4.432368, y: 8.862591, z: -0.21906267}
       rotation: {x: 0.7521594, y: 0.65897477, z: 0.002892281, w: -0.00036511777}
       scale: {x: 0.06529898, y: 0.2058554, z: 0.23466106}
     - name: Cylinder.025
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -4.6691422, y: 8.515378, z: -0.21451585}
       rotation: {x: -0.6926442, y: -0.12150407, z: 0.14079411, w: 0.69689155}
       scale: {x: 0.06402421, y: 0.1622797, z: 0.06650395}
     - name: Cube.011
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 4.775967, y: 8.839693, z: -0.29521504}
       rotation: {x: -0.024294456, y: 0.023717329, z: 0.7524957, w: 0.65772146}
       scale: {x: 0.065298975, y: 0.20585544, z: 0.23466113}
     - name: Cylinder.015
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 5.013499, y: 8.493424, z: -0.27745178}
       rotation: {x: 0.13561526, y: 0.71854806, z: 0.6704583, w: 0.12563033}
       scale: {x: 0.06402421, y: 0.16227968, z: 0.06650396}
     - name: Cylinder.023
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -0.8664369, y: 7.577349, z: -0.16168836}
       rotation: {x: 0.000000059375775, y: 0.046452284, z: 0.0000000038636006, w: 0.9989205}
       scale: {x: -0.008928107, y: -0.5473547, z: -0.008928109}
-    - name: Cylinder.009
-      parentName: FinalBattlebotv4(Clone)
+    - name: Right Shoulder Connector
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.85032797, y: 8.813816, z: -0.22130203}
       rotation: {x: 0.000000031456725, y: -0.0000001472602, z: 0.7106999, w: 0.7034953}
       scale: {x: 0.5212772, y: 0.5212772, z: 0.5212771}
-    - name: Cube.021
-      parentName: FinalBattlebotv4(Clone)
+    - name: Head
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.011083927, y: 10.494441, z: -0.16686516}
       rotation: {x: 7.1054274e-15, y: 0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Cube.024
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -4.868079, y: 8.942372, z: -0.21655616}
       rotation: {x: 0.7525095, y: 0.65850776, z: 0.008227261, w: 0.005416178}
       scale: {x: 0.06529898, y: 0.13350223, z: 0.23466109}
     - name: Cylinder.013
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 5.0129523, y: 8.882315, z: -0.2989612}
       rotation: {x: 0.388985, y: 0.6001156, z: 0.56341684, w: 0.4136586}
       scale: {x: 0.11170282, y: 0.23536259, z: 0.11602863}
-    - name: Cylinder.003
-      parentName: FinalBattlebotv4(Clone)
+    - name: Chest
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.025436094, y: 8.815657, z: -0.22200055}
       rotation: {x: -0.000000010926902, y: -0.000000104403995, z: 0.70726067, w: 0.70695287}
       scale: {x: 0.6042039, y: 0.82844305, z: 0.6042039}
-    - name: Cylinder.020
-      parentName: FinalBattlebotv4(Clone)
+    - name: Visor
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 0.0027030197, y: 10.384798, z: 0.41114685}
       rotation: {x: -0.0000017564643, y: 0.70102227, z: 0.0000018558699, w: 0.7131395}
       scale: {x: 0.81944394, y: 0.123132, z: 0.7141121}
     - name: Cube.023
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -5.109631, y: 8.983673, z: -0.2234882}
       rotation: {x: 0.7563515, y: 0.65399504, z: 0.01249073, w: 0.008190183}
       scale: {x: 0.04784579, y: 0.09781964, z: 0.17194065}
     - name: Cylinder.001
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: -3.7165875, y: 8.692335, z: -0.21606925}
       rotation: {x: 0.000000062549006, y: 0.000000061076705, z: 0.7154771, w: 0.6986362}
       scale: {x: 0.22692285, y: 0.5053551, z: 0.22692284}
     - name: Cylinder.016
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 4.143405, y: 8.664151, z: -0.27057523}
       rotation: {x: 0.000000062549006, y: 0.000000061076705, z: 0.7154771, w: 0.6986362}
       scale: {x: 0.22692285, y: 0.5053551, z: 0.22692284}
     - name: Cylinder.018
-      parentName: FinalBattlebotv4(Clone)
+      parentName: FinalBattlebotv5(Clone)
       position: {x: 2.7136137, y: 8.737331, z: -0.2641481}
       rotation: {x: 1.2780622e-14, y: -8.562759e-15, z: 0.6931812, w: 0.7207634}
       scale: {x: 0.29420614, y: 0.7157739, z: 0.29420614}
     - name: Cylinder.019
-      parentName: FinalBattlebotv4(Clone)
-      position: {x: -2.6596155, y: 8.7698145, z: -0.060819358}
-      rotation: {x: 0, y: 0, z: 0.70664567, w: 0.7075676}
+      parentName: FinalBattlebotv5(Clone)
+      position: {x: -2.6596155, y: 8.740156, z: -0.20869584}
+      rotation: {x: 1.282031e-14, y: -8.533175e-15, z: 0.70664567, w: 0.7075676}
       scale: {x: 0.29420614, y: 0.7157739, z: 0.29420614}
     armTwist: 0.5
     foreArmTwist: 0.5
