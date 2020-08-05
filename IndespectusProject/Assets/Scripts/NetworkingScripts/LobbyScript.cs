@@ -68,6 +68,8 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
 
     // Update is called once per frame
     void Update() {
-        
+        if(PhotonNetwork.IsConnected && !connectButton.activeInHierarchy) {
+            connectButton.SetActive(true);
+        }
     }
 }
