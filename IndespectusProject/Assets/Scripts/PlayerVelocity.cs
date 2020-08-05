@@ -47,7 +47,7 @@ public class PlayerVelocity : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         //if(gameObject.tag != "Player")
         //{
@@ -55,6 +55,7 @@ public class PlayerVelocity : MonoBehaviour
             material2.SetFloat("_Transition", velocity/scale);
             material3.SetFloat("_Transition", velocity/scale);
             material4.SetFloat("_Transition", velocity/scale);
+        //print(rightHandVelocity);
        // }
 
         SetVelocity();
@@ -73,15 +74,15 @@ public class PlayerVelocity : MonoBehaviour
         rightHandPreviousPos = rightHand.position;
 
         // Update player velocity with sensory output that was the highest
-        if (leftHandVelocity > rightHandVelocity || leftHandVelocity > headVelocity)
+        if (leftHandVelocity > rightHandVelocity && leftHandVelocity > headVelocity)
         {
             desiredVelocity = leftHandVelocity;
         }
-        else if (rightHandVelocity > leftHandVelocity || rightHandVelocity > headVelocity)
+        else if (rightHandVelocity > leftHandVelocity && rightHandVelocity > headVelocity)
         {
             desiredVelocity = rightHandVelocity;
         }
-        else if (headVelocity > rightHandVelocity || headVelocity > leftHandVelocity)
+        else if (headVelocity > rightHandVelocity && headVelocity > leftHandVelocity)
         {
             desiredVelocity = headVelocity;
         }
@@ -101,5 +102,10 @@ public class PlayerVelocity : MonoBehaviour
     {
         desiredVelocity = v;
         velocity = v;
+    }
+
+    public float GetRightHandVelocity()
+    {
+        return rightHandVelocity;
     }
 }

@@ -6,6 +6,7 @@ public class SwordCollisionController : MonoBehaviour
 {
 
     public WeaponBehaviour weaponBehaviour;
+    public PlayerVelocity playerVelocity;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class SwordCollisionController : MonoBehaviour
             print("Blocked!");
             weaponBehaviour.swordBroken = true;
         }
+
     }
 
     private void OnCollisionEnter(Collision collision)

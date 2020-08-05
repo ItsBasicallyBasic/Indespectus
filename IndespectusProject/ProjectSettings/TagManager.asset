@@ -10,6 +10,9 @@ TagManager:
   - FxTemporaire
   - Enemy
   - Bullet
+  - FleeLocations
+  - Spawner
+  - ScoutLocations
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - 
   - 
   - Player
-  - Glow
+  - PostProcessing
   - 
   - 
   - 

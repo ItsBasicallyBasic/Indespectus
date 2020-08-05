@@ -12,8 +12,6 @@ public class WeaponBehaviour : MonoBehaviour
 
     public GameObject sword;
     public GameObject gun;
-    public GameObject swordParticles;
-    public GameObject gunParticles;
     private int currSelected = 0;
 
     public float fireRate = 1;
@@ -27,11 +25,6 @@ public class WeaponBehaviour : MonoBehaviour
     private bool brokenTimeStart;
     private float brokenTime = 5;
     private float brokenTimer;
-
-    public ParticleSystem swordDisappear;
-    public ParticleSystem swordAppear;
-    public ParticleSystem gunDisappear;
-    public ParticleSystem gunAppear;
 
     public Animator animator;
 
@@ -125,7 +118,7 @@ public class WeaponBehaviour : MonoBehaviour
 
     void SwordEquipped()
     {
-        if (changeWeapon.stateDown && gameObject.tag == "Player")
+        if (OVRInput.GetDown(OVRInput.Button.Two) && gameObject.tag == "Player")
         {
             multitoolState = MultitoolStates.Gun;
         }
@@ -163,7 +156,7 @@ public class WeaponBehaviour : MonoBehaviour
 
     void GunEquipped()
     {
-        if (changeWeapon.stateDown)
+        if (OVRInput.GetDown(OVRInput.Button.Two))
         {
             multitoolState = MultitoolStates.Sword;
         }
@@ -181,7 +174,7 @@ public class WeaponBehaviour : MonoBehaviour
 
         }
 
-        if (fireWeapon.stateDown)
+        if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > 0.5f)
         {
             Fire();
         }
@@ -189,32 +182,24 @@ public class WeaponBehaviour : MonoBehaviour
 
     void ActivateGun()
     {
-        gunAppear.Play();
         gun.gameObject.SetActive(true);
-        gunParticles.SetActive(true);
     }
 
     void DeactivateGun()
     {
-        gunDisappear.Play();
         gun.SetActive(false);
-        gunParticles.SetActive(false);
     }
 
     void ActivateSword()
     {
         swordActive = true;
-        swordAppear.Play();
         sword.SetActive(true);
-        swordParticles.SetActive(true);
     }
 
     void DeactivateSword()
     {
         swordActive = false;
-        swordDisappear.Play();
         sword.SetActive(false);
-        swordParticles.SetActive(false);
     }
 
     void Fire()
@@ -223,7 +208,7 @@ public class WeaponBehaviour : MonoBehaviour
         {
             playerResources.LooseEssence(20);
 
-            nextShot = nextShot + fireRate;
+            nextShot = Time.time + fireRate;
             GameObject bulletObject = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
             Rigidbody rb = bulletObject.GetComponent<Rigidbody>();
             rb.velocity = bulletSpawn.transform.forward * 1000 * Time.deltaTime;
