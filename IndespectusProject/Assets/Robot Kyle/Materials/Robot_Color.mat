@@ -53,7 +53,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _DistortionScaling: 0.292
-    - _Transition: 1.5
+    - _Transition: 40.280666
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
