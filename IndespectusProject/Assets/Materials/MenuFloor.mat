@@ -101,6 +101,6 @@ Material:
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 4, g: 0, b: 1.3176471, a: 1}
+    - _EmissionColor: {r: 5.3403134, g: 0.9320358, b: 2.3860755, a: 1}
     - _GlowColor: {r: 2.682353, g: 0, b: 4, a: 0}
     - _Tint: {r: 0, g: 0, b: 0, a: 0}
