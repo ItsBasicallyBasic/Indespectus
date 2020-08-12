@@ -5,12 +5,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
+using System;
 using TMPro;
 
-public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
+public class CustomRoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     
     // Room info
-    public static RoomScript room;
+    public static CustomRoomScript room;
     private PhotonView PV;
 
     public bool isGameLoaded;
@@ -31,18 +32,21 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     private float atMaxPlayers;
     private float timeToStart;
 
-    
-    public TMP_Text numPlayersText;
-    public TMP_Text countdownText;
+    public GameObject lobbyGO;
+    public GameObject roomGO;
+    public Transform playersPanel;
+    public GameObject playerListingPrefab;
+    public GameObject startBtn;
+
 
     
     private void Awake() {
-        if(RoomScript.room == null) {
-            RoomScript.room = this;
+        if(CustomRoomScript.room == null) {
+            CustomRoomScript.room = this;
         } else {
-            if(RoomScript.room != this) {
-                Destroy(RoomScript.room.gameObject);
-                RoomScript.room = this;
+            if(CustomRoomScript.room != this) {
+                Destroy(CustomRoomScript.room.gameObject);
+                CustomRoomScript.room = this;
             }         
         }
         DontDestroyOnLoad(this.gameObject);
@@ -63,14 +67,23 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     public override void OnJoinedRoom() {
         base.OnJoinedRoom();
         Debug.Log("Joined a room");
+
+        lobbyGO.SetActive(false);
+        roomGO.SetActive(true);
+        if(PhotonNetwork.IsMasterClient) {
+            startBtn.SetActive(true);
+        }
+
+        ClearPlayerListing();
+        ListPlayers();
+
         photonPlayers = PhotonNetwork.PlayerList;
         playersInRoom = photonPlayers.Length;
         myNumberInRoom = playersInRoom;
-        PhotonNetwork.NickName = myNumberInRoom.ToString();
+        
 
         if(MultiplayerSettings.multiplayerSettings.delayStart) {
             Debug.Log("displayer players in room out of max players posible (" + playersInRoom + ":" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
-            numPlayersText.SetText("Players in room out of max players posible (" + playersInRoom + ":" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
             if(playersInRoom > 1) {
                 readyToCount = true;
             }
@@ -81,18 +94,37 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
                 }
                 PhotonNetwork.CurrentRoom.IsOpen = false;
             }
-        } else {
+        } /*else {
             StartGame();            
+        }*/
+    }
+
+    private void ClearPlayerListing() {
+        
+        for(int i = playersPanel.childCount -1; i >= 0; i--) {
+            Destroy(playersPanel.GetChild(i).gameObject);
+        }
+    }
+    private void ListPlayers() {
+        if(PhotonNetwork.InRoom) {
+            foreach(Player p in PhotonNetwork.PlayerList) {
+                GameObject tempListing = Instantiate(playerListingPrefab, playersPanel);
+                TMP_Text tempText = tempListing.transform.GetChild(0).GetComponent<TMP_Text>();
+                tempText.SetText(p.NickName);
+            }
         }
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer) {
         base.OnPlayerEnteredRoom(newPlayer);
         Debug.Log("A new player has jooined the room");
+
+        ClearPlayerListing();
+        ListPlayers();
+
         photonPlayers = PhotonNetwork.PlayerList;
         playersInRoom++;
         if(MultiplayerSettings.multiplayerSettings.delayStart) {
-            numPlayersText.SetText("Players in room out of max players posible (" + playersInRoom + ":" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
             Debug.Log("displayer players in room out of max players posible (" + playersInRoom + ":" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
             if(playersInRoom > 1) {
                 readyToCount = true;
@@ -107,7 +139,7 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
         }
     }
 
-    void StartGame() {
+    public void StartGame() {
         isGameLoaded = true;
         if(!PhotonNetwork.IsMasterClient)
             return;
@@ -145,11 +177,6 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
         if(MultiplayerSettings.multiplayerSettings.delayStart) {
             if(playersInGame == 1) {
                 RestartTimer();
-            } 
-            
-            countdownText.SetText("...");
-            if(playersInGame > 1) {
-                countdownText.SetText("Starting in: " + timeToStart);
             }
             if(!isGameLoaded) {
                 if(readyToStart) {
@@ -160,6 +187,7 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
                     lessThanMaxPlayers -= Time.deltaTime;
                     timeToStart = lessThanMaxPlayers;
                 }
+                // Debug.Log("Display Time to start to the players " + timeToStart);
                 if(timeToStart <= 0) {
                     StartGame();
                 }
@@ -187,5 +215,16 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
         base.OnPlayerLeftRoom(otherPlayer);
         Debug.Log(otherPlayer.NickName + " has left the game.");
         playersInGame--;
+        ClearPlayerListing();
+        ListPlayers();
+    }
+
+    public void OnCancelButtonClicked () {
+        Debug.Log("Cancelling...");
+        startBtn.SetActive(false);
+        roomGO.SetActive(false);
+        PhotonNetwork.LeaveRoom();
+        lobbyGO.SetActive(true);
+        
     }
 }

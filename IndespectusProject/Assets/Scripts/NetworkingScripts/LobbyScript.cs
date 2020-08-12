@@ -10,6 +10,9 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
     public GameObject connectButton;
     public GameObject cancelButton;
     public GameObject refreshButton;
+    public GameObject backButton;
+    public GameObject errorText;
+    private int connectAttempts = 0;
 
     void Awake() {
         lobby = this;
@@ -24,6 +27,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
         Debug.Log("Player has connected to master server");
         PhotonNetwork.AutomaticallySyncScene = true;
         connectButton.SetActive(true);
+        connectAttempts = 0;
     }
 
     public void OnRefreshButtonClicked() {
@@ -34,6 +38,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
         Debug.Log("Connecting...");
         connectButton.SetActive(false);
         refreshButton.SetActive(false);
+        backButton.SetActive(false);
         PhotonNetwork.JoinRandomRoom();
         cancelButton.SetActive(true);
     }
@@ -65,12 +70,19 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
         PhotonNetwork.LeaveRoom();
         connectButton.SetActive(true);
         refreshButton.SetActive(true);
+        backButton.SetActive(true);
     }
 
     // Update is called once per frame
     void Update() {
         if(PhotonNetwork.IsConnected && !connectButton.activeInHierarchy) {
             connectButton.SetActive(true);
+        } else if(!PhotonNetwork.IsConnected && connectAttempts < 5) {
+            PhotonNetwork.ConnectUsingSettings();
+            connectAttempts++;
+        }
+        if(connectAttempts > 5) {
+            errorText.SetActive(true);
         }
     }
 }

@@ -30,7 +30,7 @@ public class SetMaterials : MonoBehaviour {
         if(PV.IsMine){
             for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) {
                 if(PhotonNetwork.PlayerList[i].IsLocal) {
-                    PV.RPC("RPC_SetColor", RpcTarget.All, i);
+                    PV.RPC("RPC_SetColor", RpcTarget.AllBuffered, i);
                     myNumber = i;
                 }
             }

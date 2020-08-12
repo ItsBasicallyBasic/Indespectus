@@ -5,8 +5,7 @@ using Photon.Pun;
 // using Valve.VR;
 // using Valve.VR.InteractionSystem;
 
-public class PlayerVelocity : MonoBehaviour
-{
+public class PlayerVelocity : MonoBehaviourPunCallbacks, IPunObservable {
 
     public float velocity;
     public float desiredVelocity;
@@ -59,12 +58,18 @@ public class PlayerVelocity : MonoBehaviour
         }
     }
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        if(stream.IsWriting) {
+            stream.SendNext(velocity);
+        } else {
+            velocity = (float) stream.ReceiveNext();
+        }    
+    }
+
     // Update is called once per frame
     void Update() {
 
-        if(PV.IsMine) {
-            PV.RPC("RPC_TransitionMaterials", RpcTarget.All);
-        }
+        TransitionMaterials();
         // // if(gameObject.tag != "Player") {
         //     material.SetFloat("_Transition", velocity/scale);
         //     material2.SetFloat("_Transition", velocity/scale);
@@ -75,9 +80,7 @@ public class PlayerVelocity : MonoBehaviour
 
         SetVelocity();
     }
-
-    [PunRPC]
-    void RPC_TransitionMaterials() {
+    void TransitionMaterials() {
         foreach(Material mat in myMats) {
             mat.SetFloat("_Transition", velocity/scale);
         }
