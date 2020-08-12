@@ -8,5 +8,6 @@ public class BackBtn : MonoBehaviour
     public void onBackBtnClick() {
         PhotonNetwork.LeaveRoom();
         PhotonNetwork.LoadLevel(MultiplayerSettings.multiplayerSettings.menuScene);
+        
     }
 }

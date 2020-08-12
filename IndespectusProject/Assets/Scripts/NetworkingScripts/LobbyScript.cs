@@ -23,7 +23,6 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
     public override void OnConnectedToMaster() {
         Debug.Log("Player has connected to master server");
         PhotonNetwork.AutomaticallySyncScene = true;
-        refreshButton.SetActive(false);
         connectButton.SetActive(true);
     }
 
@@ -34,6 +33,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
     public void OnConnectButtonClicked() {
         Debug.Log("Connecting...");
         connectButton.SetActive(false);
+        refreshButton.SetActive(false);
         PhotonNetwork.JoinRandomRoom();
         cancelButton.SetActive(true);
     }
@@ -64,6 +64,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
         cancelButton.SetActive(false);
         PhotonNetwork.LeaveRoom();
         connectButton.SetActive(true);
+        refreshButton.SetActive(true);
     }
 
     // Update is called once per frame

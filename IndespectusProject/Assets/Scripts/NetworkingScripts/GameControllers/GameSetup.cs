@@ -9,7 +9,7 @@ public class GameSetup : MonoBehaviour {
     public Transform[] spawnPoints;
 
     // Start is called before the first frame update
-    void Start() {
+    private void OnEnable() {
         if(GameSetup.GS == null) {
             GameSetup.GS = this;
         }

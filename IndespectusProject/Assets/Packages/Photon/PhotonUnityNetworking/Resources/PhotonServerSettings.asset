@@ -37,6 +37,13 @@ MonoBehaviour:
   - DestroyRpc
   - RPC_CreatePlayer
   - RPC_LoadedGameScene
+  - RPC_MaterialUPdate
+  - Update
+  - RPC_SetColor
+  - RPC_TransitionMaterials
+  - Hit
+  - OnCollisionEnter
+  - RPC_HitOther
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
