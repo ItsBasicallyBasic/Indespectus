@@ -4714,7 +4714,7 @@ GameObject:
   - component: {fileID: 2683107651180710344}
   - component: {fileID: 2652926093913561900}
   - component: {fileID: 5084612725975559041}
-  - component: {fileID: 8928999286880071709}
+  - component: {fileID: 8646330031431517757}
   m_Layer: 0
   m_Name: Teleportation
   m_TagString: Untagged
@@ -4892,7 +4892,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8928999286880071709
+--- !u!114 &8646330031431517757
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8058,7 +8058,7 @@ MonoBehaviour:
   head: {fileID: 7247168390327886168}
   rightHand: {fileID: 7247168390327938136}
   leftHand: {fileID: 7247168390327942198}
-  material: {fileID: 2100000, guid: 0aa851515cd3747d6b3b3e461199a2ed, type: 2}
+  material: {fileID: 2100000, guid: 86a7cb7f2374a4540ba2db88cc4b946e, type: 2}
   material2: {fileID: 2100000, guid: 7b8bd0e0ec0e2134e8bb93481e9f04fd, type: 2}
   material3: {fileID: 2100000, guid: 2fe8e1c52ac24bb4b89b40878ccde2cb, type: 2}
   material4: {fileID: 2100000, guid: 7b8bd0e0ec0e2134e8bb93481e9f04fd, type: 2}
