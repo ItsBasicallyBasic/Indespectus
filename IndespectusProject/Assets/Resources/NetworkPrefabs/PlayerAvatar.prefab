@@ -802,6 +802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PV: {fileID: 5105222872643200455}
   rig: {fileID: 546869914740157061}
+  pc: {fileID: 0}
 --- !u!114 &4271381918674941284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1459,6 +1460,11 @@ PrefabInstance:
     - target: {fileID: 7247168390327532912, guid: 4bbcd8c77b19b0a46aad374806244e89,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7247168390316755102, guid: 4bbcd8c77b19b0a46aad374806244e89,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7247168389021185961, guid: 4bbcd8c77b19b0a46aad374806244e89,

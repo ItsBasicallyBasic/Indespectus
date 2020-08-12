@@ -7,10 +7,13 @@ public class TurnOnRig : MonoBehaviour {
     
     [SerializeField] PhotonView PV;
     [SerializeField] GameObject rig;
+    [SerializeField] OVRPlayerController pc;
 
     // Start is called before the first frame update
     void Start() {
-        if(PV.IsMine)
+        if(PV.IsMine) {
             rig.SetActive(true);
+            pc.enabled = true;
+        }
     }
 }
