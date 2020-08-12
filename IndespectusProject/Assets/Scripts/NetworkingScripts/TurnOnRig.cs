@@ -12,7 +12,7 @@ public class TurnOnRig : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         if(!PV.IsMine) {
-            rig.SetActive(false);
+            //rig.SetActive(false);
             pc.enabled = false;
         }
     }
