@@ -83,7 +83,7 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DistortionScaling: 0.117
+    - _DistortionScaling: 0.2
     - _DstBlend: 10
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -95,12 +95,12 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Transition: 0.000000032854572
+    - _Transition: 1.5
     - _UVSec: 0
     - _ZWrite: 0
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 0, b: 0.7185302, a: 0.67058825}
     - _EmissionColor: {r: 1, g: 0, b: 0.7185302, a: 0.67058825}
-    - _GlowColor: {r: 0.29120362, g: 4.2709866, b: 4.4408555, a: 1}
-    - _Tint: {r: 0.39999998, g: 0.92941177, b: 1, a: 0.9372549}
+    - _GlowColor: {r: 1.1102138, g: 0.57545114, b: 0.081376925, a: 1}
+    - _Tint: {r: 0.9528302, g: 0.6589797, b: 0.05842829, a: 1}

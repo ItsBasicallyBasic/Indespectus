@@ -21,7 +21,7 @@ public class NetworkingPlayer : MonoBehaviourPunCallbacks {
             }
         }
         if(PV.IsMine) {
-            playerAvatar = PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "PA"), GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
+            playerAvatar = PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "PA" + spawnPicker), GameSetup.GS.spawnPoints[spawnPicker].position, GameSetup.GS.spawnPoints[spawnPicker].rotation, 0);
         }
     }
 

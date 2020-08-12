@@ -103,4 +103,4 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlowColor: {r: 0, g: 0, b: 0, a: 0}
-    - _Tint: {r: 0.1402872, g: 1, b: 0.109803915, a: 1}
+    - _Tint: {r: 1, g: 0, b: 0.32352924, a: 1}
