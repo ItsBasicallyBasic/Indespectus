@@ -23,17 +23,17 @@ public class PlayerVelocity : MonoBehaviour
     public Transform rightHand;
     public Transform leftHand;
 
-    // public Material material;
-    // public Material material2;
-    // public Material material3;
-    public Material[] myMats;
+    public Material material;
+    public Material material2;
+    public Material material3;
+    // public Material[] myMats;
 
-    [SerializeField]
-    private PhotonView PV;
+    // [SerializeField]
+    // private PhotonView PV;
 
-    [SerializeField]
-    private SetMaterials mySM;
-    //public Material material4;
+    // [SerializeField]
+    // private SetMaterials mySM;
+    public Material material4;
 
     [SerializeField]
     private float lerpSpeed = 0.01f;
@@ -48,40 +48,40 @@ public class PlayerVelocity : MonoBehaviour
         rightHandPreviousPos = rightHand.position;
         leftHandPreviousPos = leftHand.position;
         
-        if (mySM.myNumber == 0) {
-            myMats = mySM.p1Materials;
-        } else if (mySM.myNumber == 1) {
-            myMats = mySM.p2Materials;
-        } else if (mySM.myNumber == 2) {
-            myMats = mySM.p3Materials;
-        } else if (mySM.myNumber == 3) {
-            myMats = mySM.p4Materials;
-        }
+        // if (mySM.myNumber == 0) {
+        //     myMats = mySM.p1Materials;
+        // } else if (mySM.myNumber == 1) {
+        //     myMats = mySM.p2Materials;
+        // } else if (mySM.myNumber == 2) {
+        //     myMats = mySM.p3Materials;
+        // } else if (mySM.myNumber == 3) {
+        //     myMats = mySM.p4Materials;
+        // }
     }
 
     // Update is called once per frame
     void Update() {
 
-        if(PV.IsMine) {
-            PV.RPC("RPC_TransitionMaterials", RpcTarget.All);
-        }
-    //     if(gameObject.tag != "Player") {
-    //         material.SetFloat("_Transition", velocity/scale);
-    //         material2.SetFloat("_Transition", velocity/scale);
-    //         material3.SetFloat("_Transition", velocity/scale);
-    //         material4.SetFloat("_Transition", velocity/scale);
-    //         print(rightHandVelocity);
-    //    }
+        // if(PV.IsMine) {
+        //     PV.RPC("RPC_TransitionMaterials", RpcTarget.All);
+        // }
+        // if(gameObject.tag != "Player") {
+            material.SetFloat("_Transition", velocity/scale);
+            material2.SetFloat("_Transition", velocity/scale);
+            material3.SetFloat("_Transition", velocity/scale);
+            material4.SetFloat("_Transition", velocity/scale);
+            print(rightHandVelocity);
+        // }
 
         SetVelocity();
     }
 
-    [PunRPC]
-    void RPC_TransitionMaterials() {
-        foreach(Material mat in myMats) {
-            mat.SetFloat("_Transition", velocity/scale);
-        }
-    }
+    // [PunRPC]
+    // void RPC_TransitionMaterials() {
+    //     foreach(Material mat in myMats) {
+    //         mat.SetFloat("_Transition", velocity/scale);
+    //     }
+    // }
 
     void SetVelocity()
     {
