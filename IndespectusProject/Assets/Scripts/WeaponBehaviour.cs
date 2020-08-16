@@ -1,15 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR;
-using Valve.VR.InteractionSystem;
 
 public class WeaponBehaviour : MonoBehaviour
 {
-    public SteamVR_Action_Boolean fireWeapon;
-    public SteamVR_Action_Boolean changeWeapon;
-    private Interactable interactable;
-
     public GameObject sword;
     public GameObject gun;
     private int currSelected = 0;
