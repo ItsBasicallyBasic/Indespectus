@@ -44,6 +44,7 @@ MonoBehaviour:
   - Hit
   - OnCollisionEnter
   - RPC_HitOther
+  - RPC_SpawnAvatar
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
