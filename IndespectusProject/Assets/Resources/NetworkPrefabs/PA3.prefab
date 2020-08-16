@@ -4078,7 +4078,7 @@ MonoBehaviour:
   leftHand: {fileID: 7247168390327942198}
   myMats: []
   PV: {fileID: 8571592320283441698}
-  mySM: {fileID: 0}
+  mySM: {fileID: 2082724871475839605}
   lerpSpeed: 0.1
   scale: 1
 --- !u!114 &7247168389021185966
@@ -4210,8 +4210,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7180eeaf52e6634e8124adcc5dbdb87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCam: {fileID: 7247168390327532920}
-  hudUI: {fileID: 4447411290286254532}
+  toDisable:
+  - {fileID: 7247168390327599814}
+  - {fileID: 4447411290286254532}
+  - {fileID: 5661259833178234740}
   myPView: {fileID: 8571592320283441698}
 --- !u!1 &7247168390327532926
 GameObject:
@@ -4355,7 +4357,7 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 542667094197847055}
+  - {fileID: 881769578898048219}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -4493,7 +4495,7 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 542667094197847055}
+  - {fileID: 316785379617897364}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

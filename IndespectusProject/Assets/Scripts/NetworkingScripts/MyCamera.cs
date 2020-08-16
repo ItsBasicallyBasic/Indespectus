@@ -5,16 +5,15 @@ using UnityEngine;
 
 public class MyCamera : MonoBehaviour
 {
-    [SerializeField] private GameObject myCam;
-    [SerializeField] private GameObject hudUI;
+    [SerializeField] private GameObject[] toDisable;
     [SerializeField] private PhotonView myPView;
     // Start is called before the first frame update
     void Start() {
         if(myPView == null) {myPView = this.gameObject.GetComponent<PhotonView>();}
         if(!myPView.IsMine) {
-            myCam.SetActive(false);
-            hudUI.SetActive(false);
-            // Destroy(myCam);
+            foreach(GameObject o in toDisable) {
+                o.SetActive(false);
+            }
         }
     }
 

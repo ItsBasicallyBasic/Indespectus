@@ -4078,7 +4078,7 @@ MonoBehaviour:
   leftHand: {fileID: 7247168390327942198}
   myMats: []
   PV: {fileID: 8571592320283441698}
-  mySM: {fileID: 0}
+  mySM: {fileID: 2082724871475839605}
   lerpSpeed: 0.1
   scale: 1
 --- !u!114 &7247168389021185966
@@ -4210,9 +4210,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7180eeaf52e6634e8124adcc5dbdb87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCam: {fileID: 7247168390327599814}
-  hudUI: {fileID: 4447411290286254532}
-  myPView: {fileID: 8498490105572753081}
+  toDisable:
+  - {fileID: 7247168390327599814}
+  - {fileID: 4447411290286254532}
+  - {fileID: 5661259833178234740}
+  myPView: {fileID: 8571592320283441698}
 --- !u!1 &7247168390327532926
 GameObject:
   m_ObjectHideFlags: 0
@@ -4398,7 +4400,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7247168390327957286}
-  - component: {fileID: 8498490105572753081}
   m_Layer: 8
   m_Name: TrackingSpace
   m_TagString: Untagged
@@ -4426,28 +4427,6 @@ Transform:
   m_Father: {fileID: 7247168390327886172}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8498490105572753081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7247168390327599814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  observableSearch: 2
-  Synchronization: 0
-  OwnershipTransfer: 0
-  ObservedComponents: []
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &7247168390327629358
 GameObject:
   m_ObjectHideFlags: 0
