@@ -25,6 +25,7 @@ public class NetworkingPlayer : MonoBehaviourPunCallbacks {
         }
     }
 
+    [PunRPC]
     void RPC_SpawnAvatar(int i) {
         playerAvatar = PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "PA" + i), GameSetup.GS.spawnPoints[i].position, GameSetup.GS.spawnPoints[i].rotation, 0);
     }
