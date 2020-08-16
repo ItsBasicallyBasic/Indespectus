@@ -6,12 +6,20 @@ using UnityEngine;
 public class PlayerOVRLink : MonoBehaviour {
 
     public Transform playerGlobal;
-    public Transform headLocal;
-    public Transform rHandLocal;
-    public Transform lHandLocal;
-    public GameObject head;
-    public GameObject lHand;
-    public GameObject rHand;
+    public Transform posLocal;
+    // public Transform rHandLocal;
+    // public Transform lHandLocal;
+    public GameObject thisAnchor;
+    // public GameObject lHand;
+    // public GameObject rHand;
+    public enum Anchor
+    {
+        Head,
+        LeftHand,
+        RightHand
+    }
+
+    public Anchor anchor;
 
     [SerializeField] private PhotonView PV;
 
@@ -19,14 +27,21 @@ public class PlayerOVRLink : MonoBehaviour {
         Debug.Log("Player instantiated");
 
        // if(PV.IsMine) {
+            playerGlobal = GameObject.FindGameObjectWithTag("OVRRig").transform;
+            switch(anchor) {
+                case Anchor.Head:
+                    posLocal = playerGlobal.Find("OVRCameraRig/TrackingSpace/CenterEyeAnchor");
+                    break;
+                case Anchor.LeftHand:
+                    posLocal = playerGlobal.Find("OVRCameraRig/TrackingSpace/LeftHandAnchor");
+                    break;
+                case Anchor.RightHand:
+                    posLocal = playerGlobal.Find("OVRCameraRig/TrackingSpace/RightHandAnchor");
+                    break;
+            }
             Debug.Log("Player is mine");
 
-            playerGlobal = GameObject.FindGameObjectWithTag("OVRRig").transform;
-            headLocal = playerGlobal.Find("OVRCameraRig/TrackingSpace/CenterEyeAnchor");
-            lHandLocal = playerGlobal.Find("OVRCameraRig/TrackingSpace/LeftHandAnchor");
-            rHandLocal = playerGlobal.Find("OVRCameraRig/TrackingSpace/RightHandAnchor");
-
-            this.transform.SetParent(headLocal);
+            this.transform.SetParent(posLocal);
             this.transform.localPosition = Vector3.zero;
        // }
     }
@@ -35,21 +50,13 @@ public class PlayerOVRLink : MonoBehaviour {
         if (stream.IsWriting) {
             stream.SendNext(playerGlobal.position);
             stream.SendNext(playerGlobal.rotation);
-            stream.SendNext(headLocal.localPosition);
-            stream.SendNext(headLocal.localRotation);
-            stream.SendNext(lHandLocal.localPosition);
-            stream.SendNext(lHandLocal.localRotation);
-            stream.SendNext(rHandLocal.localPosition);
-            stream.SendNext(rHandLocal.localRotation);
+            stream.SendNext(posLocal.localPosition);
+            stream.SendNext(posLocal.localRotation);
         } else {
             this.transform.position = (Vector3)stream.ReceiveNext();
             this.transform.rotation = (Quaternion)stream.ReceiveNext();
-            head.transform.localPosition = (Vector3)stream.ReceiveNext();
-            head.transform.localRotation = (Quaternion)stream.ReceiveNext();
-            lHand.transform.localPosition = (Vector3)stream.ReceiveNext();
-            lHand.transform.localRotation = (Quaternion)stream.ReceiveNext();
-            rHand.transform.localPosition = (Vector3)stream.ReceiveNext();
-            rHand.transform.localRotation = (Quaternion)stream.ReceiveNext();
+            thisAnchor.transform.localPosition = (Vector3)stream.ReceiveNext();
+            thisAnchor.transform.localRotation = (Quaternion)stream.ReceiveNext();
         }
     }
 }
