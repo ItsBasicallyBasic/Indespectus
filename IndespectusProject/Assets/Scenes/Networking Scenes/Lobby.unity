@@ -847,7 +847,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &196822764
 Transform:
   m_ObjectHideFlags: 0
@@ -903,6 +903,8 @@ MonoBehaviour:
   myNumberInRoom: 0
   playersInGame: 0
   startingTime: 10
+  numPlayersText: {fileID: 0}
+  countdownText: {fileID: 0}
 --- !u!1 &274782773
 GameObject:
   m_ObjectHideFlags: 0
@@ -2113,7 +2115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &744416413
 Transform:
   m_ObjectHideFlags: 0
@@ -2143,6 +2145,8 @@ MonoBehaviour:
   connectButton: {fileID: 85669347}
   cancelButton: {fileID: 1806777217}
   refreshButton: {fileID: 2040698107}
+  backButton: {fileID: 0}
+  errorText: {fileID: 0}
 --- !u!1 &765993625
 GameObject:
   m_ObjectHideFlags: 0
@@ -3192,7 +3196,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &940311145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4378,7 +4382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1444809574
 MonoBehaviour:
   m_ObjectHideFlags: 0
