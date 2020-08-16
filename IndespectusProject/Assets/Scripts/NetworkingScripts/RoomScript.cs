@@ -124,7 +124,7 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
             if(MultiplayerSettings.multiplayerSettings.delayStart) {
                 PV.RPC("RPC_LoadedGameScene", RpcTarget.MasterClient);
             } else {
-                PV.RPC("RPC_CreatePlayer", RpcTarget.AllBuffered);
+               RPC_CreatePlayer();
             }
         }
     }

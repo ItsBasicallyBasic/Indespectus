@@ -3943,8 +3943,10 @@ GameObject:
   - component: {fileID: 7247168389021185955}
   - component: {fileID: 8571592320283441698}
   - component: {fileID: 2553673850153380433}
+  - component: {fileID: 2082724871475839605}
+  - component: {fileID: 7205022279428411750}
   m_Layer: 8
-  m_Name: OculusPlayer 1
+  m_Name: PA0
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4075,7 +4077,7 @@ MonoBehaviour:
   rightHand: {fileID: 7247168390327938136}
   leftHand: {fileID: 7247168390327942198}
   myMats: []
-  PV: {fileID: 0}
+  PV: {fileID: 8571592320283441698}
   mySM: {fileID: 0}
   lerpSpeed: 0.1
   scale: 1
@@ -4160,6 +4162,57 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &2082724871475839605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7247168390327532924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36dce456c9dc168478aa6d97a6f9a0cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p1Materials:
+  - {fileID: 2100000, guid: 6439a7b0c923c594185d565e862ac5ac, type: 2}
+  - {fileID: 2100000, guid: 2fe8e1c52ac24bb4b89b40878ccde2cb, type: 2}
+  - {fileID: 2100000, guid: 7b8bd0e0ec0e2134e8bb93481e9f04fd, type: 2}
+  p2Materials:
+  - {fileID: 2100000, guid: 7b99fc2d261ee0f408da6c631abfe496, type: 2}
+  - {fileID: 2100000, guid: 5aebb81daedf9d5448d9afa71031ca23, type: 2}
+  - {fileID: 2100000, guid: a8aae16a958ec3d439731b7635f9f27d, type: 2}
+  p3Materials:
+  - {fileID: 2100000, guid: dd3d1f5ed15ab40489544c1b82076eca, type: 2}
+  - {fileID: 2100000, guid: 5caab9a883fa03d4cb358aa6c972a7e5, type: 2}
+  - {fileID: 2100000, guid: 8955ce162fd579145b6db82c2692990a, type: 2}
+  p4Materials:
+  - {fileID: 2100000, guid: a85c89ca12d5b2f44a1a7af5281f33f0, type: 2}
+  - {fileID: 2100000, guid: bea7fdb7f008fd941a4c21441addbbde, type: 2}
+  - {fileID: 2100000, guid: eda21eef82f52f246a3fae3483d1ad85, type: 2}
+  PlayerMain: {fileID: 152874567476806867, guid: 42f561a2133286f40a5ef0a042d5a69b,
+    type: 3}
+  Handle: {fileID: 1401961174118760388}
+  Weapons:
+  - {fileID: 1900588036191794252}
+  - {fileID: 5015974558988450898}
+  - {fileID: 4752821271357733886}
+  myNumber: 0
+--- !u!114 &7205022279428411750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7247168390327532924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7180eeaf52e6634e8124adcc5dbdb87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCam: {fileID: 7247168390327599814}
+  hudUI: {fileID: 4447411290286254532}
+  myPView: {fileID: 8498490105572753081}
 --- !u!1 &7247168390327532926
 GameObject:
   m_ObjectHideFlags: 0
@@ -4302,7 +4355,7 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 542667094197847055}
+  - {fileID: 881769578898048219}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -4345,6 +4398,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7247168390327957286}
+  - component: {fileID: 8498490105572753081}
   m_Layer: 8
   m_Name: TrackingSpace
   m_TagString: Untagged
@@ -4372,6 +4426,28 @@ Transform:
   m_Father: {fileID: 7247168390327886172}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8498490105572753081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7247168390327599814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7247168390327629358
 GameObject:
   m_ObjectHideFlags: 0
@@ -4440,7 +4516,7 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 542667094197847055}
+  - {fileID: 316785379617897364}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
