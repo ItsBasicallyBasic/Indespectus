@@ -13,6 +13,9 @@ TagManager:
   - FleeLocations
   - Spawner
   - ScoutLocations
+  - OVRRig
+  - LHand
+  - RHand
   layers:
   - Default
   - TransparentFX

@@ -37,6 +37,7 @@ public class WeaponBehaviour : MonoBehaviour
 
     public MultitoolStates multitoolState;
 
+    [SerializeField]
     private PlayerResources playerResources;
 
     [SerializeField]
