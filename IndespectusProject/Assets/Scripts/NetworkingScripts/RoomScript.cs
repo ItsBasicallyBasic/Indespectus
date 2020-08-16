@@ -147,10 +147,10 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
                 RestartTimer();
             } 
             
-            countdownText.SetText("...");
+            
             if(playersInGame > 1) {
                 countdownText.SetText("Starting in: " + timeToStart);
-            }
+            } else{countdownText.SetText("...");}
             if(!isGameLoaded) {
                 if(readyToStart) {
                     atMaxPlayers -= Time.deltaTime;
@@ -179,7 +179,7 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     void RPC_LoadedGameScene() {
         playersInGame++;
         if(playersInGame == PhotonNetwork.PlayerList.Length) {
-            PV.RPC("RPC_CreatePlayer", RpcTarget.AllBuffered);
+            PV.RPC("RPC_CreatePlayer", RpcTarget.All);
         }
     }
 

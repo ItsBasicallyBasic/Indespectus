@@ -16,22 +16,17 @@ public class NetworkingPlayer : MonoBehaviourPunCallbacks {
         int spawnPicker = -1;
         for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) {
             if(PhotonNetwork.PlayerList[i].IsLocal) {
-                // PV.RPC("RPC_SetColor", RpcTarget.AllBuffered, i);
                 spawnPicker = i;
             }
         }
         if(PV.IsMine) {
-            PV.RPC("RPC_SpawnAvatar", RpcTarget.AllBuffered, spawnPicker);
+            PV.RPC("RPC_SpawnAvatar", RpcTarget.All, spawnPicker);
         }
     }
 
     [PunRPC]
     void RPC_SpawnAvatar(int i) {
         playerAvatar = PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "PA" + i), GameSetup.GS.spawnPoints[i].position, GameSetup.GS.spawnPoints[i].rotation, 0);
-    }
-
-    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer) {
-
     }
 
 

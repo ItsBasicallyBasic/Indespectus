@@ -4190,8 +4190,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: a85c89ca12d5b2f44a1a7af5281f33f0, type: 2}
   - {fileID: 2100000, guid: bea7fdb7f008fd941a4c21441addbbde, type: 2}
   - {fileID: 2100000, guid: eda21eef82f52f246a3fae3483d1ad85, type: 2}
-  PlayerMain: {fileID: 152874567476806867, guid: 42f561a2133286f40a5ef0a042d5a69b,
-    type: 3}
+  PlayerMain: {fileID: 5142517687910971069}
   Handle: {fileID: 1401961174118760388}
   Weapons:
   - {fileID: 1900588036191794252}
@@ -4298,8 +4297,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7247168390327942198}
-  - component: {fileID: 881769578898048219}
-  - component: {fileID: 2444630799275238282}
   m_Layer: 8
   m_Name: LeftHandAnchor
   m_TagString: Untagged
@@ -4323,44 +4320,6 @@ Transform:
   m_Father: {fileID: 7247168390327957286}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &881769578898048219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7247168390327594966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
---- !u!114 &2444630799275238282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7247168390327594966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  observableSearch: 2
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 881769578898048219}
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &7247168390327599808
 GameObject:
   m_ObjectHideFlags: 0
@@ -4436,8 +4395,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7247168390327938136}
-  - component: {fileID: 316785379617897364}
-  - component: {fileID: 3972304102748454261}
   m_Layer: 8
   m_Name: RightHandAnchor
   m_TagString: Untagged
@@ -4461,44 +4418,6 @@ Transform:
   m_Father: {fileID: 7247168390327957286}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &316785379617897364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7247168390327629358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
---- !u!114 &3972304102748454261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7247168390327629358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  observableSearch: 2
-  Synchronization: 3
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 316785379617897364}
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &7248256694472187178
 GameObject:
   m_ObjectHideFlags: 0
