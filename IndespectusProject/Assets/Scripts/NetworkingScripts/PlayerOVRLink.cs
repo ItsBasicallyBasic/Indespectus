@@ -26,7 +26,7 @@ public class PlayerOVRLink : MonoBehaviour {
     void Start () {
         Debug.Log("Player instantiated");
 
-       // if(PV.IsMine) {
+        if(PV.IsMine) {
             playerGlobal = GameObject.FindGameObjectWithTag("OVRRig").transform;
             switch(anchor) {
                 case Anchor.Head:
@@ -43,7 +43,7 @@ public class PlayerOVRLink : MonoBehaviour {
 
             this.transform.SetParent(posLocal);
             this.transform.localPosition = Vector3.zero;
-       // }
+        }
     }
 	
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
