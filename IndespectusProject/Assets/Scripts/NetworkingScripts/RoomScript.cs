@@ -150,7 +150,7 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
             
             
             if(readyToCount || readyToStart) {
-                countdownText.SetText("Starting in: " + timeToStart);
+                countdownText.SetText("Starting in: " + (int)timeToStart);
             } else {countdownText.SetText("Game startting in: n/a");}
             if(!isGameLoaded) {
                 if(readyToStart) {
