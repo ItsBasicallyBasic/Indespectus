@@ -22,10 +22,10 @@ public class NetworkingPlayer : MonoBehaviourPunCallbacks {
         }
         Debug.Log("i am about to spawn a player avatar for player" + spawnPicker);
         if(PV.IsMine) {
-            // PV.RPC("RPC_SpawnAvatar", RpcTarget.AllBuffered, spawnPicker);
-            // Debug.Log("ällbuffered");
             PV.RPC("RPC_SpawnAvatar", RpcTarget.AllBuffered, spawnPicker);
-            Debug.Log("all (not buffered");
+            Debug.Log("ällbuffered");
+            // PV.RPC("RPC_SpawnAvatar", RpcTarget.AllBuffered, spawnPicker);
+            // Debug.Log("all (not buffered");
         }
     }
 

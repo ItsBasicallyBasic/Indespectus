@@ -180,7 +180,7 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     void RPC_LoadedGameScene() {
         playersInGame++;
         if(playersInGame == PhotonNetwork.PlayerList.Length) {
-            PV.RPC("RPC_CreatePlayer", RpcTarget.All);
+            PV.RPC("RPC_CreatePlayer", RpcTarget.AllBuffered);
         }
     }
 
