@@ -1,25 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using RootMotion.FinalIK;
 using UnityEngine;
 
-public class PlayerOVRLink : MonoBehaviour {
+public class PlayerOVRLink : MonoBehaviour, IPunObservable {
 
-    public Transform playerGlobal;
-    public Transform posLocal;
-    // public Transform rHandLocal;
-    // public Transform lHandLocal;
-    public GameObject thisAnchor;
-    // public GameObject lHand;
-    // public GameObject rHand;
-    public enum Anchor
-    {
-        Head,
-        LeftHand,
-        RightHand
-    }
+    [SerializeField] private Transform ovrRig;
+    [SerializeField] private Transform[] bones;
 
-    public Anchor anchor;
+    [SerializeField] private VRIK vRIK;
 
     [SerializeField] private PhotonView PV;
 
@@ -27,36 +18,53 @@ public class PlayerOVRLink : MonoBehaviour {
         Debug.Log("Player instantiated");
 
         if(PV.IsMine) {
-            playerGlobal = GameObject.FindGameObjectWithTag("OVRRig").transform;
-            switch(anchor) {
-                case Anchor.Head:
-                    posLocal = playerGlobal.Find("OVRCameraRig/TrackingSpace/CenterEyeAnchor");
-                    break;
-                case Anchor.LeftHand:
-                    posLocal = playerGlobal.Find("OVRCameraRig/TrackingSpace/LeftHandAnchor");
-                    break;
-                case Anchor.RightHand:
-                    posLocal = playerGlobal.Find("OVRCameraRig/TrackingSpace/RightHandAnchor");
-                    break;
-            }
+            ovrRig = GameObject.FindGameObjectWithTag("OVRRig").transform;
+            ovrRig.transform.parent = this.transform;
+            FindRig();
             Debug.Log("Player is mine");
-
-            this.transform.SetParent(posLocal);
-            this.transform.localPosition = Vector3.zero;
         }
     }
-	
-    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+
+    private void FindRig() {
+        vRIK.solver.spine.headTarget = ovrRig.Find("OVRCameraRig/TrackingSpace/CenterEyeAnchor/Head");
+        vRIK.solver.leftArm.target = ovrRig.Find("OVRCameraRig/TrackingSpace/LeftHandAnchor/hand.L");
+        vRIK.solver.rightArm.target = ovrRig.Find("OVRCameraRig/TrackingSpace/RightHandAnchor/hand.R");
+        
+    }
+
+    // void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+    //     if (stream.IsWriting) {
+    //         stream.SendNext(ovrRig.position);
+    //         stream.SendNext(ovrRig.rotation);
+    //         foreach(Transform bone in bones) {
+    //             stream.SendNext(bone.position);
+    //             stream.SendNext(bone.rotation);
+    //         }
+    //     } else {
+    //         this.transform.position = (Vector3)stream.ReceiveNext();
+    //         this.transform.rotation = (Quaternion)stream.ReceiveNext();
+    //         foreach(Transform bone in bones) {
+    //             bone.transform.localPosition = (Vector3)stream.ReceiveNext();
+    //             bone.transform.localRotation = (Quaternion)stream.ReceiveNext();
+    //         }
+    //     }
+    // }
+
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         if (stream.IsWriting) {
-            stream.SendNext(playerGlobal.position);
-            stream.SendNext(playerGlobal.rotation);
-            stream.SendNext(posLocal.localPosition);
-            stream.SendNext(posLocal.localRotation);
+            stream.SendNext(ovrRig.position);
+            stream.SendNext(ovrRig.rotation);
+            foreach(Transform bone in bones) {
+                stream.SendNext(bone.position);
+                stream.SendNext(bone.rotation);
+            }
         } else {
             this.transform.position = (Vector3)stream.ReceiveNext();
             this.transform.rotation = (Quaternion)stream.ReceiveNext();
-            thisAnchor.transform.localPosition = (Vector3)stream.ReceiveNext();
-            thisAnchor.transform.localRotation = (Quaternion)stream.ReceiveNext();
+            foreach(Transform bone in bones) {
+                bone.transform.localPosition = (Vector3)stream.ReceiveNext();
+                bone.transform.localRotation = (Quaternion)stream.ReceiveNext();
+            }
         }
     }
 }

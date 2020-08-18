@@ -20,19 +20,24 @@ public class NetworkingPlayer : MonoBehaviourPunCallbacks {
                 spawnPicker = i;
             }
         }
+        Debug.Log("i am about to spawn a player avatar for player" + spawnPicker);
         if(PV.IsMine) {
+            // PV.RPC("RPC_SpawnAvatar", RpcTarget.AllBuffered, spawnPicker);
+            // Debug.Log("ällbuffered");
             PV.RPC("RPC_SpawnAvatar", RpcTarget.AllBuffered, spawnPicker);
+            Debug.Log("all (not buffered");
         }
     }
 
     [PunRPC]
     void RPC_SpawnAvatar(int i) {
         playerAvatar = PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "PlayerAvatar"), GameSetup.GS.spawnPoints[i].position, GameSetup.GS.spawnPoints[i].rotation, 0);
+        Debug.Log("ive instantiated player avatar for player" + i);
     }
 
-    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer) {
+    // public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer) {
 
-    }
+    // }
 
 
     // Update is called once per frame

@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7318001052762242849}
   - component: {fileID: 4770890048818956351}
-  - component: {fileID: 4770890048818956327}
-  - component: {fileID: 4770890048818956348}
   - component: {fileID: 4770890048818956349}
   - component: {fileID: 4770890048818956322}
   - component: {fileID: 4770890048818956323}
@@ -19,7 +17,7 @@ GameObject:
   - component: {fileID: 4770890048818956321}
   - component: {fileID: 4770890048818956326}
   m_Layer: 0
-  m_Name: PlayerAvata
+  m_Name: PlayerAvatar
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,44 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95263b1b4cc954a42b88f86c21ae03a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerGlobal: {fileID: 0}
-  posLocal: {fileID: 0}
-  thisAnchor: {fileID: 4770890047515524208}
-  anchor: 0
-  PV: {fileID: 4770890048818956349}
---- !u!114 &4770890048818956327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2919022023450523557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95263b1b4cc954a42b88f86c21ae03a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerGlobal: {fileID: 0}
-  posLocal: {fileID: 0}
-  thisAnchor: {fileID: 4770890048740065059}
-  anchor: 1
-  PV: {fileID: 4770890048818956349}
---- !u!114 &4770890048818956348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2919022023450523557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95263b1b4cc954a42b88f86c21ae03a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerGlobal: {fileID: 0}
-  posLocal: {fileID: 0}
-  thisAnchor: {fileID: 4770890048109989589}
-  anchor: 2
+  ovrRig: {fileID: 0}
+  bones: []
+  vRIK: {fileID: 4770890047914556237}
   PV: {fileID: 4770890048818956349}
 --- !u!114 &4770890048818956349
 MonoBehaviour:
@@ -110,6 +73,7 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
+  - {fileID: 4770890048818956351}
   - {fileID: 4770890048818956326}
   viewIdField: 0
   InstantiationId: 0
@@ -142,7 +106,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: a85c89ca12d5b2f44a1a7af5281f33f0, type: 2}
   - {fileID: 2100000, guid: bea7fdb7f008fd941a4c21441addbbde, type: 2}
   - {fileID: 2100000, guid: eda21eef82f52f246a3fae3483d1ad85, type: 2}
-  PlayerMain: {fileID: 4770890047914556239}
+  PlayerMain: {fileID: 4770890048902862701}
   Handle: {fileID: 4770890048567084152}
   Weapons:
   - {fileID: 4770890048238191837}
@@ -2941,15 +2905,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c8003a7e834abe41b265f492379186d, type: 3}
---- !u!4 &4770890048847563399 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5883085134685503472, guid: 7c8003a7e834abe41b265f492379186d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1410033478850721143}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4770890048661930317 stripped
+--- !u!114 &4770890047398087927 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5883085134894134330, guid: 7c8003a7e834abe41b265f492379186d,
+  m_CorrespondingSourceObject: {fileID: 5883085136455678336, guid: 7c8003a7e834abe41b265f492379186d,
     type: 3}
   m_PrefabInstance: {fileID: 1410033478850721143}
   m_PrefabAsset: {fileID: 0}
@@ -2959,9 +2917,15 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4770890047398087927 stripped
+--- !u!4 &4770890048847563399 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5883085134685503472, guid: 7c8003a7e834abe41b265f492379186d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1410033478850721143}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4770890048661930317 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5883085136455678336, guid: 7c8003a7e834abe41b265f492379186d,
+  m_CorrespondingSourceObject: {fileID: 5883085134894134330, guid: 7c8003a7e834abe41b265f492379186d,
     type: 3}
   m_PrefabInstance: {fileID: 1410033478850721143}
   m_PrefabAsset: {fileID: 0}

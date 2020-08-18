@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 namespace RootMotion.FinalIK {
 	
@@ -189,8 +190,9 @@ namespace RootMotion.FinalIK {
 			}
 		}
 
-		// Open the User Manual URL
-		[ContextMenu("User Manual")]
+
+        // Open the User Manual URL
+        [ContextMenu("User Manual")]
 		protected override void OpenUserManual() {
 			Debug.Log ("Sorry, VRIK User Manual is not finished yet.");
 			// TODO Application.OpenURL("http://www.root-motion.com/finalikdox/html/page6.html");
@@ -258,5 +260,9 @@ namespace RootMotion.FinalIK {
 
 			base.UpdateSolver();
 		}
+	
+
 	}
+
+	
 }

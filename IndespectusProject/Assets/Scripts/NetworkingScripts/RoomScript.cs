@@ -124,7 +124,7 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
             if(MultiplayerSettings.multiplayerSettings.delayStart) {
                 PV.RPC("RPC_LoadedGameScene", RpcTarget.MasterClient);
             } else {
-               RPC_CreatePlayer();
+            //    RPC_CreatePlayer();
             }
         }
     }
@@ -132,6 +132,7 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     [PunRPC]
     private void RPC_CreatePlayer() {
         PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "NetworkPlayer"), transform.position, Quaternion.identity, 0);
+        Debug.Log("ive instantiated a network player");
     }
     
     // Start is called before the first frame update
@@ -147,10 +148,10 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
                 RestartTimer();
             } 
             
-            countdownText.SetText("...");
-            if(playersInGame > 1) {
+            
+            if(readyToCount || readyToStart) {
                 countdownText.SetText("Starting in: " + timeToStart);
-            }
+            } else {countdownText.SetText("Game startting in: n/a");}
             if(!isGameLoaded) {
                 if(readyToStart) {
                     atMaxPlayers -= Time.deltaTime;
@@ -179,7 +180,7 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     void RPC_LoadedGameScene() {
         playersInGame++;
         if(playersInGame == PhotonNetwork.PlayerList.Length) {
-            PV.RPC("RPC_CreatePlayer", RpcTarget.AllBuffered);
+            PV.RPC("RPC_CreatePlayer", RpcTarget.All);
         }
     }
 
