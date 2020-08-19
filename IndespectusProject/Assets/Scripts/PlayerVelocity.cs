@@ -62,7 +62,7 @@ public class PlayerVelocity : MonoBehaviourPunCallbacks, IPunObservable {
         if(stream.IsWriting) {
             stream.SendNext(velocity);
         } else {
-            velocity = (float) stream.ReceiveNext();
+            velocity = (float)stream.ReceiveNext();
         }    
     }
 
