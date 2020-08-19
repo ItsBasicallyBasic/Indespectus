@@ -11,6 +11,10 @@ public class PlayerCollisionController : MonoBehaviour
     [SerializeField]
     private EnemyAI enemy;
 
+    // Haptic feedback
+    [SerializeField]
+    private AudioClip hapticAudioClip;
+
     private void Start()
     {
         playerResources = GetComponent<PlayerResources>();
@@ -41,6 +45,11 @@ public class PlayerCollisionController : MonoBehaviour
 
             // Play sound
             // Play visual effect
+
+            // Haptic feedback
+            OVRHapticsClip hapticsClip = new OVRHapticsClip(hapticAudioClip);
+            OVRHaptics.RightChannel.Preempt(hapticsClip);
+            OVRHaptics.LeftChannel.Preempt(hapticsClip);
         }
     }
 

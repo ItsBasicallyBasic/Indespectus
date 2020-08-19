@@ -760,14 +760,20 @@ public class LocomotionTeleport : MonoBehaviour
     /// </summary>
     public void DoTeleport()
     {
-        var character = LocomotionController.CharacterController;
-        character.enabled = false;
-        var characterTransform = character.transform;
-        var destTransform = _teleportDestination.OrientationIndicator;
+        // Check if the player has enough essence before teleporting
+        float currentEssence = GetComponentInParent<PlayerResources>().GetEssence();
+        if(currentEssence >= 50)
+        {
+            GetComponentInParent<PlayerResources>().LooseEssence(50);
 
-        Vector3 destPosition = destTransform.position;
-        destPosition.y += character.height * 0.5f;
-        Quaternion destRotation = _teleportDestination.LandingRotation;// destTransform.rotation;
+            var character = LocomotionController.CharacterController;
+            character.enabled = false;
+            var characterTransform = character.transform;
+            var destTransform = _teleportDestination.OrientationIndicator;
+
+            Vector3 destPosition = destTransform.position;
+            destPosition.y += character.height * 0.5f;
+            Quaternion destRotation = _teleportDestination.LandingRotation;// destTransform.rotation;
 #if false
 		Quaternion destRotation = destTransform.rotation;
 
@@ -775,18 +781,19 @@ public class LocomotionTeleport : MonoBehaviour
 
 		destRotation = destRotation * Quaternion.Euler(0, -LocomotionController.CameraRig.trackingSpace.localEulerAngles.y, 0);
 #endif
-        if (Teleported != null)
-        {
-            Teleported(characterTransform, destPosition, destRotation);
+            if (Teleported != null)
+            {
+                Teleported(characterTransform, destPosition, destRotation);
+            }
+
+            characterTransform.position = destPosition;
+            characterTransform.rotation = destRotation;
+
+            Debug.Log("destPosition: " + destPosition + "  destRotation: " + destRotation);
+
+            LocomotionController.PlayerController.Teleported = true;
+            character.enabled = true;
         }
-
-        characterTransform.position = destPosition;
-        characterTransform.rotation = destRotation;
-
-        Debug.Log("destPosition: " + destPosition + "  destRotation: " + destRotation);
-
-        LocomotionController.PlayerController.Teleported = true;
-        character.enabled = true;
     }
 
     /// <summary>
