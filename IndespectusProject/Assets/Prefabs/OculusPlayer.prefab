@@ -1200,6 +1200,7 @@ MonoBehaviour:
   sRevealTime: 5
   multitoolState: 0
   shield: {fileID: 4752821271357733886}
+  hapticAudioClip: {fileID: 8300000, guid: f91d65267a08748519645f34d4358e48, type: 3}
 --- !u!95 &2385835802887068548
 Animator:
   serializedVersion: 3
@@ -7446,6 +7447,7 @@ MonoBehaviour:
   sRevealTime: 5
   multitoolState: 0
   shield: {fileID: 1707691465055574398}
+  hapticAudioClip: {fileID: 0}
 --- !u!95 &7247168390227502992
 Animator:
   serializedVersion: 3
@@ -7926,6 +7928,8 @@ GameObject:
   - component: {fileID: 7247168389021185966}
   - component: {fileID: 7247168389021185965}
   - component: {fileID: 7247168389021185955}
+  - component: {fileID: 2428672934000754887}
+  - component: {fileID: 4955257879508499156}
   m_Layer: 8
   m_Name: OculusPlayer
   m_TagString: Player
@@ -8106,6 +8110,34 @@ MonoBehaviour:
   MAX_HEALTH: 100
   currentHealth: 0
   MAX_ESSENCE: 100
+--- !u!114 &2428672934000754887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7247168390327532924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d4c7af623bc38049ab94c1ab39a04ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  hapticAudioClip: {fileID: 8300000, guid: cc4358f7b0d2fa2409a84eef73d956f8, type: 3}
+--- !u!114 &4955257879508499156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7247168390327532924}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea096bc0e312bd04ab5acf1a57e70358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHeight: 1.8
+  camera: {fileID: 7247168390328368068}
 --- !u!1 &7247168390327532926
 GameObject:
   m_ObjectHideFlags: 0

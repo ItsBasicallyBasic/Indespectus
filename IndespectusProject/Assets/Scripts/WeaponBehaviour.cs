@@ -43,6 +43,10 @@ public class WeaponBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject shield;
 
+    // Haptic feedback
+    [SerializeField]
+    private AudioClip hapticAudioClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -202,6 +206,10 @@ public class WeaponBehaviour : MonoBehaviour
         if(Time.time > nextShot && playerResources.GetEssence() > 0)
         {
             playerResources.LooseEssence(20);
+
+            // Haptic feedback
+            OVRHapticsClip hapticsClip = new OVRHapticsClip(hapticAudioClip);
+            OVRHaptics.RightChannel.Preempt(hapticsClip);
 
             nextShot = Time.time + fireRate;
             GameObject bulletObject = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);

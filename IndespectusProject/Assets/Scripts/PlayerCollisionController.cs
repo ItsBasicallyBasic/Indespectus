@@ -13,6 +13,12 @@ public class PlayerCollisionController : MonoBehaviour
     private EnemyAI enemy;
     private PhotonView PV;
 
+    // Haptic feedback
+    [SerializeField]
+    private AudioClip hapticAudioClip;
+
+    private void Start()
+    {
     private void Start() {
         PV = gameObject.GetComponent<PhotonView>();
         playerResources = GetComponent<PlayerResources>();
@@ -44,6 +50,13 @@ public class PlayerCollisionController : MonoBehaviour
 
                 enemy.hitOrMiss = true;
 
+            // Play sound
+            // Play visual effect
+
+            // Haptic feedback
+            OVRHapticsClip hapticsClip = new OVRHapticsClip(hapticAudioClip);
+            OVRHaptics.RightChannel.Preempt(hapticsClip);
+            OVRHaptics.LeftChannel.Preempt(hapticsClip);
                 // Play sound
                 // Play visual effect
             }
