@@ -31,8 +31,10 @@ public class NetworkingPlayer : MonoBehaviourPunCallbacks {
 
     [PunRPC]
     void RPC_SpawnAvatar(int i) {
-        playerAvatar = PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "PlayerAvatar"), GameSetup.GS.spawnPoints[i].position, GameSetup.GS.spawnPoints[i].rotation, 0);
-        Debug.Log("ive instantiated player avatar for player" + i);
+        if(PV.IsMine)  {
+            playerAvatar = PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "PlayerAvatar"), GameSetup.GS.spawnPoints[i].position, GameSetup.GS.spawnPoints[i].rotation, 0);
+            Debug.Log("ive instantiated player avatar for player" + i);
+        }
     }
 
     // public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer) {

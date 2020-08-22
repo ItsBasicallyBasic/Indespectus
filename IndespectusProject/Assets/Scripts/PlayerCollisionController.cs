@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,9 +11,10 @@ public class PlayerCollisionController : MonoBehaviour
     
     [SerializeField]
     private EnemyAI enemy;
+    private PhotonView PV;
 
-    private void Start()
-    {
+    private void Start() {
+        PV = gameObject.GetComponent<PhotonView>();
         playerResources = GetComponent<PlayerResources>();
         playerResources.SetHealth(100);
         enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();
@@ -21,10 +23,12 @@ public class PlayerCollisionController : MonoBehaviour
 
     private void Update()
     {
-        if(playerResources.GetHealth() <= 0)
-        {
-            SceneManager.LoadScene(0);
-            Destroy(gameObject);
+        if(PV.IsMine) {
+            if(playerResources.GetHealth() <= 0)
+            {
+                SceneManager.LoadScene(0);
+                Destroy(gameObject);
+            }
         }
         //if(enemy == null) {enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();}
     }
@@ -32,15 +36,17 @@ public class PlayerCollisionController : MonoBehaviour
     // Triggers
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Sword")
-        {
-            print("You've been damaged!");
-            playerResources.LooseHealth(30);
+        if(PV.IsMine) {
+            if (other.gameObject.tag == "Sword")
+            {
+                print("You've been damaged!");
+                playerResources.LooseHealth(30);
 
-            enemy.hitOrMiss = true;
+                enemy.hitOrMiss = true;
 
-            // Play sound
-            // Play visual effect
+                // Play sound
+                // Play visual effect
+            }
         }
     }
 
