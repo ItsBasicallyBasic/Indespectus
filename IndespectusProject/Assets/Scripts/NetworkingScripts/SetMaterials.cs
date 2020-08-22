@@ -27,13 +27,17 @@ public class SetMaterials : MonoBehaviour {
     }
 
     private void AssignMaterials() {
-        if(PV.IsMine){
-            for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) {
-                if(PhotonNetwork.PlayerList[i].IsLocal) {
-                    PV.RPC("RPC_SetColor", RpcTarget.AllBuffered, i);
-                    myNumber = i;
+        if(this.gameObject.tag != "Enemy") {
+            if(PV.IsMine){
+                for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) {
+                    if(PhotonNetwork.PlayerList[i].IsLocal) {
+                        PV.RPC("RPC_SetColor", RpcTarget.AllBuffered, i);
+                        myNumber = i;
+                    }
                 }
             }
+        } else {
+            RPC_SetColor (1);
         }
     }
 

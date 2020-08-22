@@ -11,11 +11,13 @@ public class BulletCollision : MonoBehaviour
 
     [SerializeField]
     private PhotonView PV;
+    [SerializeField] CheckNetworked cn;
 
     private int rebounds = 0;
 
     void Awake() {
-        PV = gameObject.GetComponent<PhotonView>();
+        if(PV == null) {PV = gameObject.GetComponent<PhotonView>();}
+        if(cn == null) {cn = GameObject.FindGameObjectWithTag("NetworkCheck").GetComponent<CheckNetworked>();}
     }
 
     [PunRPC]
@@ -32,11 +34,25 @@ public class BulletCollision : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        if(!cn.networked) {
+            rebounds++;
+            if (collision.gameObject.tag == "Sword")
+            {
+                rebounds --;
+            }
+            if (rebounds > 1 || collision.gameObject.tag == "Shield")
+            {
+               Hit(collision);
+                Destroy(gameObject);
+            }
+        }
+
     }
 
     [PunRPC]
     void RPC_HitOther(Collider other) {
-        if(PV.IsMine) {
+        if(PV.IsMine || !cn.networked) {
             if(other.gameObject.tag == "Enemy") {
                 PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "Hit"), transform.position, transform.rotation);
                 Destroy(gameObject);
@@ -47,11 +63,14 @@ public class BulletCollision : MonoBehaviour
         if(PV.IsMine) {
             PV.RPC("RPC_HitOther", RpcTarget.All, other);
         }
+        if(!cn.networked) {
+            RPC_HitOther(other);
+        }
     }
 
     [PunRPC]
     void Hit(Collision collision) {
-        if(PV.IsMine) {
+        if(PV.IsMine  || !cn.networked) {
             ContactPoint contact = collision.contacts[0];
             Vector3 position = contact.point;
             GameObject hit = PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "Hit"), transform.position, transform.rotation);

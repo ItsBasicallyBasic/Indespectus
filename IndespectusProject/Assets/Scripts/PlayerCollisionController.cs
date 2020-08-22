@@ -11,54 +11,63 @@ public class PlayerCollisionController : MonoBehaviour
     
     [SerializeField]
     private EnemyAI enemy;
-    private PhotonView PV;
+    [SerializeField] private PhotonView PV;
 
     // Haptic feedback
     [SerializeField]
     private AudioClip hapticAudioClip;
+    [SerializeField] CheckNetworked cn;
 
-    private void Start()
-    {
     private void Start() {
-        PV = gameObject.GetComponent<PhotonView>();
-        playerResources = GetComponent<PlayerResources>();
-        playerResources.SetHealth(100);
-        enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();
+        if(PV == null) {PV = gameObject.GetComponent<PhotonView>();}
+        if(cn == null) {cn = GameObject.FindGameObjectWithTag("NetworkCheck").GetComponent<CheckNetworked>();}
+        if(PV.IsMine || !cn.networked) {
+            playerResources = GetComponent<PlayerResources>();
+            playerResources.SetHealth(100);
+            // enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();
+        }
 
     }
 
     private void Update()
     {
-        if(PV.IsMine) {
+        if(PV.IsMine || !cn.networked) {
             if(playerResources.GetHealth() <= 0)
             {
                 SceneManager.LoadScene(0);
                 Destroy(gameObject);
             }
         }
-        //if(enemy == null) {enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();}
+        if(!cn.networked) {
+            if(enemy == null) {enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();}
+        } // else {
+        //     if(players == null) {
+        //         players = GameObject.FindGameObjectsWithTag("Player")
+        //     }
+        // }
+        
     }
 
     // Triggers
     private void OnTriggerEnter(Collider other)
     {
-        if(PV.IsMine) {
+        if(PV.IsMine || !cn.networked) {
             if (other.gameObject.tag == "Sword")
             {
                 print("You've been damaged!");
                 playerResources.LooseHealth(30);
 
-                enemy.hitOrMiss = true;
+                if(!cn.networked) {
+                    enemy.hitOrMiss = true;
+                }
 
-            // Play sound
-            // Play visual effect
-
-            // Haptic feedback
-            OVRHapticsClip hapticsClip = new OVRHapticsClip(hapticAudioClip);
-            OVRHaptics.RightChannel.Preempt(hapticsClip);
-            OVRHaptics.LeftChannel.Preempt(hapticsClip);
                 // Play sound
                 // Play visual effect
+
+                // Haptic feedback
+                OVRHapticsClip hapticsClip = new OVRHapticsClip(hapticAudioClip);
+                OVRHaptics.RightChannel.Preempt(hapticsClip);
+                OVRHaptics.LeftChannel.Preempt(hapticsClip);
             }
         }
     }

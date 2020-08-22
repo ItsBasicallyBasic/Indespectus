@@ -16,6 +16,7 @@ TagManager:
   - OVRRig
   - LHand
   - RHand
+  - NetworkCheck
   layers:
   - Default
   - TransparentFX

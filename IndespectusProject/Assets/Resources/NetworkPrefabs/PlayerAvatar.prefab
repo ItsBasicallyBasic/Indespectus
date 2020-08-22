@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 4770890048818956320}
   - component: {fileID: 4770890048818956321}
   - component: {fileID: 4770890048818956326}
+  - component: {fileID: 1356597519035287596}
   m_Layer: 0
   m_Name: PlayerAvatar
   m_TagString: Player
@@ -120,51 +121,7 @@ MonoBehaviour:
   - {fileID: 4709741027438485732}
   - {fileID: 6192565711869401173}
   - {fileID: 6240692083100663150}
-  bones:
-  - {fileID: 4770890047914556236}
-  - {fileID: 4770890049333252243}
-  - {fileID: 4770890047438200225}
-  - {fileID: 4770890049151181498}
-  - {fileID: 4770890048967700731}
-  - {fileID: 4770890047687695443}
-  - {fileID: 4770890047553342688}
-  - {fileID: 4770890048085189023}
-  - {fileID: 4770890047515524209}
-  - {fileID: 4770890047435254198}
-  - {fileID: 4770890048603183347}
-  - {fileID: 4770890048042027068}
-  - {fileID: 4770890049233944826}
-  - {fileID: 4770890048740065056}
-  - {fileID: 4770890047595526641}
-  - {fileID: 4770890049307397623}
-  - {fileID: 4770890048115097844}
-  - {fileID: 4770890048238191810}
-  - {fileID: 4770890048847563399}
-  - {fileID: 4770890048400825259}
-  - {fileID: 4770890048666797598}
-  - {fileID: 4770890047743544952}
-  - {fileID: 4770890048109989594}
-  - {fileID: 4770890048230791340}
-  - {fileID: 4770890048261968616}
-  - {fileID: 4770890047460312422}
-  - {fileID: 4770890048567084153}
-  - {fileID: 4770890047938429254}
-  - {fileID: 4770890048172813355}
-  - {fileID: 4770890047474757035}
-  - {fileID: 4770890048734874647}
-  - {fileID: 4770890047522262822}
-  - {fileID: 4770890048046581873}
-  - {fileID: 4770890047826284071}
-  - {fileID: 4770890048115657526}
-  - {fileID: 4770890048984474104}
-  - {fileID: 4770890048229860083}
-  - {fileID: 4770890047504563521}
-  - {fileID: 4770890048134949040}
-  - {fileID: 4770890048186232716}
-  - {fileID: 4770890047303144883}
-  LC: {fileID: 0}
-  TH: {fileID: 0}
-  TT: {fileID: 0}
+  NonNetworked: 0
   vRIK: {fileID: 4770890047914556237}
   PV: {fileID: 4770890048818956349}
 --- !u!114 &4770890048818956349
@@ -290,6 +247,23 @@ MonoBehaviour:
   mySM: {fileID: 4770890048818956322}
   lerpSpeed: 0.1
   scale: 1
+  NonNetworked: 0
+--- !u!114 &1356597519035287596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2919022023450523557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d4c7af623bc38049ab94c1ab39a04ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  PV: {fileID: 0}
+  hapticAudioClip: {fileID: 8300000, guid: cc4358f7b0d2fa2409a84eef73d956f8, type: 3}
+  cn: {fileID: 0}
 --- !u!1 &3691112378348401271
 GameObject:
   m_ObjectHideFlags: 0
@@ -1820,6 +1794,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89fc9d64d5dcb6e4cbb2567f3c2196e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cn: {fileID: 0}
+  PV: {fileID: 4770890048818956349}
 --- !u!1 &4770890048241259950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,6 +2055,7 @@ MonoBehaviour:
   multitoolState: 0
   playerResources: {fileID: 0}
   shield: {fileID: 4770890048238191837}
+  hapticAudioClip: {fileID: 0}
 --- !u!95 &4770890048567084156
 Animator:
   serializedVersion: 3
@@ -2428,8 +2405,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d60dc3ca63f9f784aaefcf01995a84f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cn: {fileID: 0}
+  PV: {fileID: 4770890048818956349}
   weaponBehaviour: {fileID: 4770890048567084158}
-  playerVelocity: {fileID: 0}
+  playerVelocity: {fileID: 4770890048818956326}
 --- !u!54 &4770890048887984840
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3044,6 +3023,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 5883085135719786280, guid: 7c8003a7e834abe41b265f492379186d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5883085134685503472, guid: 7c8003a7e834abe41b265f492379186d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3098,11 +3082,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 86.873
-      objectReference: {fileID: 0}
-    - target: {fileID: 5883085135719786280, guid: 7c8003a7e834abe41b265f492379186d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5883085134894134328, guid: 7c8003a7e834abe41b265f492379186d,
         type: 3}

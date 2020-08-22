@@ -22,7 +22,7 @@ public class EnemyAI : MonoBehaviour
     private NavMeshAgent enemyNavMeshAgent;
 
     // Target GameObject
-    public GameObject player;
+    [SerializeField] public GameObject player;
 
     // Target's collider
     public Transform collider;
@@ -136,6 +136,7 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
 
         if(enemyResources.GetHealth() <= 0)
         {
@@ -147,6 +148,8 @@ public class EnemyAI : MonoBehaviour
             enemyBehaviour = EnemyBehaviours.Fleeing;
         }
 
+        if(player == null)
+            player = GameObject.FindGameObjectWithTag("Player");
         playerVelocity = player.GetComponent<PlayerVelocity>().velocity;
 
         if (!attacking)
@@ -407,8 +410,7 @@ public class EnemyAI : MonoBehaviour
         return fallbackPos.position;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
+    private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Sword" && other.gameObject.transform.root.GetComponent<PlayerVelocity>().GetRightHandVelocity() > 1)
         {
             // Deal damage

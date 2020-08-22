@@ -21,10 +21,6 @@ public class PlayerVelocity : MonoBehaviourPunCallbacks, IPunObservable {
     public Transform head;
     public Transform rightHand;
     public Transform leftHand;
-
-    // public Material material;
-    // public Material material2;
-    // public Material material3;
     public Material[] myMats;
 
     [SerializeField]
@@ -32,14 +28,14 @@ public class PlayerVelocity : MonoBehaviourPunCallbacks, IPunObservable {
 
     [SerializeField]
     private SetMaterials mySM;
-    // public Material material4;
 
     [SerializeField]
     private float lerpSpeed = 0.01f;
 
     public int scale = 10;
 
-    // Start is called before the first frame update
+    [SerializeField] bool NonNetworked;
+
     void Start()
     {
         // Change values from 0
@@ -47,6 +43,10 @@ public class PlayerVelocity : MonoBehaviourPunCallbacks, IPunObservable {
         rightHandPreviousPos = rightHand.position;
         leftHandPreviousPos = leftHand.position;
         
+        if(this.gameObject.tag == "Enemy") {
+            mySM.myNumber = 1;
+        }
+
         if (mySM.myNumber == 0) {
             myMats = mySM.p1Materials;
         } else if (mySM.myNumber == 1) {
@@ -68,15 +68,7 @@ public class PlayerVelocity : MonoBehaviourPunCallbacks, IPunObservable {
 
     // Update is called once per frame
     void Update() {
-
         TransitionMaterials();
-        // // if(gameObject.tag != "Player") {
-        //     material.SetFloat("_Transition", velocity/scale);
-        //     material2.SetFloat("_Transition", velocity/scale);
-        //     material3.SetFloat("_Transition", velocity/scale);
-        //     material4.SetFloat("_Transition", velocity/scale);
-        //     print(rightHandVelocity);
-        // // }
 
         SetVelocity();
     }
