@@ -20,6 +20,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
     // Start is called before the first frame update
     void Start() {
         PhotonNetwork.ConnectUsingSettings();
+        connectButton.SetActive(false);
 
     }
 
@@ -84,5 +85,9 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
         if(connectAttempts > 5) {
             errorText.SetActive(true);
         }
+        if(Input.GetKey(KeyCode.Return))  {
+            OnConnectButtonClicked();
+        }
     }
+
 }
