@@ -51,7 +51,7 @@ public class PlayerCollisionController : MonoBehaviour
     // Triggers
     private void OnTriggerEnter(Collider other)
     {
-        PhotonView otherPhotonView = other.transform.root.GetComponent<PhotonView>();
+        PhotonView otherPhotonView = other.transform.GetComponent<PhotonView>();
 
         if (!otherPhotonView.IsMine && PV.IsMine /*|| !cn.networked*/) {
             if (other.gameObject.tag == "Sword")
