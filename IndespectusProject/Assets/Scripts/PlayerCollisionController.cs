@@ -54,6 +54,14 @@ public class PlayerCollisionController : MonoBehaviour
         if(PV.IsMine || !cn.networked) {
             if (other.gameObject.tag == "Sword")
             {
+                if (!PV.IsMine)
+                    return;
+
+                // Sending hit over the network
+                //PhotonView otherPhotonView = other.transform.root.GetComponent<PhotonView>();
+                //otherPhotonView.RPC("DealDamage", otherPhotonView.Owner, 30);
+
+
                 print("You've been damaged!");
                 playerResources.LooseHealth(30);
 
@@ -71,6 +79,13 @@ public class PlayerCollisionController : MonoBehaviour
             }
         }
     }
+
+    [PunRPC]
+    void DealDamage(float damage)
+    {
+        GetComponent<PlayerResources>().LooseHealth(damage);
+    }
+
 
     // Collisions
     private void OnCollisionEnter(Collision collision)

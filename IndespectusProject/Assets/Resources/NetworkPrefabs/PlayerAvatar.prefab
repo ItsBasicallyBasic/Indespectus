@@ -2079,7 +2079,6 @@ MonoBehaviour:
   playerResources: {fileID: 4770890048818956323}
   shield: {fileID: 4770890048238191837}
   hapticAudioClip: {fileID: 8300000, guid: 460d9a446cc128e4787c47d09d4af2bc, type: 3}
-  PV: {fileID: 5981842045349860020}
 --- !u!95 &4770890048567084156
 Animator:
   serializedVersion: 3
@@ -2285,7 +2284,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4770890048788790037
 Transform:
   m_ObjectHideFlags: 0
@@ -2293,9 +2292,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4770890048788790036}
-  m_LocalRotation: {x: -0.03168667, y: -0.010799517, z: 0.34661528, w: 0.9374098}
-  m_LocalPosition: {x: 0.6956377, y: 1.2357819, z: -0.19317383}
-  m_LocalScale: {x: 3.187234, y: 3.187235, z: 3.187249}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0048, y: -0.0057, z: -0.036}
+  m_LocalScale: {x: 1.2739847, y: 1.273985, z: 1.2739906}
   m_Children:
   - {fileID: 4770890049054576823}
   m_Father: {fileID: 4770890048567084153}
@@ -2375,13 +2374,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4770890048887984842}
-  m_LocalRotation: {x: -0.010799537, y: 0.031686913, z: 0.93740976, w: -0.3466154}
-  m_LocalPosition: {x: 0.6907276, y: 1.2416325, z: -0.005953029}
-  m_LocalScale: {x: 4.261899, y: 4.261902, z: 4.2619185}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0009, y: -0.0041, z: 0.0343}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 4770890048567084153}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -89.99999, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4770890048887984844
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2435,7 +2434,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4770890048887984842}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.02, y: 0.07276779, z: 0.22984365}
@@ -2471,7 +2470,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &4885959278441003102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3147,12 +3146,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 86.873
       objectReference: {fileID: 0}
-    - target: {fileID: 5883085135719786280, guid: 7c8003a7e834abe41b265f492379186d,
+    - target: {fileID: 5883085134894134328, guid: 7c8003a7e834abe41b265f492379186d,
         type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5883085134894134328, guid: 7c8003a7e834abe41b265f492379186d,
+    - target: {fileID: 5883085135719786280, guid: 7c8003a7e834abe41b265f492379186d,
         type: 3}
       propertyPath: m_IsActive
       value: 1
