@@ -63,7 +63,7 @@ public class PlayerCollisionController : MonoBehaviour
 
 
                 print("You've been damaged!");
-                // playerResources.LooseHealth(30);
+                playerResources.LooseHealth(30);
 
                 if(!cn.networked) {
                     //enemy.hitOrMiss = true;
