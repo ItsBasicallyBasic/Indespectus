@@ -46,6 +46,11 @@ MonoBehaviour:
   - RPC_HitOther
   - RPC_SpawnAvatar
   - DealDamage
+  - ActivateGun
+  - ActivateSword
+  - DeactivateGun
+  - DeactivateSword
+  - Fire
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

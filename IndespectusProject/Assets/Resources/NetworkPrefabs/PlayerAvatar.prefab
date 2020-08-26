@@ -2111,6 +2111,7 @@ MonoBehaviour:
   playerResources: {fileID: 4770890048818956323}
   shield: {fileID: 4770890048238191837}
   hapticAudioClip: {fileID: 8300000, guid: 460d9a446cc128e4787c47d09d4af2bc, type: 3}
+  PV: {fileID: 5981842045349860020}
 --- !u!95 &4770890048567084156
 Animator:
   serializedVersion: 3

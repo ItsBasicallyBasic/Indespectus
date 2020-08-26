@@ -43,7 +43,7 @@ public class BulletCollision : MonoBehaviour
             }
             if (rebounds > 1 || collision.gameObject.tag == "Shield")
             {
-               Hit(collision);
+                PV.RPC("Hit", RpcTarget.All, collision);
                 Destroy(gameObject);
             }
         }
@@ -53,10 +53,10 @@ public class BulletCollision : MonoBehaviour
     [PunRPC]
     void RPC_HitOther(Collider other) {
         if(PV.IsMine || !cn.networked) {
-            if(other.gameObject.tag == "Enemy") {
+            // if(other.gameObject.tag == "Enemy") {
                 PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "Hit"), transform.position, transform.rotation);
                 Destroy(gameObject);
-            }
+            // }
         }
     }
     private void OnTriggerEnter(Collider other) {
