@@ -31,22 +31,22 @@ public class BulletCollision : MonoBehaviour
             if (rebounds > 1 || collision.gameObject.tag == "Shield")
             {
                 PV.RPC("Hit", RpcTarget.All, collision);
-                Destroy(gameObject);
+                PhotonNetwork.Destroy(gameObject);
             }
         }
 
-        if(!cn.networked) {
-            rebounds++;
-            if (collision.gameObject.tag == "Sword")
-            {
-                rebounds --;
-            }
-            if (rebounds > 1 || collision.gameObject.tag == "Shield")
-            {
-                PV.RPC("Hit", RpcTarget.All, collision);
-                Destroy(gameObject);
-            }
-        }
+        // if(!cn.networked) {
+        //     rebounds++;
+        //     if (collision.gameObject.tag == "Sword")
+        //     {
+        //         rebounds --;
+        //     }
+        //     if (rebounds > 1 || collision.gameObject.tag == "Shield")
+        //     {
+        //         PV.RPC("Hit", RpcTarget.All, collision);
+        //         PhotonNetwork.Destroy(gameObject);
+        //     }
+        // }
 
     }
 
@@ -55,7 +55,7 @@ public class BulletCollision : MonoBehaviour
         if(PV.IsMine || !cn.networked) {
             // if(other.gameObject.tag == "Enemy") {
                 PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "Hit"), transform.position, transform.rotation);
-                Destroy(gameObject);
+                PhotonNetwork.Destroy(gameObject);
             // }
         }
     }
@@ -80,7 +80,7 @@ public class BulletCollision : MonoBehaviour
             Vector3 position = contact.point;
             GameObject hit = PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "Hit"), transform.position, transform.rotation);
             hit.transform.rotation = Quaternion.FromToRotation(hit.transform.up, contact.normal);
-            Destroy(hit, 0.5f);
+            // PhotonNetwork.Destroy(hit);
         }
     }
 }
