@@ -51,7 +51,7 @@ public class PlayerCollisionController : MonoBehaviour
     // Triggers
     private void OnTriggerEnter(Collider other)
     {
-        if(/*PV.IsMine || */!cn.networked) {
+        //if(PV.IsMine || !cn.networked) {
             if (other.gameObject.tag == "Sword")
             {
                 // Sending hit over the network
@@ -74,7 +74,7 @@ public class PlayerCollisionController : MonoBehaviour
                 OVRHaptics.RightChannel.Preempt(hapticsClip);
                 OVRHaptics.LeftChannel.Preempt(hapticsClip);
             }
-        }
+        //}
     }
 
     [PunRPC]
