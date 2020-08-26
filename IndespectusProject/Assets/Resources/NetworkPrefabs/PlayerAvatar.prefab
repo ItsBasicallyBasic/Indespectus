@@ -260,7 +260,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4c7af623bc38049ab94c1ab39a04ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
   PV: {fileID: 0}
   hapticAudioClip: {fileID: 8300000, guid: cc4358f7b0d2fa2409a84eef73d956f8, type: 3}
   cn: {fileID: 0}
@@ -816,9 +815,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4770890047753175079}
-  m_LocalRotation: {x: 0.69658494, y: -0.121529885, z: 0.121529855, w: 0.69658494}
-  m_LocalPosition: {x: -0.07858928, y: 0.048062686, z: 0.14751355}
-  m_LocalScale: {x: 0.01, y: 0.010000002, z: 0.010000002}
+  m_LocalRotation: {x: 0.6717247, y: 0.1238518, z: 0.36674386, w: 0.63162136}
+  m_LocalPosition: {x: 0.4571596, y: 1.2192404, z: 0.2711404}
+  m_LocalScale: {x: 0.024517197, y: 0.02451732, z: 0.024517212}
   m_Children: []
   m_Father: {fileID: 4770890048567084153}
   m_RootOrder: 2
@@ -1686,6 +1685,7 @@ GameObject:
   - component: {fileID: 4770890048238191809}
   - component: {fileID: 4770890048238191808}
   - component: {fileID: 4770890048238191811}
+  - component: {fileID: 7229836179949438826}
   m_Layer: 8
   m_Name: Shield
   m_TagString: Shield
@@ -1796,6 +1796,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cn: {fileID: 0}
   PV: {fileID: 4770890048818956349}
+--- !u!114 &7229836179949438826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4770890048238191837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &4770890048241259950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,6 +1985,7 @@ GameObject:
   - component: {fileID: 4770890048567084158}
   - component: {fileID: 4770890048567084156}
   - component: {fileID: 4770890048567084159}
+  - component: {fileID: 5981842045349860020}
   m_Layer: 8
   m_Name: Multitool
   m_TagString: Player
@@ -2053,9 +2076,10 @@ MonoBehaviour:
   animator: {fileID: 0}
   sRevealTime: 5
   multitoolState: 0
-  playerResources: {fileID: 0}
+  playerResources: {fileID: 4770890048818956323}
   shield: {fileID: 4770890048238191837}
-  hapticAudioClip: {fileID: 0}
+  hapticAudioClip: {fileID: 8300000, guid: 460d9a446cc128e4787c47d09d4af2bc, type: 3}
+  PV: {fileID: 5981842045349860020}
 --- !u!95 &4770890048567084156
 Animator:
   serializedVersion: 3
@@ -2095,6 +2119,28 @@ MonoBehaviour:
   bullet: {fileID: 8304596820666426721, guid: 26b703302c6eea940a80a92c5830546a, type: 3}
   weaponMaterial: {fileID: 2100000, guid: f72d94a525581eb47bc017ad1761b420, type: 2}
   UI: {fileID: 0}
+--- !u!114 &5981842045349860020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4770890048567084152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &4770890048603183346
 GameObject:
   m_ObjectHideFlags: 0
@@ -2247,9 +2293,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4770890048788790036}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0027, z: -0.0452}
-  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
+  m_LocalRotation: {x: -0.03168667, y: -0.010799517, z: 0.34661528, w: 0.9374098}
+  m_LocalPosition: {x: 0.6956377, y: 1.2357819, z: -0.19317383}
+  m_LocalScale: {x: 3.187234, y: 3.187235, z: 3.187249}
   m_Children:
   - {fileID: 4770890049054576823}
   m_Father: {fileID: 4770890048567084153}
@@ -2314,6 +2360,7 @@ GameObject:
   - component: {fileID: 4770890048887984846}
   - component: {fileID: 4770890048887984841}
   - component: {fileID: 4770890048887984840}
+  - component: {fileID: 4885959278441003102}
   m_Layer: 8
   m_Name: Sword
   m_TagString: Sword
@@ -2328,9 +2375,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4770890048887984842}
-  m_LocalRotation: {x: -0, y: 0.00000023841855, z: 1, w: 0}
-  m_LocalPosition: {x: -0.00009999275, y: 0.0007, z: 0.0312}
-  m_LocalScale: {x: 1.7383311, y: 1.7383311, z: 1.7383311}
+  m_LocalRotation: {x: -0.010799537, y: 0.031686913, z: 0.93740976, w: -0.3466154}
+  m_LocalPosition: {x: 0.6907276, y: 1.2416325, z: -0.005953029}
+  m_LocalScale: {x: 4.261899, y: 4.261902, z: 4.2619185}
   m_Children: []
   m_Father: {fileID: 4770890048567084153}
   m_RootOrder: 0
@@ -2425,6 +2472,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4885959278441003102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4770890048887984842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &4770890048902862701
 GameObject:
   m_ObjectHideFlags: 0
@@ -3090,18 +3159,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c8003a7e834abe41b265f492379186d, type: 3}
---- !u!114 &4770890047953210952 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5883085135938370367, guid: 7c8003a7e834abe41b265f492379186d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1410033478850721143}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4770890047869899357 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5883085135719786282, guid: 7c8003a7e834abe41b265f492379186d,
@@ -3120,3 +3177,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1410033478850721143}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4770890047953210952 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5883085135938370367, guid: 7c8003a7e834abe41b265f492379186d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1410033478850721143}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
