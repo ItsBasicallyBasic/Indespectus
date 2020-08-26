@@ -54,7 +54,7 @@ public class PlayerCollisionController : MonoBehaviour
         PhotonView otherPhotonView = other.transform.GetComponent<PhotonView>();
 
         if (!otherPhotonView.IsMine && PV.IsMine /*|| !cn.networked*/) {
-            if (other.gameObject.tag == "Sword")
+            if (other.gameObject.tag == "Sword" || other.gameObject.tag == "Bullet")
             {
 
                 // Sending hit over the network

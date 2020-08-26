@@ -62,6 +62,11 @@ public class BulletCollision : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(PV.IsMine) {
             PV.RPC("RPC_HitOther", RpcTarget.All, other);
+
+            if(other.tag == "Shield")
+            {
+                Destroy(gameObject);
+            }
         }
         if(!cn.networked) {
             RPC_HitOther(other);
