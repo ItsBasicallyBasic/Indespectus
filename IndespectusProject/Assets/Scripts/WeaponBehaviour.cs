@@ -222,25 +222,27 @@ public class WeaponBehaviour : MonoBehaviour
     [PunRPC]
     void Fire()
     {
-        if(Time.time > nextShot && playerResources.GetEssence() > 0)
-        {
-            playerResources.LooseEssence(20);
+        if(PV.IsMine) {
+            if(Time.time > nextShot && playerResources.GetEssence() > 0)
+            {
+                playerResources.LooseEssence(20);
 
-            // Haptic feedback
-            OVRHapticsClip hapticsClip = new OVRHapticsClip(hapticAudioClip);
-            OVRHaptics.RightChannel.Preempt(hapticsClip);
+                // Haptic feedback
+                OVRHapticsClip hapticsClip = new OVRHapticsClip(hapticAudioClip);
+                OVRHaptics.RightChannel.Preempt(hapticsClip);
 
-            nextShot = Time.time + fireRate;
-            // GameObject bulletObject = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
-            GameObject bulletObject = PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "Bullet"), bulletSpawn.transform.position, bulletSpawn.transform.rotation);
-            Rigidbody rb = bulletObject.GetComponent<Rigidbody>();
-            rb.velocity = bulletSpawn.transform.forward * 1000 * Time.deltaTime;
-            Destroy(bulletObject, 5f);
-            animator.Play("Recoil");
-            //Sound??
+                nextShot = Time.time + fireRate;
+                // GameObject bulletObject = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+                GameObject bulletObject = PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "Bullet"), bulletSpawn.transform.position, bulletSpawn.transform.rotation);
+                Rigidbody rb = bulletObject.GetComponent<Rigidbody>();
+                rb.velocity = bulletSpawn.transform.forward * 1000 * Time.deltaTime;
+                Destroy(bulletObject, 5f);
+                animator.Play("Recoil");
+                //Sound??
 
-            shotReveal = true;
-            sRevealTimer = Time.time +sRevealTime;
+                shotReveal = true;
+                sRevealTimer = Time.time +sRevealTime;
+            }
         }
     }
 }
