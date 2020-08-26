@@ -996,7 +996,7 @@ GameObject:
   - component: {fileID: 7279219461521218864}
   m_Layer: 8
   m_Name: OVRCameraRig
-  m_TagString: OVRRig
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1389,7 +1389,7 @@ GameObject:
   - component: {fileID: 7247168389021185967}
   m_Layer: 8
   m_Name: OculusPlayer
-  m_TagString: Untagged
+  m_TagString: OVRRig
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

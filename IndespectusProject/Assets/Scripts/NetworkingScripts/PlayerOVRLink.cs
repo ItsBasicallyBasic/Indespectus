@@ -46,8 +46,8 @@ public class PlayerOVRLink : MonoBehaviour, IPunObservable {
             bonesIKRef[2] = ovrRig.Find("TrackingSpace/RightHandAnchor/hand.R");
         }
         print(bonesIKRef[0]);
-        this.transform.SetParent(bonesIKRef[0]);
-        this.transform.localPosition = Vector3.zero;
+        this.transform.SetParent(GameObject.FindGameObjectWithTag("OVRRig").transform); // <- used a direct reference because using ovrRig did not work
+        this.transform.localPosition = Vector3.zero + Vector3.up * 1;
     }
     private void FindRig() {
         vRIK.solver.spine.headTarget = bonesIKRef[0];

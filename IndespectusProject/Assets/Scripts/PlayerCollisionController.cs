@@ -9,8 +9,8 @@ public class PlayerCollisionController : MonoBehaviour
 
     private PlayerResources playerResources;
     
-    [SerializeField]
-    private EnemyAI enemy;
+    //[SerializeField]
+    //private EnemyAI enemy;
     [SerializeField] private PhotonView PV;
 
     // Haptic feedback
@@ -39,7 +39,7 @@ public class PlayerCollisionController : MonoBehaviour
             }
         }
         if(!cn.networked) {
-            if(enemy == null) {enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();}
+            //if(enemy == null) {enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();}
         } // else {
         //     if(players == null) {
         //         players = GameObject.FindGameObjectsWithTag("Player")
@@ -58,7 +58,7 @@ public class PlayerCollisionController : MonoBehaviour
                 playerResources.LooseHealth(30);
 
                 if(!cn.networked) {
-                    enemy.hitOrMiss = true;
+                    //enemy.hitOrMiss = true;
                 }
 
                 // Play sound

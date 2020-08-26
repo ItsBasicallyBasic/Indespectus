@@ -761,10 +761,10 @@ public class LocomotionTeleport : MonoBehaviour
     public void DoTeleport()
     {
         // Check if the player has enough essence before teleporting
-        float currentEssence = GetComponentInParent<PlayerResources>().GetEssence();
+        /*float currentEssence = GetComponentInParent<PlayerResources>().GetEssence();
         if(currentEssence >= 50)
         {
-            GetComponentInParent<PlayerResources>().LooseEssence(50);
+            GetComponentInParent<PlayerResources>().LooseEssence(50);*/
 
             var character = LocomotionController.CharacterController;
             character.enabled = false;
@@ -793,7 +793,7 @@ public class LocomotionTeleport : MonoBehaviour
 
             LocomotionController.PlayerController.Teleported = true;
             character.enabled = true;
-        }
+        //}
     }
 
     /// <summary>
