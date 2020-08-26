@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class GameSetup : MonoBehaviour {
@@ -13,6 +14,8 @@ public class GameSetup : MonoBehaviour {
         if(GameSetup.GS == null) {
             GameSetup.GS = this;
         }
+        PhotonNetwork.SendRate = 50;
+        PhotonNetwork.SerializationRate = 50;
     }
 
     // Update is called once per frame
