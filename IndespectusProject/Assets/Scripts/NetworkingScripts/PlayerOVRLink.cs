@@ -29,9 +29,9 @@ public class PlayerOVRLink : MonoBehaviour, IPunObservable {
                 ovrRig = GameObject.FindGameObjectWithTag("OVRRig").transform;
                 ovrRig.position = this.transform.position;
 
-                bonesIKRef[0] = ovrRig.Find("TrackingSpace/CenterEyeAnchor/Head");
-                bonesIKRef[1] = ovrRig.Find("TrackingSpace/LeftHandAnchor/hand.L");
-                bonesIKRef[2] = ovrRig.Find("TrackingSpace/RightHandAnchor/hand.R");
+                bonesIKRef[0] = ovrRig.Find("OVRCameraRig/TrackingSpace/CenterEyeAnchor/Head");
+                bonesIKRef[1] = ovrRig.Find("OVRCameraRig/TrackingSpace/LeftHandAnchor/hand.L");
+                bonesIKRef[2] = ovrRig.Find("OVRCameraRig/TrackingSpace/RightHandAnchor/hand.R");
 
                 Debug.Log("Player is mine");
             } else {
@@ -41,9 +41,9 @@ public class PlayerOVRLink : MonoBehaviour, IPunObservable {
             FindRig();
             
         } else {
-            bonesIKRef[0] = ovrRig.Find("TrackingSpace/CenterEyeAnchor/Head");
-            bonesIKRef[1] = ovrRig.Find("TrackingSpace/LeftHandAnchor/hand.L");
-            bonesIKRef[2] = ovrRig.Find("TrackingSpace/RightHandAnchor/hand.R");
+            bonesIKRef[0] = ovrRig.Find("OVRCameraRig/TrackingSpace/CenterEyeAnchor/Head");
+            bonesIKRef[1] = ovrRig.Find("OVRCameraRig/TrackingSpace/LeftHandAnchor/hand.L");
+            bonesIKRef[2] = ovrRig.Find("OVRCameraRig/TrackingSpace/RightHandAnchor/hand.R");
         }
         print(bonesIKRef[0]);
         this.transform.SetParent(GameObject.FindGameObjectWithTag("OVRRig").transform); // <- used a direct reference because using ovrRig did not work
