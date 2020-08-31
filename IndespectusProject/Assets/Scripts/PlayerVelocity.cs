@@ -113,6 +113,7 @@ public class PlayerVelocity : MonoBehaviourPunCallbacks, IPunObservable {
 
         //desiredVelocity = desiredVelocity/100;
         desiredVelocity = Mathf.Clamp(desiredVelocity, 0, 1.5f);
+        velocity = Mathf.Clamp(velocity, 0, 1.5f);
     }
 
     public void OverrideVelocity(float v)

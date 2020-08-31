@@ -188,5 +188,6 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
         base.OnPlayerLeftRoom(otherPlayer);
         Debug.Log(otherPlayer.NickName + " has left the game.");
         playersInGame--;
+        numPlayersText.SetText("Players in room out of max players posible (" + playersInRoom + ":" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
     }
 }

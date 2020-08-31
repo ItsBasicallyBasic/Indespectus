@@ -67,8 +67,8 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
 
     public void OnCancelButtonClicked () {
         Debug.Log("Cancelling...");
-        cancelButton.SetActive(false);
         PhotonNetwork.LeaveRoom();
+        cancelButton.SetActive(false);
         connectButton.SetActive(true);
         refreshButton.SetActive(true);
         backButton.SetActive(true);
@@ -85,9 +85,16 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
         if(connectAttempts > 5) {
             errorText.SetActive(true);
         }
-        if(Input.GetKey(KeyCode.Return))  {
+        if(Input.GetKey(KeyCode.Return) || OVRInput.GetDown(OVRInput.Button.One))  {
             OnConnectButtonClicked();
         }
+        if(Input.GetKey(KeyCode.Escape) || OVRInput.GetDown(OVRInput.Button.Two))  {
+            OnCancelButtonClicked();
+        }
+        if(Input.GetKey(KeyCode.R) || OVRInput.GetDown(OVRInput.Button.Three))  {
+            OnRefreshButtonClicked();
+        }
+        
     }
 
 }
