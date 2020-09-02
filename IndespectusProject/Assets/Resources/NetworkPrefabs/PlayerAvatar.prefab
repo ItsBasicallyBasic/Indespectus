@@ -834,7 +834,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4770890047753175076}
   - component: {fileID: 4770890047753175077}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: PostProcessGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1719,7 +1719,7 @@ GameObject:
   - component: {fileID: 4770890048238191808}
   - component: {fileID: 4770890048238191811}
   - component: {fileID: 7229836179949438826}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Shield
   m_TagString: Shield
   m_Icon: {fileID: 0}
@@ -2019,7 +2019,7 @@ GameObject:
   - component: {fileID: 4770890048567084156}
   - component: {fileID: 4770890048567084159}
   - component: {fileID: 5981842045349860020}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Multitool
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2312,7 +2312,7 @@ GameObject:
   - component: {fileID: 4770890048788790037}
   - component: {fileID: 4770890048788790043}
   - component: {fileID: 4770890048788790042}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2394,7 +2394,7 @@ GameObject:
   - component: {fileID: 4770890048887984841}
   - component: {fileID: 4770890048887984840}
   - component: {fileID: 4885959278441003102}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Sword
   m_TagString: Sword
   m_Icon: {fileID: 0}
@@ -2749,7 +2749,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4770890049054576823}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7877,10 +7877,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 5883085134685503473, guid: 7c8003a7e834abe41b265f492379186d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5883085135719786280, guid: 7c8003a7e834abe41b265f492379186d,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883085135719786280, guid: 7c8003a7e834abe41b265f492379186d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883085135938370365, guid: 7c8003a7e834abe41b265f492379186d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5883085134685503472, guid: 7c8003a7e834abe41b265f492379186d,
         type: 3}
@@ -7937,10 +7952,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 86.873
       objectReference: {fileID: 0}
+    - target: {fileID: 5883085136455678342, guid: 7c8003a7e834abe41b265f492379186d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883085135189036315, guid: 7c8003a7e834abe41b265f492379186d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5883085134894134328, guid: 7c8003a7e834abe41b265f492379186d,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883085134894134328, guid: 7c8003a7e834abe41b265f492379186d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c8003a7e834abe41b265f492379186d, type: 3}
