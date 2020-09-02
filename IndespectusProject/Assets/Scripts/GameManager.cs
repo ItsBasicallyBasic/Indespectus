@@ -40,6 +40,12 @@ public class GameManager : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         if(PV == null) {PV = gameObject.GetComponent<PhotonView>();}
+        players = new Player[] {
+            new Player(),
+            new Player(),
+            new Player(),
+            new Player()
+        };
     }
 
     // Update is called once per frame
@@ -47,8 +53,9 @@ public class GameManager : MonoBehaviour {
         if(!ready) {
             if (PlayersSpawned == PhotonNetwork.PlayerList.Length) {
                 ready = true;
-                players = new Player[PlayersSpawned];
+                
                 for (int i = 0; i < PlayersSpawned; i++) {
+                    // players[i] = new Player();
                     players[i].ID = i;
                 }
             } else if (notNetworked) {
