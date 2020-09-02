@@ -28,13 +28,13 @@ public class PlayerResources : MonoBehaviour {
     public void LooseHealth(float dmg, int hitID) {
         currentHealth -= dmg;
         lastHitID = hitID;
-        // GameManager.GM.players[ID].Health = currentHealth;
+        GameManager.GM.players[ID].Health = currentHealth;
     }
 
     // Increase Current Health of the player
     public void GainHealth(float val) {
         currentHealth += val;
-        // GameManager.GM.players[ID].Health = currentHealth;
+        GameManager.GM.players[ID].Health = currentHealth;
     }
 
     #endregion
@@ -71,9 +71,9 @@ public class PlayerResources : MonoBehaviour {
 
     // Reset Current Essence ans Health values to MAX values
     public void ResetResources() {
-        currentHealth = MAX_HEALTH;
-        currentEssence = MAX_ESSENCE;
-        // GameManager.GM.players[ID].Health = currentHealth;
+        currentHealth = GameManager.GM.MAX_HEALTH;
+        currentEssence = GameManager.GM.MAX_ESSENCE;
+        GameManager.GM.players[ID].Health = currentHealth;
     }
     
     public int ID;

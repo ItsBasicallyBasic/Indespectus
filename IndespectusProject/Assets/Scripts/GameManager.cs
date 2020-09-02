@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour {
     [SerializeField] internal Player[] players;
 
     [SerializeField] bool ready = false;
-    [SerializeField] int MAX_HEALTH = 0;
-    [SerializeField] int MAX_ESSCENCE = 0;
+    public int MAX_HEALTH { get; internal set; }
+    public int MAX_ESSENCE { get; internal set; }
     PhotonView PV;
 
     enum GameMode {
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
     void Awake() {
         // Singleton
         if(GM == null) { 
-             GM = this;
+            GM = this;
         } else if(GM != this) {
             Destroy(gameObject);
         }
@@ -49,13 +49,7 @@ public class GameManager : MonoBehaviour {
                 ready = true;
                 players = new Player[PlayersSpawned];
                 for (int i = 0; i < PlayersSpawned; i++) {
-                    players[i] = new Player()
-                    {
-                        ID = i,
-                        Health = MAX_HEALTH,
-                        Kills = 0,
-                        Deaths = 0
-                    };
+                    players[i].ID = i;
                 }
             } else if (notNetworked) {
                 ready = true;
@@ -99,5 +93,11 @@ public class GameManager : MonoBehaviour {
         public float Health { get; set; }
         public int Kills { get; set; }
         public int Deaths { get; set; }
+
+        public Player(){;
+            Health = 0;
+            Kills = 0;
+            Deaths = 0;
+        }
     }
 }
