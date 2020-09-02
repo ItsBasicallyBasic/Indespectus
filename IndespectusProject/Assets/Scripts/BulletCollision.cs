@@ -22,6 +22,7 @@ public class BulletCollision : MonoBehaviour
 
     [PunRPC]
     private void OnCollisionEnter(Collision collision) {
+        Debug.Log("OnCollisionEnter triggered from: " + collision);
         if(PV.IsMine) {
             rebounds++;
             if (collision.gameObject.tag == "Sword")
@@ -52,6 +53,7 @@ public class BulletCollision : MonoBehaviour
 
     [PunRPC]
     void RPC_HitOther(Collider other) {
+        Debug.Log("RPC_HitOther triggered from: " + other);
         if(PV.IsMine || !cn.networked) {
             // if(other.gameObject.tag == "Enemy") {
                 PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "Hit"), transform.position, transform.rotation);
@@ -60,7 +62,8 @@ public class BulletCollision : MonoBehaviour
         }
     }
     private void OnTriggerEnter(Collider other) {
-        if(!PV.IsMine) {
+        Debug.Log("OnTriggerEnter triggered from: " + other);
+        if(PV.IsMine) {
             PV.RPC("RPC_HitOther", RpcTarget.All, other);
 
             if(other.tag == "Shield" || other.tag == "Sword")
@@ -75,6 +78,7 @@ public class BulletCollision : MonoBehaviour
 
     [PunRPC]
     void Hit(Collision collision) {
+        Debug.Log("Hit triggered from: " + collision);
         if(PV.IsMine  || !cn.networked) {
             ContactPoint contact = collision.contacts[0];
             Vector3 position = contact.point;
