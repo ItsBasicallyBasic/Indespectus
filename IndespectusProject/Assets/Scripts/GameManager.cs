@@ -16,16 +16,16 @@ public class GameManager : MonoBehaviour {
     [SerializeField] bool ready = false;
     [SerializeField] int MAX_HEALTH = 0;
     [SerializeField] int MAX_ESSCENCE = 0;
-
-    [SerializeField] float gameTime;
+    PhotonView PV;
 
     enum GameMode {
-        OneDeath,
+        MaxDeaths,
         Timed
     }
     
     [SerializeField] GameMode gameMode;
-    public int maxDeaths;
+    [SerializeField] int maxDeaths;
+    [SerializeField] float gameTime;
 
     void Awake() {
         // Singleton
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        
+        if(PV == null) {PV = gameObject.GetComponent<PhotonView>();}
     }
 
     // Update is called once per frame
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour {
         }
 
         switch(gameMode) {
-            case GameMode.OneDeath : OneDeath();
+            case GameMode.MaxDeaths : MaxDeaths();
             break;
 
             case GameMode.Timed : Timed();
@@ -75,20 +75,21 @@ public class GameManager : MonoBehaviour {
 
     private void Timed() {
         if(gameTime <= 0) {
-            endGame();
+            PV.RPC("endGame", RpcTarget.AllBuffered);
         } else {
             gameTime -= Time.deltaTime;
         }
     }
 
-    private void OneDeath() {
+    private void MaxDeaths() {
         foreach(Player p in players) {
             if(p.Deaths >= maxDeaths) {
-                endGame();
+                PV.RPC("endGame", RpcTarget.AllBuffered);
             }
         }
     }
 
+    [PunRPC]
     private void endGame() {
         if(PhotonNetwork.IsMasterClient)
             PhotonNetwork.LoadLevel(MultiplayerSettings.multiplayerSettings.endScene);
