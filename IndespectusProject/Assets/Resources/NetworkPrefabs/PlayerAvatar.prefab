@@ -275,7 +275,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.36
+  m_Radius: 0.25
   m_Height: 1.53
   m_Direction: 1
   m_Center: {x: 0, y: -0.64, z: 0}
@@ -1716,9 +1716,9 @@ GameObject:
   - component: {fileID: 4770890048238191815}
   - component: {fileID: 4770890048238191814}
   - component: {fileID: 4770890048238191809}
-  - component: {fileID: 4770890048238191808}
   - component: {fileID: 4770890048238191811}
   - component: {fileID: 7229836179949438826}
+  - component: {fileID: 7128444485327178038}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Shield
@@ -1801,20 +1801,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!64 &4770890048238191808
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4770890048238191837}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 2534964839176971238, guid: d80c998a3f082134fa131bf4e8ee3edc, type: 3}
 --- !u!114 &4770890048238191811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1851,6 +1837,19 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!65 &7128444485327178038
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4770890048238191837}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.22949062, y: 0.22949055, z: 0.07}
+  m_Center: {x: -0.000000082538754, y: -0.000000089520285, z: 0.0039082738}
 --- !u!1 &4770890048241259950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2471,7 +2470,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.02, y: 0.07276779, z: 0.22984365}
+  m_Size: {x: 0.03, y: 0.07276779, z: 0.22984365}
   m_Center: {x: 0, y: -0.000000059604645, z: 0.12827685}
 --- !u!114 &4770890048887984841
 MonoBehaviour:
