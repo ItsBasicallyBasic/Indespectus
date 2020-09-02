@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour, IPunObservable {
     
     public static GameManager GM = null;
 
@@ -113,5 +113,32 @@ public class GameManager : MonoBehaviour {
             Kills = 0;
             Deaths = 0;
         }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        if(stream.IsWriting) {
+            foreach(Player p in players) {
+                print("Sent " + p);
+                stream.SendNext(p.Kills);
+                stream.SendNext(p.Deaths);
+                stream.SendNext(p.Health);
+            }
+        } else {
+            foreach(Player p in players) {
+                int k = (int)stream.ReceiveNext();
+                int d = (int)stream.ReceiveNext();
+                int h = (int)stream.ReceiveNext();
+                if(k > p.Kills) {
+                    p.Kills = k;
+                }
+                if(d > p.Deaths) {
+                    p.Deaths = d;
+                }
+                if(h > p.Health) {
+                    p.Health = h;
+                }
+                print("Rec'd " + p);
+            }
+        }    
     }
 }
