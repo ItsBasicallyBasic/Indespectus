@@ -21,19 +21,20 @@ public class PlayerResources : MonoBehaviour {
     // Set Current Health of the player
     public void SetHealth(float newHealth) {
         currentHealth = newHealth;
-        GameManager.GM.players[ID].Health = currentHealth;
+        // GameManager.GM.players[ID].Health = currentHealth;
     }
 
     // Reduce Current Health of the player
     public void LooseHealth(float dmg, int hitID) {
         currentHealth -= dmg;
-        GameManager.GM.players[ID].Health = currentHealth;
+        lastHitID = hitID;
+        // GameManager.GM.players[ID].Health = currentHealth;
     }
 
     // Increase Current Health of the player
     public void GainHealth(float val) {
         currentHealth += val;
-        GameManager.GM.players[ID].Health = currentHealth;
+        // GameManager.GM.players[ID].Health = currentHealth;
     }
 
     #endregion
@@ -72,7 +73,7 @@ public class PlayerResources : MonoBehaviour {
     public void ResetResources() {
         currentHealth = MAX_HEALTH;
         currentEssence = MAX_ESSENCE;
-        GameManager.GM.players[ID].Health = currentHealth;
+        // GameManager.GM.players[ID].Health = currentHealth;
     }
     
     public int ID;

@@ -60,10 +60,15 @@ public class PlayerCollisionController : MonoBehaviour
                 // Sending hit over the network
                 //PhotonView otherPhotonView = other.transform.root.GetComponent<PhotonView>();
                 //otherPhotonView.RPC("DealDamage", otherPhotonView.Owner, 30);
-
+                int otherID = 0;
+                for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) {
+                    if(PhotonNetwork.PlayerList[i] == otherPhotonView.Owner) {
+                        otherID = i;
+                    }
+                }
 
                 print("You've been damaged!");
-                playerResources.LooseHealth(30, other.transform.GetComponent<PlayerResources>().ID);
+                playerResources.LooseHealth(30, otherID);
 
                 if(!cn.networked) {
                     //enemy.hitOrMiss = true;

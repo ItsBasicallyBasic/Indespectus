@@ -48,8 +48,7 @@ public class GameManager : MonoBehaviour {
             if (PlayersSpawned == PhotonNetwork.PlayerList.Length) {
                 ready = true;
                 players = new Player[PlayersSpawned];
-                for (int i = 0; i < PlayersSpawned; i++)
-                {
+                for (int i = 0; i < PlayersSpawned; i++) {
                     players[i] = new Player()
                     {
                         ID = i,
