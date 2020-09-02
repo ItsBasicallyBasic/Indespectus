@@ -81,6 +81,7 @@ public class PlayerResources : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        if(PV == null) {PV = gameObject.GetComponent<PhotonView>();}
         if(PV.IsMine){
             for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) {
                 if(PhotonNetwork.PlayerList[i].IsLocal) {
