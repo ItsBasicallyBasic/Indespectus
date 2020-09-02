@@ -31,7 +31,7 @@ public class SwordCollisionController : MonoBehaviour
     {
         PhotonView otherPhotonView = other.transform.GetComponent<PhotonView>();
 
-        if (!otherPhotonView.IsMine && PV.IsMine /*|| !cn.networked*/) {
+        if (otherPhotonView != null && !otherPhotonView.IsMine && PV.IsMine /*|| !cn.networked*/) {
             if(other.gameObject.tag == "Sword" || other.gameObject.tag == "Shield")
             {
                 print("Blocked!");
