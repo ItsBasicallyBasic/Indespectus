@@ -34,6 +34,7 @@ public class NetworkingPlayer : MonoBehaviourPunCallbacks {
         if(PV.IsMine)  {
             playerAvatar = PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "PlayerAvatar"), GameSetup.GS.spawnPoints[i].position, GameSetup.GS.spawnPoints[i].rotation, 0);
             Debug.Log("ive instantiated player avatar for player" + i);
+            GameManager.GM.PlayersSpawned++;
         }
     }
 

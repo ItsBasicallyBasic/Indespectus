@@ -5,13 +5,14 @@ using UnityEngine;
 public class MultiplayerSettings : MonoBehaviour {
 
     public static MultiplayerSettings multiplayerSettings;
-
+    
     public bool delayStart;
     public int maxPlayers;
 
     public int menuScene;
     public int multiplayerScene;
-
+    public int endScene;
+    
     private void Awake() {
         if(MultiplayerSettings.multiplayerSettings == null) {
             MultiplayerSettings.multiplayerSettings = this;

@@ -415,7 +415,7 @@ public class EnemyAI : MonoBehaviour
         {
             // Deal damage
             print("Dealt damage!");
-            enemyResources.LooseHealth(30);
+            enemyResources.LooseHealth(30, 1);
 
             // Feedback systems:
             // Enemy hit animation
@@ -429,7 +429,7 @@ public class EnemyAI : MonoBehaviour
         {
             // Deal damage
             print("Dealt damage!");
-            enemyResources.LooseHealth(30);
+            enemyResources.LooseHealth(30, 1);
 
             // Feedback systems:
             // Enemy hit animation

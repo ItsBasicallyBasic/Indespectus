@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class PlayerResources : MonoBehaviour {
@@ -20,16 +21,19 @@ public class PlayerResources : MonoBehaviour {
     // Set Current Health of the player
     public void SetHealth(float newHealth) {
         currentHealth = newHealth;
+        GameManager.GM.players[ID].Health = currentHealth;
     }
 
     // Reduce Current Health of the player
-    public void LooseHealth(float dmg) {
+    public void LooseHealth(float dmg, int hitID) {
         currentHealth -= dmg;
+        GameManager.GM.players[ID].Health = currentHealth;
     }
 
     // Increase Current Health of the player
     public void GainHealth(float val) {
         currentHealth += val;
+        GameManager.GM.players[ID].Health = currentHealth;
     }
 
     #endregion
@@ -68,16 +72,34 @@ public class PlayerResources : MonoBehaviour {
     public void ResetResources() {
         currentHealth = MAX_HEALTH;
         currentEssence = MAX_ESSENCE;
+        GameManager.GM.players[ID].Health = currentHealth;
     }
     
+    public int ID;
+    private PhotonView PV;
+    private int lastHitID;
+
     // Start is called before the first frame update
     void Start() {
+        if(PV.IsMine){
+            for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) {
+                if(PhotonNetwork.PlayerList[i].IsLocal) {
+                    ID = i;
+                }
+            }
+        }
         ResetResources();
     }
 
-    private void Update()
-    {
-        if (currentEssence > MAX_ESSENCE) currentEssence = MAX_ESSENCE;
-        if (currentHealth > MAX_HEALTH) currentHealth = MAX_HEALTH;
+    private void Update() {
+        if(PV.IsMine) {
+            if (currentEssence > MAX_ESSENCE) currentEssence = MAX_ESSENCE;
+            if (currentHealth > MAX_HEALTH) currentHealth = MAX_HEALTH;
+
+            if(currentHealth < 0) {
+                GameManager.GM.players[ID].Deaths++;
+                GameManager.GM.players[lastHitID].Kills++;
+            }
+        }
     }
 }

@@ -63,7 +63,7 @@ public class PlayerCollisionController : MonoBehaviour
 
 
                 print("You've been damaged!");
-                playerResources.LooseHealth(30);
+                playerResources.LooseHealth(30, other.transform.GetComponent<PlayerResources>().ID);
 
                 if(!cn.networked) {
                     //enemy.hitOrMiss = true;
@@ -80,11 +80,11 @@ public class PlayerCollisionController : MonoBehaviour
         }
     }
 
-    [PunRPC]
-    void DealDamage(float damage)
-    {
-        GetComponent<PlayerResources>().LooseHealth(damage);
-    }
+    // [PunRPC]
+    // void DealDamage(float damage)
+    // {
+    //     GetComponent<PlayerResources>().LooseHealth(damage);
+    // }
 
 
     // Collisions
