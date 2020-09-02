@@ -79,7 +79,8 @@ public class GameManager : MonoBehaviour {
 
     private void Timed() {
         if(gameTime <= 0) {
-            PV.RPC("endGame", RpcTarget.AllBuffered);
+            // PV.RPC("endGame", RpcTarget.AllBuffered);
+            endGame();
         } else {
             gameTime -= Time.deltaTime;
         }
@@ -88,7 +89,8 @@ public class GameManager : MonoBehaviour {
     private void MaxDeaths() {
         foreach(Player p in players) {
             if(p.Deaths >= maxDeaths) {
-                PV.RPC("endGame", RpcTarget.AllBuffered);
+                // PV.RPC("endGame", RpcTarget.AllBuffered);
+                endGame();
             }
         }
     }
