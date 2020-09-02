@@ -143,26 +143,28 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
 
     // Update is called once per frame
     void Update() {
-        if(MultiplayerSettings.multiplayerSettings.delayStart) {
-            if(playersInGame == 1) {
-                RestartTimer();
-            } 
-            
-            
-            if(readyToCount || readyToStart) {
-                countdownText.SetText("Starting in: " + (int)timeToStart);
-            } else {countdownText.SetText("Game startting in: n/a");}
-            if(!isGameLoaded) {
-                if(readyToStart) {
-                    atMaxPlayers -= Time.deltaTime;
-                    lessThanMaxPlayers = atMaxPlayers;
-                    timeToStart = atMaxPlayers;
-                } else if(readyToCount) {
-                    lessThanMaxPlayers -= Time.deltaTime;
-                    timeToStart = lessThanMaxPlayers;
-                }
-                if(timeToStart <= 0) {
-                    StartGame();
+        if(currentScene == 0) {
+            if(MultiplayerSettings.multiplayerSettings.delayStart) {
+                if(playersInGame == 1) {
+                    RestartTimer();
+                } 
+                
+                
+                if(readyToCount || readyToStart) {
+                    countdownText.SetText("Starting in: " + (int)timeToStart);
+                } else {countdownText.SetText("Game startting in: n/a");}
+                if(!isGameLoaded) {
+                    if(readyToStart) {
+                        atMaxPlayers -= Time.deltaTime;
+                        lessThanMaxPlayers = atMaxPlayers;
+                        timeToStart = atMaxPlayers;
+                    } else if(readyToCount) {
+                        lessThanMaxPlayers -= Time.deltaTime;
+                        timeToStart = lessThanMaxPlayers;
+                    }
+                    if(timeToStart <= 0) {
+                        StartGame();
+                    }
                 }
             }
         }
