@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour {
     [SerializeField] bool ready = false;
     public int MAX_HEALTH { get; internal set; }
     public int MAX_ESSENCE { get; internal set; }
+    public bool gameOver { get; private set; }
+
     PhotonView PV;
 
     enum GameMode {
@@ -62,14 +64,16 @@ public class GameManager : MonoBehaviour {
                 ready = true;
             } else { return; }
         }
+        if(!gameOver) {
+            switch(gameMode) {
+                case GameMode.MaxDeaths : MaxDeaths();
+                break;
 
-        switch(gameMode) {
-            case GameMode.MaxDeaths : MaxDeaths();
-            break;
-
-            case GameMode.Timed : Timed();
-            break;
+                case GameMode.Timed : Timed();
+                break;
+            }
         }
+        
         
     }
 
@@ -91,8 +95,9 @@ public class GameManager : MonoBehaviour {
 
     [PunRPC]
     private void endGame() {
-        if(PhotonNetwork.IsMasterClient)
-            PhotonNetwork.LoadLevel(MultiplayerSettings.multiplayerSettings.endScene);
+        // if(PhotonNetwork.IsMasterClient)
+        gameOver = true;
+        PhotonNetwork.LoadLevel(MultiplayerSettings.multiplayerSettings.endScene);
     }
 
     internal class Player {
