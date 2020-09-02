@@ -29,24 +29,24 @@ public class PlayerCollisionController : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        if(PV.IsMine || !cn.networked) {
-            if(playerResources.GetHealth() <= 0)
-            {
-                SceneManager.LoadScene(0);
-                Destroy(gameObject);
-            }
-        }
-        if(!cn.networked) {
-            //if(enemy == null) {enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();}
-        } // else {
-        //     if(players == null) {
-        //         players = GameObject.FindGameObjectsWithTag("Player")
-        //     }
-        // }
+    // private void Update()
+    // {
+    //     if(PV.IsMine || !cn.networked) {
+    //         if(playerResources.GetHealth() <= 0)
+    //         {
+    //             SceneManager.LoadScene(0);
+    //             Destroy(gameObject);
+    //         }
+    //     }
+    //     if(!cn.networked) {
+    //         //if(enemy == null) {enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();}
+    //     } // else {
+    //     //     if(players == null) {
+    //     //         players = GameObject.FindGameObjectsWithTag("Player")
+    //     //     }
+    //     // }
         
-    }
+    // }
 
     // Triggers
     private void OnTriggerEnter(Collider other)
@@ -60,10 +60,15 @@ public class PlayerCollisionController : MonoBehaviour
                 // Sending hit over the network
                 //PhotonView otherPhotonView = other.transform.root.GetComponent<PhotonView>();
                 //otherPhotonView.RPC("DealDamage", otherPhotonView.Owner, 30);
-
+                int otherID = 0;
+                for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) {
+                    if(PhotonNetwork.PlayerList[i] == otherPhotonView.Owner) {
+                        otherID = i;
+                    }
+                }
 
                 print("You've been damaged!");
-                playerResources.LooseHealth(30);
+                playerResources.LooseHealth(30, otherID);
 
                 if(!cn.networked) {
                     //enemy.hitOrMiss = true;
@@ -80,11 +85,11 @@ public class PlayerCollisionController : MonoBehaviour
         }
     }
 
-    [PunRPC]
-    void DealDamage(float damage)
-    {
-        GetComponent<PlayerResources>().LooseHealth(damage);
-    }
+    // [PunRPC]
+    // void DealDamage(float damage)
+    // {
+    //     GetComponent<PlayerResources>().LooseHealth(damage);
+    // }
 
 
     // Collisions
