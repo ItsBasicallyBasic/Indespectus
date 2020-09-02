@@ -29,24 +29,24 @@ public class PlayerCollisionController : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        if(PV.IsMine || !cn.networked) {
-            if(playerResources.GetHealth() <= 0)
-            {
-                SceneManager.LoadScene(0);
-                Destroy(gameObject);
-            }
-        }
-        if(!cn.networked) {
-            //if(enemy == null) {enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();}
-        } // else {
-        //     if(players == null) {
-        //         players = GameObject.FindGameObjectsWithTag("Player")
-        //     }
-        // }
+    // private void Update()
+    // {
+    //     if(PV.IsMine || !cn.networked) {
+    //         if(playerResources.GetHealth() <= 0)
+    //         {
+    //             SceneManager.LoadScene(0);
+    //             Destroy(gameObject);
+    //         }
+    //     }
+    //     if(!cn.networked) {
+    //         //if(enemy == null) {enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyAI>();}
+    //     } // else {
+    //     //     if(players == null) {
+    //     //         players = GameObject.FindGameObjectsWithTag("Player")
+    //     //     }
+    //     // }
         
-    }
+    // }
 
     // Triggers
     private void OnTriggerEnter(Collider other)
