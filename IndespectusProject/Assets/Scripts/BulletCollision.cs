@@ -60,10 +60,10 @@ public class BulletCollision : MonoBehaviour
         }
     }
     private void OnTriggerEnter(Collider other) {
-        if(PV.IsMine) {
+        if(!PV.IsMine) {
             PV.RPC("RPC_HitOther", RpcTarget.All, other);
 
-            if(other.tag == "Shield")
+            if(other.tag == "Shield" || other.tag == "Sword")
             {
                 Destroy(gameObject);
             }
