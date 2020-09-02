@@ -98,7 +98,7 @@ public class PlayerResources : MonoBehaviour {
             if (currentEssence > MAX_ESSENCE) currentEssence = MAX_ESSENCE;
             if (currentHealth > MAX_HEALTH) currentHealth = MAX_HEALTH;
 
-            if(currentHealth < 0) {
+            if(currentHealth <= 0) {
                 GameManager.GM.players[ID].Deaths++;
                 GameManager.GM.players[lastHitID].Kills++;
             }

@@ -48,22 +48,12 @@ public class GameManager : MonoBehaviour, IPunObservable {
             new Player(),
             new Player()
         };
+        maxDeaths = 1;
+        print("i made " + players.Length + " players");
     }
 
     // Update is called once per frame
     void Update() {
-        if(!ready) {
-            if (PlayersSpawned == PhotonNetwork.PlayerList.Length) {
-                ready = true;
-                
-                for (int i = 0; i < PlayersSpawned; i++) {
-                    // players[i] = new Player();
-                    players[i].ID = i;
-                }
-            } else if (notNetworked) {
-                ready = true;
-            } else { return; }
-        }
         if(!gameOver) {
             switch(gameMode) {
                 case GameMode.MaxDeaths : MaxDeaths();
@@ -117,13 +107,15 @@ public class GameManager : MonoBehaviour, IPunObservable {
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         if(stream.IsWriting) {
+            Debug.Log("about to stream");
             foreach(Player p in players) {
-                print("Sent " + p);
+                Debug.Log("Sent " + p.Kills + ", " + p.Deaths + ", " + p.Health + ", ");
                 stream.SendNext(p.Kills);
                 stream.SendNext(p.Deaths);
                 stream.SendNext(p.Health);
             }
         } else {
+            Debug.Log("about to receive");
             foreach(Player p in players) {
                 int k = (int)stream.ReceiveNext();
                 int d = (int)stream.ReceiveNext();
@@ -137,7 +129,7 @@ public class GameManager : MonoBehaviour, IPunObservable {
                 if(h > p.Health) {
                     p.Health = h;
                 }
-                print("Rec'd " + p);
+                Debug.Log("Rec'd & set to " + p.Kills + ", " + p.Deaths + ", " + p.Health + ", ");
             }
         }    
     }
