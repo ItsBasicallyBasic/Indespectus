@@ -200,6 +200,7 @@ MonoBehaviour:
   MAX_HEALTH: 100
   currentHealth: 0
   MAX_ESSENCE: 100
+  ID: 0
 --- !u!114 &4770890048818956320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,8 +226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4acb8e3a17b809841967efc9bbe58888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  essenceFill: {fileID: 4770890047869899357}
-  healthFill: {fileID: 4770890047953210952}
+  essenceFill: {fileID: 1410033478850721122}
+  healthFill: {fileID: 1410033478850721121}
 --- !u!114 &4770890048818956326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2951,7 +2952,7 @@ Transform:
   m_LocalScale: {x: 0.99999994, y: 1, z: 1}
   m_Children:
   - {fileID: 4770890048740065056}
-  - {fileID: 4770890048847563399}
+  - {fileID: 1410033478850721136}
   m_Father: {fileID: 4770890048042027068}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7881,21 +7882,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5883085135719786280, guid: 7c8003a7e834abe41b265f492379186d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5883085135719786280, guid: 7c8003a7e834abe41b265f492379186d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5883085135938370365, guid: 7c8003a7e834abe41b265f492379186d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5883085134685503472, guid: 7c8003a7e834abe41b265f492379186d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7951,6 +7937,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 86.873
       objectReference: {fileID: 0}
+    - target: {fileID: 5883085135719786280, guid: 7c8003a7e834abe41b265f492379186d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883085135719786280, guid: 7c8003a7e834abe41b265f492379186d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5883085135938370365, guid: 7c8003a7e834abe41b265f492379186d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5883085136455678342, guid: 7c8003a7e834abe41b265f492379186d,
         type: 3}
       propertyPath: m_Layer
@@ -7973,13 +7974,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c8003a7e834abe41b265f492379186d, type: 3}
---- !u!4 &4770890048847563399 stripped
+--- !u!4 &1410033478850721136 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5883085134685503472, guid: 7c8003a7e834abe41b265f492379186d,
     type: 3}
   m_PrefabInstance: {fileID: 1410033478850721143}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4770890047869899357 stripped
+--- !u!114 &1410033478850721122 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5883085135719786282, guid: 7c8003a7e834abe41b265f492379186d,
     type: 3}
@@ -7991,7 +7992,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4770890047953210952 stripped
+--- !u!114 &1410033478850721121 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5883085135938370367, guid: 7c8003a7e834abe41b265f492379186d,
     type: 3}

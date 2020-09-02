@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour, IPunObservable {
 
     private void Timed() {
         if(gameTime <= 0) {
-            // PV.RPC("endGame", RpcTarget.AllBuffered);
+            PV.RPC("endGame", RpcTarget.AllBuffered);
             endGame();
         } else {
             gameTime -= Time.deltaTime;
@@ -79,8 +79,8 @@ public class GameManager : MonoBehaviour, IPunObservable {
     private void MaxDeaths() {
         foreach(Player p in players) {
             if(p.Deaths >= maxDeaths) {
-                // PV.RPC("endGame", RpcTarget.AllBuffered);
-                endGame();
+                PV.RPC("endGame", RpcTarget.AllBuffered);
+                // endGame();
             }
         }
     }
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour, IPunObservable {
         PhotonNetwork.LoadLevel(MultiplayerSettings.multiplayerSettings.endScene);
     }
 
-    internal class Player {
+    public class Player {
         public int ID { get; set; }
         public float Health { get; set; }
         public int Kills { get; set; }
