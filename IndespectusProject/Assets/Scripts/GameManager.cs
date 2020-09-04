@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour, IPunObservable {
             new Player(),
             new Player()
         };
-        maxDeaths = 2;
+        maxDeaths = 1;
         print("i made " + players.Length + " players");
     }
 
@@ -92,8 +92,12 @@ public class GameManager : MonoBehaviour, IPunObservable {
         PhotonNetwork.LoadLevel(MultiplayerSettings.multiplayerSettings.endScene);
     }
     
-    [PunRPC]
     internal void updateKDFromPlayer(int deadID, int killID) {
+        PV.RPC("RPC_UpdateKD", RpcTarget.AllBuffered, deadID, killID);
+    }
+
+    [PunRPC]
+    private void RPC_UpdateKD(int deadID, int killID){
         players[deadID].Deaths++;
         players[killID].Kills++;
 
