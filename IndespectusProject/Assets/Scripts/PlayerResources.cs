@@ -99,8 +99,9 @@ public class PlayerResources : MonoBehaviour {
             if (currentHealth > MAX_HEALTH) currentHealth = MAX_HEALTH;
 
             if(currentHealth <= 0) {
-                GameManager.GM.players[ID].Deaths++;
-                GameManager.GM.players[lastHitID].Kills++;
+                PV.RPC("GameManager.GM.updateKDFromPlayer", RpcTarget.AllBuffered, ID, lastHitID);
+                // GameManager.GM.players[ID].Deaths++;
+                // GameManager.GM.players[lastHitID].Kills++;
             }
         }
     }

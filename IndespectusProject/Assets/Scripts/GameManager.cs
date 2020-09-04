@@ -14,9 +14,9 @@ public class GameManager : MonoBehaviour, IPunObservable {
     [SerializeField] internal Player[] players;
 
     [SerializeField] bool ready = false;
-    public int MAX_HEALTH { get; internal set; }
-    public int MAX_ESSENCE { get; internal set; }
-    public bool gameOver { get; private set; }
+    [SerializeField] public int MAX_HEALTH;
+    [SerializeField] public int MAX_ESSENCE;
+    [SerializeField] public bool gameOver;
 
     PhotonView PV;
 
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour, IPunObservable {
             new Player(),
             new Player()
         };
-        maxDeaths = 1;
+        maxDeaths = 2;
         print("i made " + players.Length + " players");
     }
 
@@ -91,6 +91,13 @@ public class GameManager : MonoBehaviour, IPunObservable {
         gameOver = true;
         PhotonNetwork.LoadLevel(MultiplayerSettings.multiplayerSettings.endScene);
     }
+    
+    [PunRPC]
+    internal void updateKDFromPlayer(int deadID, int killID) {
+        players[deadID].Deaths++;
+        players[killID].Kills++;
+
+    }
 
     public class Player {
         public int ID { get; set; }
@@ -106,31 +113,31 @@ public class GameManager : MonoBehaviour, IPunObservable {
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        if(stream.IsWriting) {
-            Debug.Log("about to stream");
-            foreach(Player p in players) {
-                Debug.Log("Sent " + p.Kills + ", " + p.Deaths + ", " + p.Health + ", ");
-                stream.SendNext(p.Kills);
-                stream.SendNext(p.Deaths);
-                stream.SendNext(p.Health);
-            }
-        } else {
-            Debug.Log("about to receive");
-            foreach(Player p in players) {
-                int k = (int)stream.ReceiveNext();
-                int d = (int)stream.ReceiveNext();
-                int h = (int)stream.ReceiveNext();
-                if(k > p.Kills) {
-                    p.Kills = k;
-                }
-                if(d > p.Deaths) {
-                    p.Deaths = d;
-                }
-                if(h > p.Health) {
-                    p.Health = h;
-                }
-                Debug.Log("Rec'd & set to " + p.Kills + ", " + p.Deaths + ", " + p.Health + ", ");
-            }
-        }    
+    //     if(stream.IsWriting) {
+    //         Debug.Log("about to stream");
+    //         foreach(Player p in players) {
+    //             Debug.Log("Sent " + p.Kills + ", " + p.Deaths + ", " + p.Health + ", ");
+    //             stream.SendNext(p.Kills);
+    //             stream.SendNext(p.Deaths);
+    //             stream.SendNext(p.Health);
+    //         }
+    //     } else {
+    //         Debug.Log("about to receive");
+    //         foreach(Player p in players) {
+    //             int k = (int)stream.ReceiveNext();
+    //             int d = (int)stream.ReceiveNext();
+    //             int h = (int)stream.ReceiveNext();
+    //             if(k > p.Kills) {
+    //                 p.Kills = k;
+    //             }
+    //             if(d > p.Deaths) {
+    //                 p.Deaths = d;
+    //             }
+    //             if(h > p.Health) {
+    //                 p.Health = h;
+    //             }
+    //             Debug.Log("Rec'd & set to " + p.Kills + ", " + p.Deaths + ", " + p.Health + ", ");
+    //         }
+    //     }    
     }
 }
