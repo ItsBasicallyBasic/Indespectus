@@ -35,6 +35,7 @@ public class PlayerVelocity : MonoBehaviourPunCallbacks, IPunObservable {
     public int scale = 10;
 
     [SerializeField] bool NonNetworked;
+    private float networkVelocity;
 
     void Start()
     {
@@ -62,12 +63,19 @@ public class PlayerVelocity : MonoBehaviourPunCallbacks, IPunObservable {
         if(stream.IsWriting) {
             stream.SendNext(velocity);
         } else {
-            velocity = (float)stream.ReceiveNext();
+            /*networkVelocity*/ velocity = (float)stream.ReceiveNext();
         }    
     }
 
     // Update is called once per frame
     void Update() {
+        // if(velocity != networkVelocity) {
+        //     velocity = Mathf.Lerp(velocity, networkVelocity, lerpSpeed);
+        // }
+        // if(velocity != networkVelocity) {
+            velocity = Mathf.Lerp(velocity, desiredVelocity, lerpSpeed);
+        // }
+        
         TransitionMaterials();
 
         SetVelocity();

@@ -15,7 +15,7 @@ public class SetMaterials : MonoBehaviour {
     [SerializeField] private GameObject Handle;
     [SerializeField] private GameObject[] Weapons;
     [SerializeField] private GameObject[] playerUI;
-
+    private bool allUI;
     public int myNumber;
 
     PhotonView PV;
@@ -25,11 +25,28 @@ public class SetMaterials : MonoBehaviour {
     void Start() {
         PV = GetComponent<PhotonView>(); 
         AssignMaterials();
-        playerUI = GameObject.FindGameObjectsWithTag("playerUI");
-        foreach(GameObject ui in playerUI) {
-            if(!ui.transform.GetComponent<PhotonView>().IsMine){
-                ui.SetActive(false);
+    }
+
+    void Update() {
+        if(playerUI.Length != PhotonNetwork.PlayerList.Length || (playerUI.Length == PhotonNetwork.PlayerList.Length && allUI)) {
+            playerUI = GameObject.FindGameObjectsWithTag("playerUI");
+            allUI = true;
+            int numActive = 0;
+            foreach(GameObject ui in playerUI) {
+                if(ui.activeInHierarchy) {
+                    numActive++;
+                }
             }
+            if(numActive != PhotonNetwork.PlayerList.Length) {
+                allUI = false;
+            }
+            if (allUI) {
+                foreach(GameObject ui in playerUI) {
+                    if(!ui.transform.GetComponent<PhotonView>().IsMine){
+                        ui.SetActive(false);
+                    }
+                }
+            } 
         }
     }
 
