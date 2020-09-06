@@ -58,7 +58,7 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
     [SerializeField] private GameObject PlayerMain;
     [SerializeField] private GameObject Handle;
     [SerializeField] private GameObject[] Weapons;
-    private bool allUI;
+    private bool allUI = false;
     private GameObject[] playerUI;
     #endregion
 
@@ -91,7 +91,7 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
                 }
                 set = true;
             }
-
+            allUI = true;
             int numActive = 0;
             playerUI = GameObject.FindGameObjectsWithTag("playerUI");
             foreach(GameObject ui in playerUI) {
