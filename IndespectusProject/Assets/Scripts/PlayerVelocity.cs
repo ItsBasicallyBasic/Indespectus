@@ -34,10 +34,12 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
 
     public int scale = 10;
 
-    [SerializeField] bool NonNetworked;
+    [SerializeField] bool set = false;
     private float networkVelocity;
 
     public int myNumber;
+    
+    [SerializeField] private GameObject[] allPlayers;
 
     void Start()
     {
@@ -46,21 +48,6 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
         rightHandPreviousPos = rightHand.position;
         leftHandPreviousPos = leftHand.position;
         
-        for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) { 
-            if(PhotonNetwork.PlayerList[i] == this.GetComponent<PhotonView>().Owner) {
-                myNumber = i;
-            }
-        }
-
-        if (myNumber == 0) {
-            myMats = mySM.p1Materials;
-        } else if (myNumber == 1) {
-            myMats = mySM.p2Materials;
-        } else if (myNumber == 2) {
-            myMats = mySM.p3Materials;
-        } else if (myNumber == 3) {
-            myMats = mySM.p4Materials;
-        }
     }
 
     //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
@@ -73,16 +60,34 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
 
     // Update is called once per frame
     void Update() {
-        // if(velocity != networkVelocity) {
-        //     velocity = Mathf.Lerp(velocity, networkVelocity, lerpSpeed);
-        // }
-        // if(velocity != networkVelocity) {
-        //    velocity = Mathf.Lerp(velocity, desiredVelocity, lerpSpeed);
-        // }
-        
-        TransitionMaterials();
+        if(!set) {
+            allPlayers = GameObject.FindGameObjectsWithTag("Player");
+            if(allPlayers.Length == PhotonNetwork.PlayerList.Length) {
+                for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) {
+                    foreach(GameObject player in allPlayers) {
+                        if(PhotonNetwork.PlayerList[i] == player.GetComponent<PhotonView>().Owner) {
+                            player.GetComponent<PlayerVelocity>().myNumber = i;
+                        }
+                    }
+                }
 
-        SetVelocity();
+                if (myNumber == 0) {
+                    myMats = mySM.p1Materials;
+                } else if (myNumber == 1) {
+                    myMats = mySM.p2Materials;
+                } else if (myNumber == 2) {
+                    myMats = mySM.p3Materials;
+                } else if (myNumber == 3) {
+                    myMats = mySM.p4Materials;
+                }
+                set = true;
+            }
+        } else {
+        
+            TransitionMaterials();
+
+            SetVelocity();
+        }
     }
     void TransitionMaterials() {
         foreach(Material mat in myMats) {
