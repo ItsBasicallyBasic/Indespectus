@@ -5,7 +5,7 @@ using Photon.Pun;
 // using Valve.VR;
 // using Valve.VR.InteractionSystem;
 
-public class PlayerVelocity : MonoBehaviourPunCallbacks, IPunObservable {
+public class PlayerVelocity : MonoBehaviourPunCallbacks/*, IPunObservable*/ {
 
     public float velocity;
     public float desiredVelocity;
@@ -30,7 +30,7 @@ public class PlayerVelocity : MonoBehaviourPunCallbacks, IPunObservable {
     private SetMaterials mySM;
 
     [SerializeField]
-    private float lerpSpeed = 0.01f;
+    private float lerpSpeed = 3f;
 
     public int scale = 10;
 
@@ -59,13 +59,13 @@ public class PlayerVelocity : MonoBehaviourPunCallbacks, IPunObservable {
         }
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        if(stream.IsWriting) {
-            stream.SendNext(velocity);
-        } else {
-            /*networkVelocity*/ velocity = (float)stream.ReceiveNext();
-        }    
-    }
+    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+    //    if(stream.IsWriting) {
+    //        stream.SendNext(velocity);
+    //    } else {
+    //        /*networkVelocity*/ velocity = (float)stream.ReceiveNext();
+    //    }    
+    //}
 
     // Update is called once per frame
     void Update() {
@@ -73,7 +73,7 @@ public class PlayerVelocity : MonoBehaviourPunCallbacks, IPunObservable {
         //     velocity = Mathf.Lerp(velocity, networkVelocity, lerpSpeed);
         // }
         // if(velocity != networkVelocity) {
-            velocity = Mathf.Lerp(velocity, desiredVelocity, lerpSpeed);
+        //    velocity = Mathf.Lerp(velocity, desiredVelocity, lerpSpeed);
         // }
         
         TransitionMaterials();
@@ -117,7 +117,7 @@ public class PlayerVelocity : MonoBehaviourPunCallbacks, IPunObservable {
             desiredVelocity = headVelocity;
         }
 
-        velocity = Mathf.Lerp(velocity, desiredVelocity, lerpSpeed);
+        velocity = Mathf.Lerp(velocity, desiredVelocity, lerpSpeed * Time.deltaTime);
 
         //desiredVelocity = desiredVelocity/100;
         desiredVelocity = Mathf.Clamp(desiredVelocity, 0, 1.5f);

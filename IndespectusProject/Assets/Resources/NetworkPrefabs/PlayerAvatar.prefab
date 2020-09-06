@@ -146,7 +146,6 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 4770890048818956351}
-  - {fileID: 4770890048818956326}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -184,6 +183,7 @@ MonoBehaviour:
   - {fileID: 4770890048238191837}
   - {fileID: 4770890048887984842}
   - {fileID: 4770890048788790036}
+  playerUI: []
   myNumber: 0
 --- !u!114 &4770890048818956323
 MonoBehaviour:
@@ -248,7 +248,7 @@ MonoBehaviour:
   myMats: []
   PV: {fileID: 4770890048818956349}
   mySM: {fileID: 4770890048818956322}
-  lerpSpeed: 0.1
+  lerpSpeed: 3
   scale: 1
   NonNetworked: 0
 --- !u!114 &1356597519035287596
