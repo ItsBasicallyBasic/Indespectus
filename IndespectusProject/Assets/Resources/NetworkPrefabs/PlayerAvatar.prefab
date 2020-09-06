@@ -161,31 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36dce456c9dc168478aa6d97a6f9a0cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1Materials:
-  - {fileID: 2100000, guid: 6439a7b0c923c594185d565e862ac5ac, type: 2}
-  - {fileID: 2100000, guid: 2fe8e1c52ac24bb4b89b40878ccde2cb, type: 2}
-  - {fileID: 2100000, guid: 7b8bd0e0ec0e2134e8bb93481e9f04fd, type: 2}
-  p2Materials:
-  - {fileID: 2100000, guid: 7b99fc2d261ee0f408da6c631abfe496, type: 2}
-  - {fileID: 2100000, guid: 5aebb81daedf9d5448d9afa71031ca23, type: 2}
-  - {fileID: 2100000, guid: a8aae16a958ec3d439731b7635f9f27d, type: 2}
-  p3Materials:
-  - {fileID: 2100000, guid: dd3d1f5ed15ab40489544c1b82076eca, type: 2}
-  - {fileID: 2100000, guid: 5caab9a883fa03d4cb358aa6c972a7e5, type: 2}
-  - {fileID: 2100000, guid: 8955ce162fd579145b6db82c2692990a, type: 2}
-  p4Materials:
-  - {fileID: 2100000, guid: a85c89ca12d5b2f44a1a7af5281f33f0, type: 2}
-  - {fileID: 2100000, guid: bea7fdb7f008fd941a4c21441addbbde, type: 2}
-  - {fileID: 2100000, guid: eda21eef82f52f246a3fae3483d1ad85, type: 2}
-  PlayerMain: {fileID: 4770890048902862701}
-  Handle: {fileID: 4770890048567084152}
-  Weapons:
-  - {fileID: 4770890048238191837}
-  - {fileID: 4770890048887984842}
-  - {fileID: 4770890048788790036}
-  playerUI: []
-  allPlayers: []
-  myNumber: 0
 --- !u!114 &4770890048818956323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,10 +223,33 @@ MonoBehaviour:
   leftHand: {fileID: 4770890048740065056}
   myMats: []
   PV: {fileID: 4770890048818956349}
-  mySM: {fileID: 4770890048818956322}
   lerpSpeed: 3
   scale: 1
-  NonNetworked: 0
+  set: 0
+  myNumber: 0
+  allPlayers: []
+  p1Materials:
+  - {fileID: 2100000, guid: 2fe8e1c52ac24bb4b89b40878ccde2cb, type: 2}
+  - {fileID: 2100000, guid: 6439a7b0c923c594185d565e862ac5ac, type: 2}
+  - {fileID: 2100000, guid: 7b8bd0e0ec0e2134e8bb93481e9f04fd, type: 2}
+  p2Materials:
+  - {fileID: 2100000, guid: 5aebb81daedf9d5448d9afa71031ca23, type: 2}
+  - {fileID: 2100000, guid: 7b99fc2d261ee0f408da6c631abfe496, type: 2}
+  - {fileID: 2100000, guid: a8aae16a958ec3d439731b7635f9f27d, type: 2}
+  p3Materials:
+  - {fileID: 2100000, guid: 5caab9a883fa03d4cb358aa6c972a7e5, type: 2}
+  - {fileID: 2100000, guid: dd3d1f5ed15ab40489544c1b82076eca, type: 2}
+  - {fileID: 2100000, guid: 8955ce162fd579145b6db82c2692990a, type: 2}
+  p4Materials:
+  - {fileID: 2100000, guid: bea7fdb7f008fd941a4c21441addbbde, type: 2}
+  - {fileID: 2100000, guid: a85c89ca12d5b2f44a1a7af5281f33f0, type: 2}
+  - {fileID: 2100000, guid: eda21eef82f52f246a3fae3483d1ad85, type: 2}
+  PlayerMain: {fileID: 4770890048902862701}
+  Handle: {fileID: 4770890048567084152}
+  Weapons:
+  - {fileID: 4770890048788790036}
+  - {fileID: 4770890048887984842}
+  - {fileID: 4770890048238191837}
 --- !u!114 &1356597519035287596
 MonoBehaviour:
   m_ObjectHideFlags: 0

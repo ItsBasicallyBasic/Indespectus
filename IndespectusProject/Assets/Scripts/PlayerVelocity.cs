@@ -26,8 +26,8 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
     [SerializeField]
     private PhotonView PV;
 
-    [SerializeField]
-    private SetMaterials mySM;
+    // [SerializeField]
+    // private SetMaterials mySM;
 
     [SerializeField]
     private float lerpSpeed = 3f;
@@ -50,17 +50,21 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
         
     }
 
-    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-    //    if(stream.IsWriting) {
-    //        stream.SendNext(velocity);
-    //    } else {
-    //        /*networkVelocity*/ velocity = (float)stream.ReceiveNext();
-    //    }    
-    //}
+    #region  SettingMaterials
+    [SerializeField] public Material[] p1Materials;
+    [SerializeField] public Material[] p2Materials;
+    [SerializeField] public Material[] p3Materials;
+    [SerializeField] public Material[] p4Materials;
+    [SerializeField] private GameObject PlayerMain;
+    [SerializeField] private GameObject Handle;
+    [SerializeField] private GameObject[] Weapons;
+    private bool allUI;
+    private GameObject[] playerUI;
+    #endregion
 
     // Update is called once per frame
     void Update() {
-        if(!set) {
+        if(!set && !allUI) {
             allPlayers = GameObject.FindGameObjectsWithTag("Player");
             if(allPlayers.Length == PhotonNetwork.PlayerList.Length) {
                 for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) {
@@ -72,16 +76,39 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
                 }
 
                 if (myNumber == 0) {
-                    myMats = mySM.p1Materials;
+                    myMats = p1Materials;
                 } else if (myNumber == 1) {
-                    myMats = mySM.p2Materials;
+                    myMats = p2Materials;
                 } else if (myNumber == 2) {
-                    myMats = mySM.p3Materials;
+                    myMats = p3Materials;
                 } else if (myNumber == 3) {
-                    myMats = mySM.p4Materials;
+                    myMats = p4Materials;
+                }
+                PlayerMain.GetComponent<Renderer>().material = myMats[1];
+                Handle.GetComponent<Renderer>().material = myMats[0];
+                foreach(GameObject weapon in Weapons) {
+                    weapon.GetComponent<Renderer>().material = myMats[2];
                 }
                 set = true;
             }
+
+            int numActive = 0;
+            playerUI = GameObject.FindGameObjectsWithTag("playerUI");
+            foreach(GameObject ui in playerUI) {
+                if(ui.activeInHierarchy) {
+                    numActive++;
+                }
+            }
+            if(numActive != PhotonNetwork.PlayerList.Length) {
+                allUI = false;
+            }
+            if (allUI) {
+                foreach(GameObject ui in playerUI) {
+                    if(!ui.transform.GetComponent<PhotonView>().IsMine){
+                        ui.SetActive(false);
+                    }
+                }
+            } 
         } else {
         
             TransitionMaterials();
