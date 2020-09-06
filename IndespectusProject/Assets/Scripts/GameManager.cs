@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour, IPunObservable {
     [SerializeField] public int MAX_HEALTH;
     [SerializeField] public int MAX_ESSENCE;
     [SerializeField] public bool gameOver;
+    [SerializeField] public AudioManager audioManager;
 
     PhotonView PV;
 

@@ -51,21 +51,27 @@ public class WeaponBehaviour : MonoBehaviour
 
     [SerializeField] private PhotonView PV;
 
+    private CheckNetworked cn;
+
     // Start is called before the first frame update
     void Start()
     {
+
         animator = GetComponent<Animator>();
         nextShot = nextShot + fireRate;
         currSelected = 1;
         multitoolState = MultitoolStates.Sword;
 
         playerResources = GetComponentInParent<PlayerResources>();
+
+        //if (cn == null) { cn = GameObject.FindGameObjectWithTag("NetworkCheck").GetComponent<CheckNetworked>(); }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(PV.IsMine) {
+
+        if (PV.IsMine /*|| !cn.networked*/) {
             switch (multitoolState)
             {
                 case MultitoolStates.Sword:
@@ -238,7 +244,8 @@ public class WeaponBehaviour : MonoBehaviour
                 rb.velocity = bulletSpawn.transform.forward * 1000 * Time.deltaTime;
                 Destroy(bulletObject, 5f);
                 animator.Play("Recoil");
-                //Sound??
+
+                //Play Sound
 
                 shotReveal = true;
                 sRevealTimer = Time.time +sRevealTime;
