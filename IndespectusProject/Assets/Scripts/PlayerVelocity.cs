@@ -5,7 +5,7 @@ using Photon.Pun;
 // using Valve.VR;
 // using Valve.VR.InteractionSystem;
 
-public class PlayerVelocity : MonoBehaviourPunCallbacks/*, IPunObservable*/ {
+public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
 
     public float velocity;
     public float desiredVelocity;

@@ -15,6 +15,7 @@ public class SetMaterials : MonoBehaviour {
     [SerializeField] private GameObject Handle;
     [SerializeField] private GameObject[] Weapons;
     [SerializeField] private GameObject[] playerUI;
+    [SerializeField] private GameObject[] allPlayers;
     private bool allUI;
     public int myNumber;
 
@@ -24,7 +25,6 @@ public class SetMaterials : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         PV = GetComponent<PhotonView>(); 
-        AssignMaterials();
     }
 
     void Update() {
@@ -41,6 +41,8 @@ public class SetMaterials : MonoBehaviour {
                 allUI = false;
             }
             if (allUI) {
+                allPlayers = GameObject.FindGameObjectsWithTag("Player");
+                AssignMaterials();
                 foreach(GameObject ui in playerUI) {
                     if(!ui.transform.GetComponent<PhotonView>().IsMine){
                         ui.SetActive(false);
@@ -52,40 +54,39 @@ public class SetMaterials : MonoBehaviour {
 
     private void AssignMaterials() {
         if(this.gameObject.tag != "Enemy") {
-            if(PV.IsMine){
-                for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) {
-                    if(PhotonNetwork.PlayerList[i].IsLocal) {
-                        PV.RPC("RPC_SetColor", RpcTarget.AllBuffered, i);
-                        myNumber = i;
-                    }
+            for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) {
+                foreach(GameObject player in allPlayers)
+                if(PhotonNetwork.PlayerList[i] == player.GetComponent<PhotonView>().Owner) {
+                    player.GetComponent<SetMaterials>().myNumber = i;
                 }
             }
         } else {
-            RPC_SetColor (1);
+            RPC_SetColor();
         }
+        PV.RPC("RPC_SetColor", RpcTarget.AllBuffered);
     }
 
     [PunRPC]
-    void RPC_SetColor(int i) {
-        if(i== 0) {
+    void RPC_SetColor() {
+        if(myNumber== 0) {
             PlayerMain.GetComponent<Renderer>().material = p1Materials[0];
             Handle.GetComponent<Renderer>().material = p1Materials[1];
             foreach(GameObject weapon in Weapons) {
                 weapon.GetComponent<Renderer>().material = p1Materials[2];
             }
-        } else if(i== 1) {
+        } else if(myNumber== 1) {
             PlayerMain.GetComponent<Renderer>().material = p2Materials[0];
             Handle.GetComponent<Renderer>().material = p2Materials[1];
             foreach(GameObject weapon in Weapons) {
                 weapon.GetComponent<Renderer>().material = p2Materials[2];
             }
-        } else if(i== 2) {
+        } else if(myNumber== 2) {
             PlayerMain.GetComponent<Renderer>().material = p3Materials[0];
             Handle.GetComponent<Renderer>().material = p3Materials[1];
             foreach(GameObject weapon in Weapons) {
-                weapon.GetComponent<Renderer>().material = p4Materials[2];
+                weapon.GetComponent<Renderer>().material = p3Materials[2];
             }
-        } else if(i== 3) {
+        } else if(myNumber== 3) {
             PlayerMain.GetComponent<Renderer>().material = p4Materials[0];
             Handle.GetComponent<Renderer>().material = p4Materials[1];
             foreach(GameObject weapon in Weapons) {
