@@ -55,9 +55,10 @@ public class SetMaterials : MonoBehaviour {
     private void AssignMaterials() {
         if(this.gameObject.tag != "Enemy") {
             for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) {
-                foreach(GameObject player in allPlayers)
-                if(PhotonNetwork.PlayerList[i] == player.GetComponent<PhotonView>().Owner) {
-                    player.GetComponent<SetMaterials>().myNumber = i;
+                foreach(GameObject player in allPlayers) {
+                    if(PhotonNetwork.PlayerList[i] == player.GetComponent<PhotonView>().Owner) {
+                        player.GetComponent<SetMaterials>().myNumber = i;
+                    }
                 }
             }
         } else {
