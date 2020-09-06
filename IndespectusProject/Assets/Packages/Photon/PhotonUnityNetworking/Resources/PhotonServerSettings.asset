@@ -52,6 +52,8 @@ MonoBehaviour:
   - DeactivateSword
   - Fire
   - endGame
+  - updateKDFromPlayer
+  - RPC_UpdateKD
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

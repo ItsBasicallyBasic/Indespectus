@@ -48,7 +48,7 @@ public class EndScreen : MonoBehaviourPunCallbacks  {
 
     // Update is called once per frame
     void Update() {
-        if(OVRInput.GetDown(OVRInput.Button.One) || Input.anyKey) {
+        if(OVRInput.GetDown(OVRInput.Button.One) || Input.GetKeyDown(KeyCode.Return)) {
             results.SetActive(false);
             leaving.SetActive(true);
             var obj = GameObject.Find ("GameManager");
