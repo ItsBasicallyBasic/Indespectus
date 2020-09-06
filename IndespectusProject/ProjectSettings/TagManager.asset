@@ -17,6 +17,7 @@ TagManager:
   - LHand
   - RHand
   - NetworkCheck
+  - playerUI
   layers:
   - Default
   - TransparentFX

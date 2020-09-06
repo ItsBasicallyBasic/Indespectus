@@ -14,6 +14,7 @@ public class SetMaterials : MonoBehaviour {
     [SerializeField] private GameObject PlayerMain;
     [SerializeField] private GameObject Handle;
     [SerializeField] private GameObject[] Weapons;
+    [SerializeField] private GameObject[] playerUI;
 
     public int myNumber;
 
@@ -24,6 +25,12 @@ public class SetMaterials : MonoBehaviour {
     void Start() {
         PV = GetComponent<PhotonView>(); 
         AssignMaterials();
+        playerUI = GameObject.FindGameObjectsWithTag("playerUI");
+        foreach(GameObject ui in playerUI) {
+            if(!ui.transform.GetComponent<PhotonView>().IsMine){
+                ui.SetActive(false);
+            }
+        }
     }
 
     private void AssignMaterials() {
@@ -47,13 +54,13 @@ public class SetMaterials : MonoBehaviour {
             PlayerMain.GetComponent<Renderer>().material = p1Materials[0];
             Handle.GetComponent<Renderer>().material = p1Materials[1];
             foreach(GameObject weapon in Weapons) {
-                weapon.GetComponent<Renderer>().material = p4Materials[2];
+                weapon.GetComponent<Renderer>().material = p1Materials[2];
             }
         } else if(i== 1) {
             PlayerMain.GetComponent<Renderer>().material = p2Materials[0];
             Handle.GetComponent<Renderer>().material = p2Materials[1];
             foreach(GameObject weapon in Weapons) {
-                weapon.GetComponent<Renderer>().material = p4Materials[2];
+                weapon.GetComponent<Renderer>().material = p2Materials[2];
             }
         } else if(i== 2) {
             PlayerMain.GetComponent<Renderer>().material = p3Materials[0];

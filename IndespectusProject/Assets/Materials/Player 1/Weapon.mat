@@ -75,6 +75,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _texcoord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -95,12 +99,12 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Transition: 0.0971892
+    - _Transition: 1.5
     - _UVSec: 0
     - _ZWrite: 0
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 0, b: 0.7185302, a: 0.67058825}
     - _EmissionColor: {r: 1, g: 0, b: 0.7185302, a: 0.67058825}
-    - _GlowColor: {r: 2.2204275, g: 0.45338574, b: 0.16275385, a: 1}
+    - _GlowColor: {r: 0.069717005, g: 0.6894237, b: 0.7397748, a: 1}
     - _Tint: {r: 0.9245283, g: 0, b: 0, a: 1}
