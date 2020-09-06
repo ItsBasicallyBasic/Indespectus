@@ -123,7 +123,7 @@ public class WeaponBehaviour : MonoBehaviour
 
     void SwordEquipped() {
         // if(PV.IsMine) {
-            if (OVRInput.GetDown(OVRInput.Button.Two) && gameObject.tag == "Player")
+            if (OVRInput.GetDown(OVRInput.Button.Two)/*  && gameObject.tag == "Player" */)
             {
                 multitoolState = MultitoolStates.Gun;
             }
@@ -132,11 +132,11 @@ public class WeaponBehaviour : MonoBehaviour
             {
                 currSelected = 0;
 
-                if(gameObject.tag == "Player")
-                {
+                // if(gameObject.tag == "Player")
+                // {
                     // DeactivateGun();
                     PV.RPC("DeactivateGun", RpcTarget.AllBuffered);
-                }
+                // }
 
                 if (!swordBroken)
                 {

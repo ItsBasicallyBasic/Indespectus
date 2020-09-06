@@ -37,6 +37,8 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
     [SerializeField] bool NonNetworked;
     private float networkVelocity;
 
+    public int myNumber;
+
     void Start()
     {
         // Change values from 0
@@ -44,17 +46,19 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
         rightHandPreviousPos = rightHand.position;
         leftHandPreviousPos = leftHand.position;
         
-        if(this.gameObject.tag == "Enemy") {
-            mySM.myNumber = 1;
+        for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) { 
+            if(PhotonNetwork.PlayerList[i] == this.GetComponent<PhotonView>().Owner) {
+                myNumber = i;
+            }
         }
 
-        if (mySM.myNumber == 0) {
+        if (myNumber == 0) {
             myMats = mySM.p1Materials;
-        } else if (mySM.myNumber == 1) {
+        } else if (myNumber == 1) {
             myMats = mySM.p2Materials;
-        } else if (mySM.myNumber == 2) {
+        } else if (myNumber == 2) {
             myMats = mySM.p3Materials;
-        } else if (mySM.myNumber == 3) {
+        } else if (myNumber == 3) {
             myMats = mySM.p4Materials;
         }
     }
