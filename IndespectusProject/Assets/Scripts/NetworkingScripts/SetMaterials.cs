@@ -65,8 +65,10 @@ public class SetMaterials : MonoBehaviour {
                 }
             }
             set = true;
+            RPC_SetColor();
         }
-        PV.RPC("RPC_SetColor", RpcTarget.AllBuffered);
+        // PV.RPC("RPC_SetColor", RpcTarget.AllBuffered);
+        
     }
 
     [PunRPC]
