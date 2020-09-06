@@ -17,6 +17,7 @@ public class SetMaterials : MonoBehaviour {
     [SerializeField] private GameObject[] playerUI;
     [SerializeField] private GameObject[] allPlayers;
     private bool allUI;
+    private bool set;
     public int myNumber;
 
     PhotonView PV;
@@ -41,8 +42,6 @@ public class SetMaterials : MonoBehaviour {
                 allUI = false;
             }
             if (allUI) {
-                allPlayers = GameObject.FindGameObjectsWithTag("Player");
-                AssignMaterials();
                 foreach(GameObject ui in playerUI) {
                     if(!ui.transform.GetComponent<PhotonView>().IsMine){
                         ui.SetActive(false);
@@ -50,19 +49,22 @@ public class SetMaterials : MonoBehaviour {
                 }
             } 
         }
+        if(!set) {
+            AssignMaterials();
+        }
     }
 
     private void AssignMaterials() {
-        if(this.gameObject.tag != "Enemy") {
+        allPlayers = GameObject.FindGameObjectsWithTag("Player");
+        if(allPlayers.Length == PhotonNetwork.PlayerList.Length) {
             for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) {
                 foreach(GameObject player in allPlayers) {
                     if(PhotonNetwork.PlayerList[i] == player.GetComponent<PhotonView>().Owner) {
-                        player.GetComponent<SetMaterials>().myNumber = i;
+                        player.GetComponent<PlayerVelocity>().myNumber = i;
                     }
                 }
             }
-        } else {
-            RPC_SetColor();
+            set = true;
         }
         PV.RPC("RPC_SetColor", RpcTarget.AllBuffered);
     }
