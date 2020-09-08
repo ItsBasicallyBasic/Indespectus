@@ -32,6 +32,7 @@ public class PlayerOVRLink : MonoBehaviour, IPunObservable {
                 bonesIKRef[0] = ovrRig.Find("OVRCameraRig/TrackingSpace/CenterEyeAnchor/Head");
                 bonesIKRef[1] = ovrRig.Find("OVRCameraRig/TrackingSpace/LeftHandAnchor/hand.L");
                 bonesIKRef[2] = ovrRig.Find("OVRCameraRig/TrackingSpace/RightHandAnchor/hand.R");
+                //bonesIKRef[3] = ovrRig.Find("OVRCameraRig/");
 
                 Debug.Log("Player is mine");
             } else {
@@ -50,7 +51,7 @@ public class PlayerOVRLink : MonoBehaviour, IPunObservable {
         if (PV.IsMine)
         {
             this.transform.SetParent(GameObject.FindGameObjectWithTag("OVRRig").transform); // <- used a direct reference because using ovrRig did not work
-            this.transform.localPosition = Vector3.zero + Vector3.up * 1;
+            this.transform.localPosition = Vector3.zero;
         }
     }
     private void FindRig() {
