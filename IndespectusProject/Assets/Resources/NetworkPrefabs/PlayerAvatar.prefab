@@ -225,7 +225,7 @@ MonoBehaviour:
   myMats: []
   PV: {fileID: 4770890048818956349}
   lerpSpeed: 3
-  scale: 1
+  scale: 2
   set: 0
   myNumber: 0
   allPlayers: []

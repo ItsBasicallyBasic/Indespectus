@@ -118,16 +118,16 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
     }
     void TransitionMaterials() {
         foreach(Material mat in myMats) {
-            mat.SetFloat("_Transition", velocity/scale);
+            mat.SetFloat("_Transition", velocity * scale);
         }
     }
 
     void SetVelocity()
     {
         // Assign velocity based off previous frame position
-        leftHandVelocity = Vector3.Distance(leftHand.position, leftHandPreviousPos) * 7000 * Time.deltaTime;
-        rightHandVelocity = Vector3.Distance(rightHand.position, rightHandPreviousPos) * 7000 * Time.deltaTime;
-        headVelocity = Vector3.Distance(head.position, headPreviousPos) * 7000 * Time.deltaTime;
+        leftHandVelocity = Vector3.Distance(leftHand.position, leftHandPreviousPos) * 1000 * Time.deltaTime;
+        rightHandVelocity = Vector3.Distance(rightHand.position, rightHandPreviousPos) * 1000 * Time.deltaTime;
+        headVelocity = Vector3.Distance(head.position, headPreviousPos) * 1000 * Time.deltaTime;
 
         // Update previous frame with current frame position for next frame
         headPreviousPos = head.position;
@@ -155,7 +155,6 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
 
         velocity = Mathf.Lerp(velocity, desiredVelocity, lerpSpeed * Time.deltaTime);
 
-        //desiredVelocity = desiredVelocity/100;
         desiredVelocity = Mathf.Clamp(desiredVelocity, 0, 1.5f);
         velocity = Mathf.Clamp(velocity, 0, 1.5f);
     }
