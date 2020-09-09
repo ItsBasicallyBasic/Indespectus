@@ -40,6 +40,7 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
     public int myNumber;
     
     [SerializeField] private GameObject[] allPlayers;
+    CheckNetworked cn;
 
     void Start()
     {
@@ -47,7 +48,7 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
         headPreviousPos = head.position;
         rightHandPreviousPos = rightHand.position;
         leftHandPreviousPos = leftHand.position;
-        
+        if(cn == null) {cn = GameObject.FindGameObjectWithTag("NetworkCheck").GetComponent<CheckNetworked>();} 
     }
 
     #region  SettingMaterials
@@ -60,11 +61,12 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
     [SerializeField] private GameObject[] Weapons;
     private bool allUI = false;
     private GameObject[] playerUI;
+    public bool overrideV;
     #endregion
 
     // Update is called once per frame
     void Update() {
-        if(!set && !allUI) {
+        if(!set && !allUI && cn.networked) {
             allPlayers = GameObject.FindGameObjectsWithTag("Player");
             if(allPlayers.Length == PhotonNetwork.PlayerList.Length) {
                 for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) {
@@ -109,11 +111,14 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
                     }
                 }
             } 
-        } else {
-        
+        } else if(!cn.networked || (set && allUI)){
+            print("doing the velocity changes");
             TransitionMaterials();
 
             SetVelocity();
+            if(overrideV) {
+                OverrideVelocity(1.5f);
+            }
         }
     }
     void TransitionMaterials() {

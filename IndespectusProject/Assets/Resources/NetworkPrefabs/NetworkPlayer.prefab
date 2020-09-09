@@ -69,3 +69,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAvatar: {fileID: 7247168390327532924, guid: 300894226745ec04f9e2a2bbb3822528,
     type: 3}
+  SpawnBox: {fileID: 0}
+  rig: {fileID: 0}

@@ -133,6 +133,7 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     private void RPC_CreatePlayer() {
         PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "NetworkPlayer"), transform.position, Quaternion.identity, 0);
         Debug.Log("ive instantiated a network player");
+        Destroy(this.gameObject);
     }
     
     // Start is called before the first frame update

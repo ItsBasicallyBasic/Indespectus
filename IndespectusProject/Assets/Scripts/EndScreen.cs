@@ -44,6 +44,9 @@ public class EndScreen : MonoBehaviourPunCallbacks  {
                 PlayerResults[i].SetText("");
             }
         }
+        
+        PhotonNetwork.DestroyAll();
+
     }
 
     // Update is called once per frame
@@ -56,6 +59,9 @@ public class EndScreen : MonoBehaviourPunCallbacks  {
             PhotonNetwork.Disconnect();
             // SceneManager.LoadScene(MultiplayerSettings.multiplayerSettings.menuScene);
             //PhotonNetwork.LeaveRoom();
+        }
+        if(OVRInput.GetDown(OVRInput.Button.Two) || Input.GetKeyDown(KeyCode.Escape)) {
+            Application.Quit();
         }
     }
     

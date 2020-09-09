@@ -41,7 +41,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
         refreshButton.SetActive(false);
         backButton.SetActive(false);
         PhotonNetwork.JoinRandomRoom();
-        cancelButton.SetActive(true);
+        // cancelButton.SetActive(true);
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message) {
@@ -88,9 +88,9 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
         if(Input.GetKey(KeyCode.Return) || OVRInput.GetDown(OVRInput.Button.One))  {
             OnConnectButtonClicked();
         }
-        if(Input.GetKey(KeyCode.Escape) || OVRInput.GetDown(OVRInput.Button.Two))  {
-            OnCancelButtonClicked();
-        }
+        // if(Input.GetKey(KeyCode.Escape) || OVRInput.GetDown(OVRInput.Button.Two))  {
+        //     OnCancelButtonClicked();
+        // }
         if(Input.GetKey(KeyCode.R) || OVRInput.GetDown(OVRInput.Button.Three))  {
             OnRefreshButtonClicked();
         }

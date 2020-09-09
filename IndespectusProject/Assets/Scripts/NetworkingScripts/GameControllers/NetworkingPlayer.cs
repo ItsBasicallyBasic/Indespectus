@@ -9,6 +9,8 @@ public class NetworkingPlayer : MonoBehaviourPunCallbacks {
     
     private PhotonView PV;
     public GameObject playerAvatar;
+    public GameObject SpawnBox;
+    public GameObject rig;
     
     // Start is called before the first frame update
     void Start() {
@@ -22,10 +24,9 @@ public class NetworkingPlayer : MonoBehaviourPunCallbacks {
         }
         Debug.Log("i am about to spawn a player avatar for player" + spawnPicker);
         if(PV.IsMine) {
+            rig = GameObject.Find("OculusPlayer");
+            rig.transform.position = GameSetup.GS.spawnPoints[spawnPicker].position;
             PV.RPC("RPC_SpawnAvatar", RpcTarget.AllBuffered, spawnPicker);
-            Debug.Log("ällbuffered");
-            // PV.RPC("RPC_SpawnAvatar", RpcTarget.AllBuffered, spawnPicker);
-            // Debug.Log("all (not buffered");
         }
     }
 
@@ -35,6 +36,8 @@ public class NetworkingPlayer : MonoBehaviourPunCallbacks {
             playerAvatar = PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "PlayerAvatar"), GameSetup.GS.spawnPoints[i].position, GameSetup.GS.spawnPoints[i].rotation, 0);
             Debug.Log("ive instantiated player avatar for player" + i);
             GameManager.GM.PlayersSpawned++;
+            SpawnBox = GameObject.Find("SpawnBox");
+            SpawnBox.SetActive(false);
         }
     }
 
