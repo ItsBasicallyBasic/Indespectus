@@ -5,7 +5,7 @@ using Photon.Pun;
 // using Valve.VR;
 // using Valve.VR.InteractionSystem;
 
-public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
+public class PlayerVelocity : MonoBehaviour {
 
     public float velocity;
     public float desiredVelocity;
@@ -24,12 +24,6 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
     public Material[] myMats;
 
     [SerializeField]
-    private PhotonView PV;
-
-    // [SerializeField]
-    // private SetMaterials mySM;
-
-    [SerializeField]
     private float lerpSpeed = 3f;
 
     public int scale = 10;
@@ -41,9 +35,9 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
     
     [SerializeField] private GameObject[] allPlayers;
     CheckNetworked cn;
+    [SerializeField] GameObject thruster;
 
-    void Start()
-    {
+    void Start() {
         // Change values from 0
         headPreviousPos = head.position;
         rightHandPreviousPos = rightHand.position;
@@ -66,7 +60,7 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
 
     // Update is called once per frame
     void Update() {
-        if(!set && !allUI && cn.networked) {
+        if(!set && !allUI) {
             allPlayers = GameObject.FindGameObjectsWithTag("Player");
             if(allPlayers.Length == PhotonNetwork.PlayerList.Length) {
                 for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) {
@@ -111,10 +105,9 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
                     }
                 }
             } 
-        } else if(!cn.networked || (set && allUI)){
-            print("doing the velocity changes");
-            TransitionMaterials();
+        } else {
 
+            TransitionMaterials();
             SetVelocity();
             if(overrideV) {
                 OverrideVelocity(1.5f);
@@ -125,10 +118,14 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
         foreach(Material mat in myMats) {
             mat.SetFloat("_Transition", velocity * scale);
         }
+        if(velocity < 0.5f) {
+            thruster.SetActive(false);
+        } else {
+            thruster.SetActive(true);
+        }
     }
 
-    void SetVelocity()
-    {
+    void SetVelocity() {
         // Assign velocity based off previous frame position
         leftHandVelocity = Vector3.Distance(leftHand.position, leftHandPreviousPos) * 1000 * Time.deltaTime;
         rightHandVelocity = Vector3.Distance(rightHand.position, rightHandPreviousPos) * 1000 * Time.deltaTime;
@@ -164,14 +161,12 @@ public class PlayerVelocity : MonoBehaviour/*PunCallbacks, IPunObservable*/ {
         velocity = Mathf.Clamp(velocity, 0, 1.5f);
     }
 
-    public void OverrideVelocity(float v)
-    {
+    public void OverrideVelocity(float v)  {
         desiredVelocity = v;
         velocity = v;
     }
 
-    public float GetRightHandVelocity()
-    {
+    public float GetRightHandVelocity() {
         return rightHandVelocity;
     }
 }
