@@ -9,8 +9,11 @@ public class CheckNetworked : MonoBehaviour {
     [SerializeField] GameObject Networked;
     public bool networked;
 
-    void Awake() {
+    void Start() {
         networked = PhotonNetwork.IsConnected;
+        if(GameManager.GM.notNetworked) {
+            networked = false;
+        }
         if(networked) {
             Instantiate(Networked);
         } else {
