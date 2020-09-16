@@ -158,6 +158,11 @@ public class PlayerVelocity : MonoBehaviour {
             desiredVelocity = headVelocity;
         }
 
+        if(desiredVelocity < 0.05f)
+        {
+            desiredVelocity = 0;
+        }
+
         velocity = Mathf.Lerp(velocity, desiredVelocity, lerpSpeed * Time.deltaTime);
 
         desiredVelocity = Mathf.Clamp(desiredVelocity, 0, 1.5f);
