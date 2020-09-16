@@ -1777,6 +1777,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4621907209575701466, guid: 2366068e977f42644afa81266bdb535a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621907209575701466, guid: 2366068e977f42644afa81266bdb535a,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621907209575701466, guid: 2366068e977f42644afa81266bdb535a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538977745028320420, guid: 2366068e977f42644afa81266bdb535a,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2366068e977f42644afa81266bdb535a, type: 3}
 --- !u!1 &486502070
@@ -4347,17 +4367,17 @@ PrefabInstance:
     - target: {fileID: 7247168390327886162, guid: 4bbcd8c77b19b0a46aad374806244e89,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7247168390327886162, guid: 4bbcd8c77b19b0a46aad374806244e89,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7247168390327886162, guid: 4bbcd8c77b19b0a46aad374806244e89,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1034861520253030691, guid: 4bbcd8c77b19b0a46aad374806244e89,
         type: 3}
@@ -4418,6 +4438,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146740069950003224, guid: 4bbcd8c77b19b0a46aad374806244e89,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344521281331139929, guid: 4bbcd8c77b19b0a46aad374806244e89,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bbcd8c77b19b0a46aad374806244e89, type: 3}
@@ -5497,8 +5527,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1616852145}
   m_LocalRotation: {x: -0, y: -0.00083907973, z: -0, w: 0.9999997}
-  m_LocalPosition: {x: 0, y: 0, z: 4.238}
-  m_LocalScale: {x: 0.0072635, y: 0.0072635, z: 0.0072635}
+  m_LocalPosition: {x: 0, y: 0, z: 1.3}
+  m_LocalScale: {x: 0.0030946867, y: 0.0030946867, z: 0.0030946867}
   m_Children:
   - {fileID: 1010704978}
   - {fileID: 1951061064}
@@ -5511,7 +5541,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -0.096, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.168, y: 3.61}
+  m_AnchoredPosition: {x: 0.17, y: 1.055}
   m_SizeDelta: {x: 833, y: 425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1628047567
