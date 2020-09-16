@@ -64,7 +64,7 @@ public class BulletCollision : MonoBehaviour
         //if(PV.IsMine) {
             //PV.RPC("RPC_HitOther", RpcTarget.All, other);
 
-            if(other.tag == "Shield" || other.tag == "Sword" || other.tag == "Player")
+            if(other.tag == "Shield" || other.tag == "Sword" || other.tag == "Player" || other.tag == "Untagged")
             {
                 print("hit shield or sword!");
                 Destroy(gameObject);
