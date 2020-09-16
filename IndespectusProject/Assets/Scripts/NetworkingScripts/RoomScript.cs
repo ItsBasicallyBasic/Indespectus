@@ -104,7 +104,8 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
         }
     }
 
-    void StartGame() {
+    internal void StartGame() {
+        
         isGameLoaded = true;
         if(!PhotonNetwork.IsMasterClient)
             return;

@@ -87,15 +87,15 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
         if(connectAttempts > 5) {
             errorText.SetActive(true);
         }
-        if(Input.GetKey(KeyCode.Return) || OVRInput.GetDown(OVRInput.Button.One))  {
-            OnConnectButtonClicked();
-        }
-        if(Input.GetKey(KeyCode.Escape) || OVRInput.GetDown(OVRInput.Button.Two))  {
-            OnCancelButtonClicked();
-        }
-        if(Input.GetKey(KeyCode.R) || OVRInput.GetDown(OVRInput.Button.Three))  {
-            OnRefreshButtonClicked();
-        }
+        // if(Input.GetKey(KeyCode.Return) || OVRInput.GetDown(OVRInput.Button.One))  {
+        //     OnConnectButtonClicked();
+        // }
+        // if(Input.GetKey(KeyCode.Escape) || OVRInput.GetDown(OVRInput.Button.Two))  {
+        //     OnCancelButtonClicked();
+        // }
+        // if(Input.GetKey(KeyCode.R) || OVRInput.GetDown(OVRInput.Button.Three))  {
+        //     OnRefreshButtonClicked();
+        // }
         
     }
 

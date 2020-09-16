@@ -15,6 +15,7 @@ public class Pointer : MonoBehaviour {
     private LineRenderer line;
 
     [SerializeField] GameObject arenaMenu;
+    [SerializeField] GameObject dot;
 
     private void Awake() {
         line = GetComponent<LineRenderer>();
@@ -35,6 +36,7 @@ public class Pointer : MonoBehaviour {
         // use default or distance
        line.SetPosition(0, transform.position);
        line.SetPosition(1, GetEnd());
+       dot.transform.position = GetEnd();
 
     }
 
