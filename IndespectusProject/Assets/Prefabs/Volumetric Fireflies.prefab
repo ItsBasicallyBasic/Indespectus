@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3269098617660646865}
   - component: {fileID: 3269098617660646864}
   - component: {fileID: 3269098617660646867}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Volumetric Fireflies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
