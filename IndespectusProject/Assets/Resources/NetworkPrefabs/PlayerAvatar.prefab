@@ -137,7 +137,7 @@ MonoBehaviour:
   multitoolState: 0
   playerResources: {fileID: 4770890048818956323}
   shield: {fileID: 6183914334219034213}
-  hapticAudioClip: {fileID: 8300000, guid: 460d9a446cc128e4787c47d09d4af2bc, type: 3}
+  hapticAudioClip: {fileID: 8300000, guid: b9e15399f1ead204a9e5dfafca788c9c, type: 3}
   PV: {fileID: 4811998878591742197}
 --- !u!95 &760140436440332584
 Animator:
