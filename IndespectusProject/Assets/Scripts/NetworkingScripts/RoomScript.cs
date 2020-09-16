@@ -69,8 +69,7 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
         PhotonNetwork.NickName = myNumberInRoom.ToString();
 
         if(MultiplayerSettings.multiplayerSettings.delayStart) {
-            Debug.Log("displayer players in room out of max players posible (" + playersInRoom + ":" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
-            numPlayersText.SetText("Players in room out of max players posible (" + playersInRoom + ":" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
+            numPlayersText.SetText("Players in room out of max players possible (" + playersInRoom + "/" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
             if(playersInRoom > 1) {
                 readyToCount = true;
             }
@@ -88,12 +87,10 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
 
     public override void OnPlayerEnteredRoom(Player newPlayer) {
         base.OnPlayerEnteredRoom(newPlayer);
-        Debug.Log("A new player has jooined the room");
         photonPlayers = PhotonNetwork.PlayerList;
         playersInRoom++;
         if(MultiplayerSettings.multiplayerSettings.delayStart) {
-            numPlayersText.SetText("Players in room out of max players posible (" + playersInRoom + ":" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
-            Debug.Log("displayer players in room out of max players posible (" + playersInRoom + ":" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
+            numPlayersText.SetText("Players in room out of max players possible (" + playersInRoom + "/" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
             if(playersInRoom > 1) {
                 readyToCount = true;
             }
@@ -132,7 +129,6 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     [PunRPC]
     private void RPC_CreatePlayer() {
         PhotonNetwork.Instantiate(Path.Combine("NetworkPrefabs", "NetworkPlayer"), transform.position, Quaternion.identity, 0);
-        Debug.Log("ive instantiated a network player");
         Destroy(this.gameObject);
     }
     
@@ -153,7 +149,7 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
                 
                 if(readyToCount || readyToStart) {
                     countdownText.SetText("Starting in: " + (int)timeToStart);
-                } else {countdownText.SetText("Game startting in: n/a");}
+                } else {countdownText.SetText("Game starting in: n/a");}
                 if(!isGameLoaded) {
                     if(readyToStart) {
                         atMaxPlayers -= Time.deltaTime;
@@ -167,6 +163,9 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
                         StartGame();
                     }
                 }
+            }
+            if(!PhotonNetwork.InRoom) {
+                numPlayersText.SetText("Players in room out of max players possible (n/a), not in room");
             }
         }
     }
@@ -189,8 +188,7 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
 
     public override void OnPlayerLeftRoom(Player otherPlayer) {
         base.OnPlayerLeftRoom(otherPlayer);
-        Debug.Log(otherPlayer.NickName + " has left the game.");
-        playersInGame--;
-        numPlayersText.SetText("Players in room out of max players posible (" + playersInRoom + ":" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
+        playersInRoom--;
+        numPlayersText.SetText("Players in room out of max players possible (" + playersInRoom + "/" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
     }
 }

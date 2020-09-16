@@ -10,7 +10,6 @@ public class BackDoor : MonoBehaviourPunCallbacks {
     public void OnBackDoorClick() {
         GameManager.GM.gameMode = GameManager.GameMode.Timed;
         GameManager.GM.gameTime = 86400;
-        GameManager.GM.notNetworked = true;
         SceneManager.LoadScene(1);
     }
 

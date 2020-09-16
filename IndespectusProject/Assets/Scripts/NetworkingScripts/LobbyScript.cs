@@ -10,7 +10,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
     public GameObject connectButton;
     public GameObject cancelButton;
     public GameObject refreshButton;
-    public GameObject backButton;
+    public GameObject loadingButton;
     public GameObject errorText;
     private int connectAttempts = 0;
 
@@ -39,9 +39,9 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
         Debug.Log("Connecting...");
         connectButton.SetActive(false);
         refreshButton.SetActive(false);
-        backButton.SetActive(false);
+        loadingButton.SetActive(false);
         PhotonNetwork.JoinRandomRoom();
-        // cancelButton.SetActive(true);
+        cancelButton.SetActive(true);
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message) {
@@ -71,16 +71,18 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
         cancelButton.SetActive(false);
         connectButton.SetActive(true);
         refreshButton.SetActive(true);
-        backButton.SetActive(true);
+        loadingButton.SetActive(false);
     }
 
     // Update is called once per frame
     void Update() {
-        if(PhotonNetwork.IsConnected && !connectButton.activeInHierarchy) {
-            connectButton.SetActive(true);
-        } else if(!PhotonNetwork.IsConnected && connectAttempts < 5) {
+        if(!PhotonNetwork.IsConnected && connectAttempts < 5) {
             PhotonNetwork.ConnectUsingSettings();
             connectAttempts++;
+            connectButton.SetActive(false);
+            loadingButton.SetActive(true);
+        } else {
+            loadingButton.SetActive(false);
         }
         if(connectAttempts > 5) {
             errorText.SetActive(true);
@@ -88,9 +90,9 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
         if(Input.GetKey(KeyCode.Return) || OVRInput.GetDown(OVRInput.Button.One))  {
             OnConnectButtonClicked();
         }
-        // if(Input.GetKey(KeyCode.Escape) || OVRInput.GetDown(OVRInput.Button.Two))  {
-        //     OnCancelButtonClicked();
-        // }
+        if(Input.GetKey(KeyCode.Escape) || OVRInput.GetDown(OVRInput.Button.Two))  {
+            OnCancelButtonClicked();
+        }
         if(Input.GetKey(KeyCode.R) || OVRInput.GetDown(OVRInput.Button.Three))  {
             OnRefreshButtonClicked();
         }
