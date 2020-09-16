@@ -42,7 +42,10 @@ public class PlayerVelocity : MonoBehaviour {
         headPreviousPos = head.position;
         rightHandPreviousPos = rightHand.position;
         leftHandPreviousPos = leftHand.position;
-        if(cn == null) {cn = GameObject.FindGameObjectWithTag("NetworkCheck").GetComponent<CheckNetworked>();} 
+        if(cn == null) {cn = GameObject.FindGameObjectWithTag("NetworkCheck").GetComponent<CheckNetworked>();}
+
+        //Play spawn Sound
+        GameManager.GM.audioManager.PlaySound(GetComponent<AudioSource>(), "Spawning");
     }
 
     #region  SettingMaterials

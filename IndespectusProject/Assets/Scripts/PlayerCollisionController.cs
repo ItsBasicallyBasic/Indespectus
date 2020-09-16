@@ -74,7 +74,9 @@ public class PlayerCollisionController : MonoBehaviour
                     //enemy.hitOrMiss = true;
                 }
 
-                // Play sound
+                //Play Sound
+                GameManager.GM.audioManager.PlaySound(GetComponent<AudioSource>(), "Damaged1");
+
                 // Play visual effect
 
                 // Haptic feedback
