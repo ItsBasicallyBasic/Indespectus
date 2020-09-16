@@ -192,7 +192,6 @@ public class WeaponBehaviour : MonoBehaviour
 
         }
 
-        //if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > 0.5f)
         if(OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger))
         {
             // Fire();
@@ -247,6 +246,7 @@ public class WeaponBehaviour : MonoBehaviour
                 //animator.Play("Recoil");
 
                 //Play Sound
+                GameManager.GM.audioManager.PlaySound(GetComponent<AudioSource>(), "gunShot");
 
                 shotReveal = true;
                 sRevealTimer = Time.time +sRevealTime;
