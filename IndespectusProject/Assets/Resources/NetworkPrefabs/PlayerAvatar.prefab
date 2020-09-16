@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PV: {fileID: 0}
-  hapticAudioClip: {fileID: 8300000, guid: cc4358f7b0d2fa2409a84eef73d956f8, type: 3}
+  hapticAudioClip: {fileID: 8300000, guid: b9e15399f1ead204a9e5dfafca788c9c, type: 3}
   cn: {fileID: 0}
 --- !u!136 &3709068139915221263
 CapsuleCollider:
