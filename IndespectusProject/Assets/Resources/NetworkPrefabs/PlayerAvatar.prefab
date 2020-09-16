@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sword: {fileID: 7243951716393051787}
   gun: {fileID: 3043965814063061616}
-  fireRate: 0
+  fireRate: 0.3
   bullet: {fileID: 6697974406377760336, guid: 26b703302c6eea940a80a92c5830546a, type: 3}
   bulletSpawn: {fileID: 6277719463645970612}
   swordBroken: 0
