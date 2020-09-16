@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+
 public class Pointer : MonoBehaviour {
    
     public float defaultLength = 5f;
@@ -11,6 +13,8 @@ public class Pointer : MonoBehaviour {
     public StandaloneInputModule inputModule;
 
     private LineRenderer line;
+
+    [SerializeField] GameObject arenaMenu;
 
     private void Awake() {
         line = GetComponent<LineRenderer>();
@@ -22,6 +26,9 @@ public class Pointer : MonoBehaviour {
     // Update is called once per frame
     private void Update() {
         UpdateLine();
+        if(SceneManager.GetActiveScene().buildIndex == 1){
+            line.enabled = arenaMenu.activeInHierarchy;
+        } 
     }
 
     private void UpdateLine() {

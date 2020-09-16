@@ -217,6 +217,7 @@ MonoBehaviour:
   defaultLength: 15
   eventSystem: {fileID: 0}
   inputModule: {fileID: 0}
+  arenaMenu: {fileID: 1034861520253030691}
 --- !u!1 &388385232823655699
 GameObject:
   m_ObjectHideFlags: 0
@@ -2372,6 +2373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arenaMenu: {fileID: 1034861520253030691}
   Hands: {fileID: 7437000742497703928}
+  Pointer: {fileID: 206448344494615530}
   menuActive: 0
   handsActive: 0
 --- !u!1 &7247168390327532926
@@ -2678,10 +2680,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7247168390327957286}
     m_Modifications:
-    - target: {fileID: 158226, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 3}
-      propertyPath: m_Name
-      value: LocalAvatar
-      objectReference: {fileID: 0}
     - target: {fileID: 463470, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2725,6 +2723,10 @@ PrefabInstance:
     - target: {fileID: 463470, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 158226, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 3}
+      propertyPath: m_Name
+      value: LocalAvatar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 3}
