@@ -192,7 +192,8 @@ public class WeaponBehaviour : MonoBehaviour
 
         }
 
-        if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > 0.5f)
+        //if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > 0.5f)
+        if(OVRInput.GetDown(OVRInput.RawButton.RIndexTrigger))
         {
             // Fire();
             PV.RPC("Fire", RpcTarget.AllBuffered);
