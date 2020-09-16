@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour, IPunObservable {
+public class GameManager : MonoBehaviour {
     
     public static GameManager GM = null;
 
@@ -21,14 +21,14 @@ public class GameManager : MonoBehaviour, IPunObservable {
 
     PhotonView PV;
 
-    enum GameMode {
+    internal enum GameMode {
         MaxDeaths,
         Timed
     }
     
-    [SerializeField] GameMode gameMode;
+    [SerializeField] internal GameMode gameMode;
     [SerializeField] int maxDeaths;
-    [SerializeField] float gameTime;
+    [SerializeField] internal float gameTime;
 
     void Awake() {
         // Singleton
@@ -38,6 +38,12 @@ public class GameManager : MonoBehaviour, IPunObservable {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(this);
+        if(!PhotonNetwork.IsConnected) {
+            notNetworked = true; 
+        } else {
+            notNetworked = false;
+        }
+        
     }
 
     // Start is called before the first frame update
@@ -49,12 +55,11 @@ public class GameManager : MonoBehaviour, IPunObservable {
             new Player(),
             new Player()
         };
-        maxDeaths = 1;
-        print("i made " + players.Length + " players");
     }
 
     // Update is called once per frame
     void Update() {
+        
         if(!gameOver) {
             switch(gameMode) {
                 case GameMode.MaxDeaths : MaxDeaths();
@@ -81,14 +86,12 @@ public class GameManager : MonoBehaviour, IPunObservable {
         foreach(Player p in players) {
             if(p.Deaths >= maxDeaths) {
                 PV.RPC("endGame", RpcTarget.AllBuffered);
-                // endGame();
             }
         }
     }
 
     [PunRPC]
     private void endGame() {
-        // if(PhotonNetwork.IsMasterClient)
         gameOver = true;
         PhotonNetwork.LoadLevel(MultiplayerSettings.multiplayerSettings.endScene);
     }
@@ -115,34 +118,5 @@ public class GameManager : MonoBehaviour, IPunObservable {
             Kills = 0;
             Deaths = 0;
         }
-    }
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-    //     if(stream.IsWriting) {
-    //         Debug.Log("about to stream");
-    //         foreach(Player p in players) {
-    //             Debug.Log("Sent " + p.Kills + ", " + p.Deaths + ", " + p.Health + ", ");
-    //             stream.SendNext(p.Kills);
-    //             stream.SendNext(p.Deaths);
-    //             stream.SendNext(p.Health);
-    //         }
-    //     } else {
-    //         Debug.Log("about to receive");
-    //         foreach(Player p in players) {
-    //             int k = (int)stream.ReceiveNext();
-    //             int d = (int)stream.ReceiveNext();
-    //             int h = (int)stream.ReceiveNext();
-    //             if(k > p.Kills) {
-    //                 p.Kills = k;
-    //             }
-    //             if(d > p.Deaths) {
-    //                 p.Deaths = d;
-    //             }
-    //             if(h > p.Health) {
-    //                 p.Health = h;
-    //             }
-    //             Debug.Log("Rec'd & set to " + p.Kills + ", " + p.Deaths + ", " + p.Health + ", ");
-    //         }
-    //     }    
     }
 }

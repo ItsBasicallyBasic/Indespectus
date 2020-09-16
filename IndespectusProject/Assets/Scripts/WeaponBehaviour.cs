@@ -243,7 +243,7 @@ public class WeaponBehaviour : MonoBehaviour
                 Rigidbody rb = bulletObject.GetComponent<Rigidbody>();
                 rb.velocity = bulletSpawn.transform.forward * 1000 * Time.deltaTime;
                 Destroy(bulletObject, 5f);
-                animator.Play("Recoil");
+                //animator.Play("Recoil");
 
                 //Play Sound
 

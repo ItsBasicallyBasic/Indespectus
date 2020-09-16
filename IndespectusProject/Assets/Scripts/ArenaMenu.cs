@@ -9,6 +9,7 @@ public class ArenaMenu : MonoBehaviourPunCallbacks {
     
     [SerializeField] GameObject arenaMenu;
     [SerializeField] GameObject Hands;
+    [SerializeField] GameObject Pointer;
     [SerializeField] bool menuActive = false;
     [SerializeField] bool handsActive = false;
     Scene currentScene;
