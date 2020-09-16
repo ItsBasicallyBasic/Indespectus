@@ -23,25 +23,35 @@ public class ArenaMenu : MonoBehaviourPunCallbacks {
             menuActive = true;
             handsActive = true;
         }
-        if((OVRInput.GetDown(OVRInput.Button.Two) || Input.GetKeyDown(KeyCode.Escape)) && menuActive) {
+        if((OVRInput.GetDown(OVRInput.RawButton.Start) || Input.GetKeyDown(KeyCode.Escape)) && menuActive) {
             menuActive = false;
             handsActive = false;
         }
-        if((OVRInput.GetDown(OVRInput.Button.Four) || Input.GetKeyDown(KeyCode.Tilde)) && menuActive) {
-            Application.Quit();
-            PhotonNetwork.Disconnect();
-            SceneManager.LoadScene(2);
-        }
+        // if((OVRInput.GetDown(OVRInput.Button.Four) || Input.GetKeyDown(KeyCode.Tilde)) && menuActive) {
+        //     Application.Quit();
+        //     PhotonNetwork.Disconnect();
+        //     SceneManager.LoadScene(2);
+        // }
         if(currentScene.buildIndex != 1){
             handsActive = true;
-        } 
+        } else {
+            Pointer.SetActive(handsActive);
+        }
         arenaMenu.SetActive(menuActive);
         Hands.SetActive(handsActive);
+
+        
     }
 
     public override void OnDisconnected(DisconnectCause cause) {
         base.OnDisconnected(cause);
         SceneManager.LoadScene(MultiplayerSettings.multiplayerSettings.endScene);
+    }
+    
+    public void OnExitClick(){
+        Application.Quit();
+        PhotonNetwork.Disconnect();
+        SceneManager.LoadScene(2);
     }
 
 }
