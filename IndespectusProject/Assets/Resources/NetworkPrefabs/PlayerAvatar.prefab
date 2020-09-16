@@ -451,10 +451,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: a85c89ca12d5b2f44a1a7af5281f33f0, type: 2}
   - {fileID: 2100000, guid: eda21eef82f52f246a3fae3483d1ad85, type: 2}
   PlayerMain: {fileID: 4770890048902862701}
-  Handle: {fileID: 4770890048567084152}
+  Handle: {fileID: 2055852863452512782}
   Weapons:
-  - {fileID: -927199367670048503, guid: 03c3a0f6aa6a3914bae6be8814310b1e, type: 3}
-  - {fileID: -927199367670048503, guid: b703d1c7077da5147a48cd9e1095100d, type: 3}
+  - {fileID: 3043965814063061616}
+  - {fileID: 7243951716393051787}
   - {fileID: 4770890048238191837}
   overrideV: 0
 --- !u!114 &1356597519035287596
