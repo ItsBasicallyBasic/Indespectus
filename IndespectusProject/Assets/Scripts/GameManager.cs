@@ -55,6 +55,12 @@ public class GameManager : MonoBehaviour {
             new Player(),
             new Player()
         };
+        if(PhotonNetwork.PlayerList.Length > 1) {
+            maxDeaths = PhotonNetwork.PlayerList.Length - 1;
+        } else {
+            gameMode = GameMode.Timed;
+            gameTime = 86400;
+        }
     }
 
     // Update is called once per frame
@@ -83,21 +89,26 @@ public class GameManager : MonoBehaviour {
     }
 
     private void MaxDeaths() {
+        int deathsTotal = 0;
         foreach(Player p in players) {
-            if(p.Deaths >= maxDeaths) {
-                PV.RPC("endGame", RpcTarget.AllBuffered);
-            }
+            deathsTotal += p.Deaths;
+        }
+        if(deathsTotal >= maxDeaths) {
+            PV.RPC("endGame", RpcTarget.AllBuffered);
         }
     }
 
     [PunRPC]
     private void endGame() {
         gameOver = true;
-        PhotonNetwork.LoadLevel(MultiplayerSettings.multiplayerSettings.endScene);
+        if(PhotonNetwork.IsMasterClient) {
+            PhotonNetwork.LoadLevel(MultiplayerSettings.multiplayerSettings.endScene);
+        }
     }
     
     internal void updateKDFromPlayer(int deadID, int killID) {
-        PV.RPC("RPC_UpdateKD", RpcTarget.AllBuffered, deadID, killID);
+        // PV.RPC("RPC_UpdateKD", RpcTarget.AllBuffered, deadID, killID);
+        RPC_UpdateKD(deadID, killID);
     }
 
     [PunRPC]

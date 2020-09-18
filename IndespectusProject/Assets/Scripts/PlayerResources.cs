@@ -79,6 +79,7 @@ public class PlayerResources : MonoBehaviour {
     public int ID;
     private PhotonView PV;
     private int lastHitID;
+    [SerializeField] PlayerDeath playerDeath;
 
     // Start is called before the first frame update
     void Start() {
@@ -99,7 +100,8 @@ public class PlayerResources : MonoBehaviour {
             if (currentHealth > MAX_HEALTH) currentHealth = MAX_HEALTH;
 
             if(currentHealth <= 0) {
-                GameManager.GM.updateKDFromPlayer(ID, lastHitID);
+                // GameManager.GM.updateKDFromPlayer(ID, lastHitID);
+                playerDeath.DeathAnimation();
                 // GameManager.GM.players[ID].Deaths++;
                 // GameManager.GM.players[lastHitID].Kills++;
             }
