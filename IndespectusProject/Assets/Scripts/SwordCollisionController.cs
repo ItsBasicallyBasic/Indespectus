@@ -12,6 +12,7 @@ public class SwordCollisionController : MonoBehaviour
     public PlayerVelocity playerVelocity;
 
     private GameObject currentSpark;
+    [SerializeField] private Transform raycastPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -35,41 +36,77 @@ public class SwordCollisionController : MonoBehaviour
             }
         }
 
-        if(other.gameObject.tag != "Player")
+        if(other.gameObject.layer == 0)
         {
             if(currentSpark != null)
             {
                 Destroy(currentSpark);
                 currentSpark = null;
             }
-            currentSpark = Instantiate(GameManager.GM.collisionParticleEffect, transform.position, transform.rotation);
+            currentSpark = Instantiate(GameManager.GM.collisionParticleEffect, transform.position, Quaternion.identity);
         }
 
     }
 
     private void OnTriggerStay(Collider other)
     {
-        PhotonView otherPhotonView = other.transform.GetComponent<PhotonView>();
-
-        if (otherPhotonView != null && !otherPhotonView.IsMine && PV.IsMine /*|| !cn.networked*/)
+        if (other.gameObject.layer == 0)
         {
-            if (currentSpark != null)
+            RaycastHit hit;
+            int layerMask = 1 << 8;
+            layerMask = ~layerMask;
+            if (Physics.Raycast(raycastPoint.position, transform.up, out hit, 1, layerMask))
             {
-                RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.up * 1, out hit))
+                if(currentSpark != null)
                 {
                     currentSpark.transform.position = hit.point;
+                    currentSpark.transform.rotation = Quaternion.LookRotation(hit.normal);
+                }
+
+                if(currentSpark == null)
+                {
+                    currentSpark = Instantiate(GameManager.GM.collisionParticleEffect, transform.position, Quaternion.identity);
                 }
             }
+            else
+            {
+                currentSpark.GetComponent<ParticleSystem>().Stop();
+                Destroy(currentSpark, 1);
+                currentSpark = null;
+            }
+
+
+            /*if (currentSpark != null)
+            {
+                RaycastHit hit;
+                int layerMask = 1 << 8;
+                layerMask = ~layerMask;
+                if (Physics.Raycast(raycastPoint.position, transform.up, out hit, 1, layerMask))
+                {
+                    currentSpark.transform.position = hit.point;
+                    currentSpark.transform.rotation = Quaternion.LookRotation(hit.normal);
+                }
+                else
+                {
+                    currentSpark.GetComponent<ParticleSystem>().Stop();
+                    Destroy(currentSpark, 1);
+                    currentSpark = null;
+                }
+            }*/
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(currentSpark != null)
+        if (other.gameObject.layer == 0)
         {
-            Destroy(currentSpark);
-            currentSpark = null;
+            if (currentSpark != null)
+            {
+
+                currentSpark.GetComponent<ParticleSystem>().Stop();
+                Destroy(currentSpark, 1);
+                currentSpark = null;
+            }
         }
     }
 
