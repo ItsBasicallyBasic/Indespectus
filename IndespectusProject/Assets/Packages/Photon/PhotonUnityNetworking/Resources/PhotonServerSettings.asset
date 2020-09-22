@@ -54,6 +54,8 @@ MonoBehaviour:
   - endGame
   - updateKDFromPlayer
   - RPC_UpdateKD
+  - ActivateLaser
+  - DeactivateLaser
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
