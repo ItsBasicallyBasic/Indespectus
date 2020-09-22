@@ -141,6 +141,7 @@ MonoBehaviour:
   shield: {fileID: 6183914334219034213}
   hapticAudioClip: {fileID: 8300000, guid: b9e15399f1ead204a9e5dfafca788c9c, type: 3}
   PV: {fileID: 4811998878591742197}
+  gunLaser: {fileID: 9048306520803379934}
 --- !u!95 &760140436440332584
 Animator:
   serializedVersion: 3
@@ -2764,6 +2765,7 @@ MonoBehaviour:
   shield: {fileID: 4770890048238191837}
   hapticAudioClip: {fileID: 8300000, guid: 460d9a446cc128e4787c47d09d4af2bc, type: 3}
   PV: {fileID: 5981842045349860020}
+  gunLaser: {fileID: 0}
 --- !u!95 &4770890048567084156
 Animator:
   serializedVersion: 3
@@ -8984,7 +8986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8327283654899345139
 Transform:
   m_ObjectHideFlags: 0

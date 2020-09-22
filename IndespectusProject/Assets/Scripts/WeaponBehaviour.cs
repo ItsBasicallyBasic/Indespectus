@@ -65,6 +65,10 @@ public class WeaponBehaviour : MonoBehaviour
         multitoolState = MultitoolStates.Sword;
 
         playerResources = GetComponentInParent<PlayerResources>();
+        // if (PV.IsMine)
+        // {
+        //     gunLaser.SetActive(true);
+        // }
 
         //if (cn == null) { cn = GameObject.FindGameObjectWithTag("NetworkCheck").GetComponent<CheckNetworked>(); }
     }
@@ -176,7 +180,7 @@ public class WeaponBehaviour : MonoBehaviour
 
     void GunEquipped()
     {
-        gunLaser.SetActive(false);
+        // gunLaser.SetActive(false);
 
         if (PV.IsMine)
         {
