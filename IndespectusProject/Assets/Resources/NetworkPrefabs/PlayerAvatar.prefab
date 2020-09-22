@@ -8980,7 +8980,7 @@ GameObject:
   - component: {fileID: 6367277080934137731}
   m_Layer: 0
   m_Name: Laser
-  m_TagString: playerUI
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

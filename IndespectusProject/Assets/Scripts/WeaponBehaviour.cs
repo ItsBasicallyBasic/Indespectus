@@ -53,6 +53,8 @@ public class WeaponBehaviour : MonoBehaviour
 
     private CheckNetworked cn;
 
+    [SerializeField] private GameObject gunLaser;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -129,6 +131,8 @@ public class WeaponBehaviour : MonoBehaviour
 
     void SwordEquipped() {
         // if(PV.IsMine) {
+            gunLaser.SetActive(false);
+
             if (OVRInput.GetDown(OVRInput.Button.Two)/*  && gameObject.tag == "Player" */)
             {
                 multitoolState = MultitoolStates.Gun;
@@ -172,6 +176,13 @@ public class WeaponBehaviour : MonoBehaviour
 
     void GunEquipped()
     {
+        gunLaser.SetActive(false);
+
+        if (PV.IsMine)
+        {
+            gunLaser.SetActive(true);
+        }
+
         if (OVRInput.GetDown(OVRInput.Button.Two))
         {
             multitoolState = MultitoolStates.Sword;
@@ -209,6 +220,18 @@ public class WeaponBehaviour : MonoBehaviour
     void DeactivateGun()
     {
         gun.SetActive(false);
+    }
+
+    [PunRPC]
+    void ActivateLaser()
+    {
+        gunLaser.SetActive(true);
+    }
+
+    [PunRPC]
+    void DeactivateLaser()
+    {
+        gunLaser.SetActive(false);
     }
 
     [PunRPC]
