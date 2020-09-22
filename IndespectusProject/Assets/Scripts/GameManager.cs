@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour {
     [SerializeField] int maxDeaths;
     [SerializeField] internal float gameTime;
 
+    public GameObject collisionParticleEffect;
+
     void Awake() {
         // Singleton
         if(GM == null) { 

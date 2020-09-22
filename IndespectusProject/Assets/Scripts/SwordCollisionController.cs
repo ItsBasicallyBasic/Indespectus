@@ -11,6 +11,8 @@ public class SwordCollisionController : MonoBehaviour
     public WeaponBehaviour weaponBehaviour;
     public PlayerVelocity playerVelocity;
 
+    private GameObject currentSpark;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,12 +21,6 @@ public class SwordCollisionController : MonoBehaviour
         if(PV.IsMine || !cn.networked) {
             weaponBehaviour = GetComponentInParent<WeaponBehaviour>();
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,6 +35,42 @@ public class SwordCollisionController : MonoBehaviour
             }
         }
 
+        if(other.gameObject.tag != "Player")
+        {
+            if(currentSpark != null)
+            {
+                Destroy(currentSpark);
+                currentSpark = null;
+            }
+            currentSpark = Instantiate(GameManager.GM.collisionParticleEffect, transform.position, transform.rotation);
+        }
+
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        PhotonView otherPhotonView = other.transform.GetComponent<PhotonView>();
+
+        if (otherPhotonView != null && !otherPhotonView.IsMine && PV.IsMine /*|| !cn.networked*/)
+        {
+            if (currentSpark != null)
+            {
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.up * 1, out hit))
+                {
+                    currentSpark.transform.position = hit.point;
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(currentSpark != null)
+        {
+            Destroy(currentSpark);
+            currentSpark = null;
+        }
     }
 
     // private void OnCollisionEnter(Collision collision)
