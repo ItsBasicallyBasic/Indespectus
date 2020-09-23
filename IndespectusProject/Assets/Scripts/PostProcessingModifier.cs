@@ -11,10 +11,14 @@ public class PostProcessingModifier : MonoBehaviour
     private bool hurt = false;
     private float intensity;
 
+    private ColorGrading _ColorGrading;
+
     // Start is called before the first frame update
     void Start()
     {
         volume.profile.TryGetSettings(out _Vignette);
+        volume.profile.TryGetSettings(out _ColorGrading);
+
     }
 
     // Update is called once per frame
@@ -49,5 +53,9 @@ public class PostProcessingModifier : MonoBehaviour
             _Vignette.intensity.value = 0;
         }
         hurt = true;
+    }
+
+    public void EnableGreyscale() {
+        _ColorGrading.saturation.value = -100;
     }
 }

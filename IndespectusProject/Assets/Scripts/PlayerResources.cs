@@ -100,8 +100,8 @@ public class PlayerResources : MonoBehaviour {
             if (currentHealth > MAX_HEALTH) currentHealth = MAX_HEALTH;
 
             if(currentHealth <= 0) {
-                GameManager.GM.updateKDFromPlayer(ID, lastHitID);
-                // playerDeath.DeathAnimation();
+                // GameManager.GM.updateKDFromPlayer(ID, lastHitID);
+                playerDeath.DeathAnimation();
                 // GameManager.GM.players[ID].Deaths++;
                 // GameManager.GM.players[lastHitID].Kills++;
             }

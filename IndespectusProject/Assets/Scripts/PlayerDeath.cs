@@ -6,24 +6,45 @@ using UnityEngine;
 public class PlayerDeath : MonoBehaviour {
     
     [SerializeField] VRIK vrik;
-    [SerializeField] Animator animatior;
     [SerializeField] GameObject[] Weapons;
     [SerializeField] PlayerVelocity playerVelocity;
     [SerializeField] Material MainMat;
 
-    // // Start is called before the first frame update
-    // void Start() {
-        
-    // }
+    [SerializeField] Material dissolveMaterial;
+    [SerializeField] GameObject mesh;
+    [SerializeField] GameObject dissolveParticle;
+    [SerializeField] float dissolveTimer;
 
-    // // Update is called once per frame
-    // void Update() {
-        
-    // }
+    [SerializeField] GameObject deathOverlay;
+    [SerializeField] GameObject PlayerAvatar;
+    [SerializeField] PostProcessingModifier PostProcessing;
+
+    [SerializeField] bool dead;
+
+    // Start is called before the first frame update
+    void Start() {
+        deathOverlay = GameObject.Find("DeathOverlay");
+        deathOverlay.SetActive(false);
+        dissolveTimer = 0;
+        PostProcessing = GameObject.Find("PostProcessingVolume").GetComponent<PostProcessingModifier>();
+    }
+
+    // Update is called once per frame
+    void Update() {
+        if(dead) {
+            print("dead = " + dead);
+            dissolveMaterial.SetFloat("_DissolveValue", dissolveTimer);
+            dissolveTimer += 0.01f;
+            if(dissolveMaterial.GetFloat("_DissolveValue") >= 1) {
+                deathOverlay.SetActive(true);
+                PostProcessing.EnableGreyscale();
+                Destroy(PlayerAvatar);
+            }
+        }
+    }
 
     public void DeathAnimation() {
         vrik.enabled = false;
-        animatior.Play("deathAnim");
         foreach(GameObject weapon in Weapons) {
             weapon.SetActive(false);
         }
@@ -31,7 +52,11 @@ public class PlayerDeath : MonoBehaviour {
         playerVelocity.overrideV = true;
         MainMat = playerVelocity.myMats[1];
         MainMat.SetColor("_GlowColor", new Vector4(0.0006f, 0.0173f, 0.0186f, 1f));
-
+                
+        mesh.GetComponent<Renderer>().material = dissolveMaterial;
+        dissolveMaterial.SetFloat("_DissolveValue", 0);
         
+        dead = true;
+        dissolveParticle.SetActive(true);
     }
 }
