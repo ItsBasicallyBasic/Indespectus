@@ -46,8 +46,8 @@ public class PlayerDeath : MonoBehaviour {
     [PunRPC]
     private void deathDissolve() {
         print("dead = " + dead);
-        dissolveMaterial.SetFloat("_DissolveValue", dissolveTimer);
-        dissolveTimer += 0.01f;
+        dissolveMaterial.SetFloat("_DissolveValue", dissolveTimer/300);
+        dissolveTimer += Time.deltaTime;
         if(dissolveMaterial.GetFloat("_DissolveValue") >= 1) {
             if(deathOverlay != null)
                 deathOverlay.SetActive(true);
