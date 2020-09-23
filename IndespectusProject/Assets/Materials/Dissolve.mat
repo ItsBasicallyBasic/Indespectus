@@ -103,7 +103,7 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DissolveValue: 1
+    - _DissolveValue: 1.0099994
     - _DistortionScaling: 0.292
     - _DstBlend: 0
     - _E: 0.02

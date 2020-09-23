@@ -842,6 +842,7 @@ MonoBehaviour:
   dissolveTimer: 0
   deathOverlay: {fileID: 0}
   PlayerAvatar: {fileID: 2919022023450523557}
+  PostProcessing: {fileID: 0}
   dead: 0
 --- !u!1 &3043965814063061616
 GameObject:

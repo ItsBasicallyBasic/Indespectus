@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using RootMotion.FinalIK;
 using UnityEngine;
 
@@ -20,6 +22,7 @@ public class PlayerDeath : MonoBehaviour {
     [SerializeField] PostProcessingModifier PostProcessing;
 
     [SerializeField] bool dead;
+    PhotonView pv;
 
     // Start is called before the first frame update
     void Start() {
@@ -27,12 +30,21 @@ public class PlayerDeath : MonoBehaviour {
         deathOverlay.SetActive(false);
         dissolveTimer = 0;
         PostProcessing = GameObject.Find("PostProcessingVolume").GetComponent<PostProcessingModifier>();
+        pv = this.gameObject.GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
     void Update() {
         if(dead) {
-            print("dead = " + dead);
+            // deathDissolve();
+            pv.RPC("deathDissolve", RpcTarget.All);
+
+        }
+    }
+
+    [PunRPC]
+    private void deathDissolve() {
+        print("dead = " + dead);
             dissolveMaterial.SetFloat("_DissolveValue", dissolveTimer);
             dissolveTimer += 0.01f;
             if(dissolveMaterial.GetFloat("_DissolveValue") >= 1) {
@@ -40,7 +52,6 @@ public class PlayerDeath : MonoBehaviour {
                 PostProcessing.EnableGreyscale();
                 Destroy(PlayerAvatar);
             }
-        }
     }
 
     public void DeathAnimation() {
