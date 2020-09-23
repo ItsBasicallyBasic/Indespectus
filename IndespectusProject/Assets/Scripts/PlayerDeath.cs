@@ -31,13 +31,14 @@ public class PlayerDeath : MonoBehaviour {
         dissolveTimer = 0;
         PostProcessing = GameObject.Find("PostProcessingVolume").GetComponent<PostProcessingModifier>();
         pv = this.gameObject.GetComponent<PhotonView>();
+        dead = false;
     }
 
     // Update is called once per frame
     void Update() {
         if(dead) {
-            // deathDissolve();
-            pv.RPC("deathDissolve", RpcTarget.All);
+            deathDissolve();
+            // pv.RPC("deathDissolve", RpcTarget.All);
 
         }
     }
@@ -45,13 +46,13 @@ public class PlayerDeath : MonoBehaviour {
     [PunRPC]
     private void deathDissolve() {
         print("dead = " + dead);
-            dissolveMaterial.SetFloat("_DissolveValue", dissolveTimer);
-            dissolveTimer += 0.01f;
-            if(dissolveMaterial.GetFloat("_DissolveValue") >= 1) {
-                deathOverlay.SetActive(true);
-                PostProcessing.EnableGreyscale();
-                Destroy(PlayerAvatar);
-            }
+        dissolveMaterial.SetFloat("_DissolveValue", dissolveTimer);
+        dissolveTimer += 0.01f;
+        if(dissolveMaterial.GetFloat("_DissolveValue") >= 1) {
+            deathOverlay.SetActive(true);
+            PostProcessing.EnableGreyscale();
+            Destroy(PlayerAvatar);
+        }
     }
 
     public void DeathAnimation() {

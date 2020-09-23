@@ -26,6 +26,11 @@ public class PlayerResources : MonoBehaviour {
 
     // Reduce Current Health of the player
     public void LooseHealth(float dmg, int hitID) {
+        PV.RPC("RPC_LooseHealth", RpcTarget.AllBuffered, dmg, hitID);
+    }
+
+    [PunRPC]
+    public void RPC_LooseHealth(float dmg, int hitID){
         currentHealth -= dmg;
         lastHitID = hitID;
         GameManager.GM.players[ID].Health = currentHealth;
