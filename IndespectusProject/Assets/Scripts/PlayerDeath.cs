@@ -55,19 +55,21 @@ public class PlayerDeath : MonoBehaviour {
     }
 
     public void DeathAnimation() {
-        vrik.enabled = false;
-        foreach(GameObject weapon in Weapons) {
-            weapon.SetActive(false);
+        if(!dead) {
+            vrik.enabled = false;
+            foreach(GameObject weapon in Weapons) {
+                weapon.SetActive(false);
+            }
+            playerVelocity.OverrideVelocity(1.5f);
+            playerVelocity.overrideV = true;
+            MainMat = playerVelocity.myMats[1];
+            MainMat.SetColor("_GlowColor", new Vector4(0.0006f, 0.0173f, 0.0186f, 1f));
+                    
+            mesh.GetComponent<Renderer>().material = dissolveMaterial;
+            dissolveMaterial.SetFloat("_DissolveValue", 0);
+            
+            dead = true;
+            dissolveParticle.SetActive(true);
         }
-        playerVelocity.OverrideVelocity(1.5f);
-        playerVelocity.overrideV = true;
-        MainMat = playerVelocity.myMats[1];
-        MainMat.SetColor("_GlowColor", new Vector4(0.0006f, 0.0173f, 0.0186f, 1f));
-                
-        mesh.GetComponent<Renderer>().material = dissolveMaterial;
-        dissolveMaterial.SetFloat("_DissolveValue", 0);
-        
-        dead = true;
-        dissolveParticle.SetActive(true);
     }
 }
