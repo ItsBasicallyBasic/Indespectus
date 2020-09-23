@@ -47,7 +47,7 @@ public class PlayerDeath : MonoBehaviour {
     private void deathDissolve() {
         print("dead = " + dead);
         dissolveMaterial.SetFloat("_DissolveValue", dissolveTimer);
-        dissolveTimer += 0.01f;
+        dissolveTimer += Time.deltaTime;
         if(dissolveMaterial.GetFloat("_DissolveValue") >= 1) {
             if(deathOverlay != null)
                 deathOverlay.SetActive(true);
