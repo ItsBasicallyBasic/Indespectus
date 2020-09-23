@@ -26,7 +26,6 @@ public class SwordCollisionController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GameManager.GM.audioManager.PlayRepeatingSound(GetComponentInParent<AudioSource>(), "swordCollide");
 
         PhotonView otherPhotonView = other.transform.GetComponent<PhotonView>();
 
@@ -41,7 +40,9 @@ public class SwordCollisionController : MonoBehaviour
 
         if(other.gameObject.layer == 0)
         {
-            if(currentSpark != null)
+            GameManager.GM.audioManager.PlayRepeatingSound(GetComponentInParent<AudioSource>(), "swordCollide");
+
+            if (currentSpark != null)
             {
                 Destroy(currentSpark);
                 currentSpark = null;
@@ -105,10 +106,11 @@ public class SwordCollisionController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        GameManager.GM.audioManager.StopRepeatingSound(GetComponentInParent<AudioSource>());
 
         if (other.gameObject.layer == 0)
         {
+            GameManager.GM.audioManager.StopRepeatingSound(GetComponentInParent<AudioSource>());
+
             if (currentSpark != null)
             {
 
