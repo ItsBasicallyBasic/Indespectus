@@ -139,6 +139,7 @@ public class WeaponBehaviour : MonoBehaviour
 
             if (OVRInput.GetDown(OVRInput.Button.Two)/*  && gameObject.tag == "Player" */)
             {
+                GameManager.GM.audioManager.PlaySound(GetComponent<AudioSource>(), "switchWeapon", 1);
                 multitoolState = MultitoolStates.Gun;
             }
 
@@ -189,6 +190,7 @@ public class WeaponBehaviour : MonoBehaviour
 
         if (OVRInput.GetDown(OVRInput.Button.Two))
         {
+            GameManager.GM.audioManager.PlaySound(GetComponent<AudioSource>(), "switchWeapon", 1);
             multitoolState = MultitoolStates.Sword;
         }
 
@@ -273,10 +275,15 @@ public class WeaponBehaviour : MonoBehaviour
                 //animator.Play("Recoil");
 
                 //Play Sound
-                GameManager.GM.audioManager.PlaySound(GetComponent<AudioSource>(), "gunShot");
+                GameManager.GM.audioManager.PlaySound(GetComponent<AudioSource>(), "gunShot", 1);
 
                 shotReveal = true;
                 sRevealTimer = Time.time +sRevealTime;
+            }
+
+            if(playerResources.GetEssence() <= 0)
+            {
+                GameManager.GM.audioManager.PlaySound(GetComponent<AudioSource>(), "shootNoEssence", 1);
             }
         }
     }

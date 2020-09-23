@@ -45,7 +45,7 @@ public class PlayerVelocity : MonoBehaviour {
         if(cn == null) {cn = GameObject.FindGameObjectWithTag("NetworkCheck").GetComponent<CheckNetworked>();}
 
         //Play spawn Sound
-        GameManager.GM.audioManager.PlaySound(GetComponent<AudioSource>(), "Spawning");
+        GameManager.GM.audioManager.PlaySound(GetComponent<AudioSource>(), "Spawning", 1);
     }
 
     #region  SettingMaterials

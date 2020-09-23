@@ -78,7 +78,7 @@ public class PlayerCollisionController : MonoBehaviour
                 }
 
                 //Play Sound
-                GameManager.GM.audioManager.PlaySound(GetComponent<AudioSource>(), "Damaged1");
+                GameManager.GM.audioManager.PlaySound(GetComponent<AudioSource>(), "Damaged1", 1);
 
                 // Play visual effect
 

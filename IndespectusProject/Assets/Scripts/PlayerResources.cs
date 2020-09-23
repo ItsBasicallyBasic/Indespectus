@@ -65,6 +65,10 @@ public class PlayerResources : MonoBehaviour {
     // Reduce Current Essence of the player
     public void LooseEssence(float dmg) {
         currentEssence -= dmg;
+        if(currentEssence <= 0)
+        {
+            GameManager.GM.audioManager.PlaySound(GetComponent<AudioSource>(), "essenceDeplete", 1);
+        }
     }
 
     // Increase Current Essence of the player

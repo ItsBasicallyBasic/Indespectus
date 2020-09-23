@@ -26,6 +26,7 @@ public class SwordCollisionController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        GameManager.GM.audioManager.PlayRepeatingSound(GetComponentInParent<AudioSource>(), "swordCollide");
 
         PhotonView otherPhotonView = other.transform.GetComponent<PhotonView>();
 
@@ -33,6 +34,7 @@ public class SwordCollisionController : MonoBehaviour
             if(other.gameObject.tag == "Sword" || other.gameObject.tag == "Shield")
             {
                 print("Blocked!");
+                GameManager.GM.audioManager.PlaySound(GetComponent<AudioSource>(), "swordBreak", 1);
                 weaponBehaviour.swordBroken = true;
             }
         }
@@ -53,6 +55,7 @@ public class SwordCollisionController : MonoBehaviour
     {
         if (other.gameObject.layer == 0)
         {
+
             RaycastHit hit;
             int layerMask = 1 << 8;
             layerMask = ~layerMask;
@@ -102,6 +105,8 @@ public class SwordCollisionController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        GameManager.GM.audioManager.StopRepeatingSound(GetComponentInParent<AudioSource>());
+
         if (other.gameObject.layer == 0)
         {
             if (currentSpark != null)
