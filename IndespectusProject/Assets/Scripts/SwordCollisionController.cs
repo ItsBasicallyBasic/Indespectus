@@ -71,9 +71,12 @@ public class SwordCollisionController : MonoBehaviour
             }
             else
             {
-                currentSpark.GetComponent<ParticleSystem>().Stop();
-                Destroy(currentSpark, 1);
-                currentSpark = null;
+                if(currentSpark != null)
+                {
+                    currentSpark.GetComponent<ParticleSystem>().Stop();
+                    Destroy(currentSpark, 1);
+                    currentSpark = null;
+                }
             }
 
 

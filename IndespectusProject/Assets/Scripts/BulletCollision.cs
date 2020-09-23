@@ -7,7 +7,7 @@ using UnityEngine;
 public class BulletCollision : MonoBehaviour
 {
 
-    // public GameObject bulletHit;
+    [SerializeField] private GameObject bulletHit;
 
     [SerializeField]
     private PhotonView PV;
@@ -67,6 +67,10 @@ public class BulletCollision : MonoBehaviour
             if(other.tag == "Shield" || other.tag == "Sword" || other.tag == "Player" || other.tag == "Untagged")
             {
                 print("hit shield or sword!");
+
+                // bullet explosion particle effect
+                Instantiate(bulletHit, transform.position, transform.rotation);
+
                 Destroy(gameObject);
             }
         //}
