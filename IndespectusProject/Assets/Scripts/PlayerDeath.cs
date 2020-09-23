@@ -37,8 +37,8 @@ public class PlayerDeath : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if(dead) {
-            deathDissolve();
-            // pv.RPC("deathDissolve", RpcTarget.All);
+            // deathDissolve();
+            pv.RPC("deathDissolve", RpcTarget.All);
 
         }
     }
@@ -49,9 +49,10 @@ public class PlayerDeath : MonoBehaviour {
         dissolveMaterial.SetFloat("_DissolveValue", dissolveTimer);
         dissolveTimer += 0.01f;
         if(dissolveMaterial.GetFloat("_DissolveValue") >= 1) {
-            deathOverlay.SetActive(true);
+            if(deathOverlay != null)
+                deathOverlay.SetActive(true);
             PostProcessing.EnableGreyscale();
-            Destroy(PlayerAvatar);
+            PhotonNetwork.Destroy(PlayerAvatar);
         }
     }
 
