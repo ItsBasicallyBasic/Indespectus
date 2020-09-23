@@ -85,6 +85,7 @@ public class PlayerResources : MonoBehaviour {
     private PhotonView PV;
     private int lastHitID;
     [SerializeField] PlayerDeath playerDeath;
+    private bool dead;
 
     // Start is called before the first frame update
     void Start() {
@@ -104,9 +105,10 @@ public class PlayerResources : MonoBehaviour {
             if (currentEssence > MAX_ESSENCE) currentEssence = MAX_ESSENCE;
             if (currentHealth > MAX_HEALTH) currentHealth = MAX_HEALTH;
 
-            if(currentHealth <= 0) {
-                // GameManager.GM.updateKDFromPlayer(ID, lastHitID);
+            if(currentHealth <= 0 && !dead) {
+                GameManager.GM.updateKDFromPlayer(ID, lastHitID);
                 playerDeath.DeathAnimation();
+                dead = true;
                 // GameManager.GM.players[ID].Deaths++;
                 // GameManager.GM.players[lastHitID].Kills++;
             }

@@ -102,22 +102,25 @@ public class GameManager : MonoBehaviour {
     }
 
     [PunRPC]
-    private void endGame() {
+    private IEnumerator endGame() {
         gameOver = true;
+        yield return new WaitForSeconds(5);
         if(PhotonNetwork.IsMasterClient) {
             PhotonNetwork.LoadLevel(MultiplayerSettings.multiplayerSettings.endScene);
         }
     }
     
     internal void updateKDFromPlayer(int deadID, int killID) {
-        // PV.RPC("RPC_UpdateKD", RpcTarget.AllBuffered, deadID, killID);
-        RPC_UpdateKD(deadID, killID);
+        players[deadID].Deaths++;
+        players[killID].Kills++;
+        // RPC_UpdateKD(deadID, killID);
+        PV.RPC("RPC_UpdateKD", RpcTarget.AllBuffered, deadID, killID, players[deadID].Deaths, players[killID].Kills);
     }
 
     [PunRPC]
-    private void RPC_UpdateKD(int deadID, int killID){
-        players[deadID].Deaths++;
-        players[killID].Kills++;
+    private void RPC_UpdateKD(int deadID, int killID, int deaths, int kills){
+        players[deadID].Deaths = deaths;
+        players[killID].Kills = kills;
 
     }
 

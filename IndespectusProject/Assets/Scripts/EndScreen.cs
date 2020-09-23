@@ -49,24 +49,28 @@ public class EndScreen : MonoBehaviourPunCallbacks  {
 
     }
 
-    // Update is called once per frame
-    void Update() {
-        if(OVRInput.GetDown(OVRInput.Button.One) || Input.GetKeyDown(KeyCode.Return)) {
-            results.SetActive(false);
-            leaving.SetActive(true);
-            var obj = GameObject.Find ("GameManager");
-            Destroy(obj);
-            PhotonNetwork.Disconnect();
-            // SceneManager.LoadScene(MultiplayerSettings.multiplayerSettings.menuScene);
-            //PhotonNetwork.LeaveRoom();
-        }
-        if(OVRInput.GetDown(OVRInput.Button.Two) || Input.GetKeyDown(KeyCode.Escape)) {
-            Application.Quit();
-        }
-    }
+    // // Update is called once per frame
+    // void Update() {
+        
+    // }
     
     public override void OnDisconnected	(DisconnectCause cause)	{
         SceneManager.LoadScene(MultiplayerSettings.multiplayerSettings.menuScene);
+    }
+
+    public void OnHomeClick() {
+        print("Home was Ckickeds");
+        results.SetActive(false);
+        leaving.SetActive(true);
+        var obj = GameObject.Find ("GameManager");
+        Destroy(obj);
+        PhotonNetwork.Disconnect();
+        SceneManager.LoadScene(0);
+    }
+
+    public void OnExitClick() {
+        Application.Quit();
+        print("exit was Ckickeds");
     }
 
 }

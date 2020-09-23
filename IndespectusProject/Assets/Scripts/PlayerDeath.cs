@@ -27,7 +27,8 @@ public class PlayerDeath : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         deathOverlay = GameObject.Find("DeathOverlay");
-        deathOverlay.SetActive(false);
+        if(deathOverlay != null)
+            deathOverlay.SetActive(false);
         dissolveTimer = 0;
         PostProcessing = GameObject.Find("PostProcessingVolume").GetComponent<PostProcessingModifier>();
         pv = this.gameObject.GetComponent<PhotonView>();
@@ -47,6 +48,7 @@ public class PlayerDeath : MonoBehaviour {
     private void deathDissolve() {
         print("dead = " + dead);
         dissolveMaterial.SetFloat("_DissolveValue", dissolveTimer/5f);
+        dissolveTimer += Time.deltaTime;
         if(dissolveMaterial.GetFloat("_DissolveValue") >= 1) {
             if(deathOverlay != null)
                 deathOverlay.SetActive(true);
