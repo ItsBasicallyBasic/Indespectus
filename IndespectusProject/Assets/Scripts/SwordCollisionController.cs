@@ -26,6 +26,7 @@ public class SwordCollisionController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         PhotonView otherPhotonView = other.transform.GetComponent<PhotonView>();
 
         if (otherPhotonView != null && !otherPhotonView.IsMine && PV.IsMine /*|| !cn.networked*/) {

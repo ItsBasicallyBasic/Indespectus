@@ -99,7 +99,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Transition: 0.2652186
+    - _Transition: 0.5657861
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0

@@ -2367,7 +2367,7 @@ GameObject:
   - component: {fileID: 7247168390321890164}
   - component: {fileID: 7247168390328368068}
   - component: {fileID: 7247168390316873702}
-  - component: {fileID: 7247168388296432284}
+  - component: {fileID: 6453728397871058000}
   m_Layer: 8
   m_Name: CenterEyeAnchor
   m_TagString: MainCamera
@@ -2457,7 +2457,7 @@ MonoBehaviour:
   fadeColor: {r: 0.01, g: 0.01, b: 0.01, a: 1}
   fadeOnStart: 1
   renderQueue: 5000
---- !u!114 &7247168388296432284
+--- !u!114 &6453728397871058000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

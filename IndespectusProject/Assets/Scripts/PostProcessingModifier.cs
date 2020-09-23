@@ -7,13 +7,14 @@ public class PostProcessingModifier : MonoBehaviour
 {
 
     [SerializeField] private PostProcessVolume volume;
-    private Vignette vignette;
+    private Vignette _Vignette;
     private bool hurt = false;
+    private float intensity;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        volume.profile.TryGetSettings(out _Vignette);
     }
 
     // Update is called once per frame
@@ -21,22 +22,31 @@ public class PostProcessingModifier : MonoBehaviour
     {
         if (hurt)
         {
-            if(vignette.intensity.value < 0.3f)
+            if(_Vignette.intensity.value < 1f)
             {
-                vignette.intensity.value = Mathf.Lerp(0, 0.3f, 0.01f * Time.deltaTime);
+                print("increasing effect");
+                intensity += 3f * Time.deltaTime;
+                _Vignette.intensity.value = intensity;
             }
             else
             {
                 hurt = false;
             }
         }
+
+        if (!hurt && intensity > 0)
+        {
+            print("drcreasing effect");
+            intensity -= 2f * Time.deltaTime;
+            _Vignette.intensity.value = intensity;
+        }
     }
 
-    void EnableHurtEffect()
+    public void EnableHurtEffect()
     {
-        if(volume.profile.TryGetSettings(out vignette) && vignette.intensity.value != 0)
+        if(volume.profile.TryGetSettings(out _Vignette) && _Vignette.intensity.value != 0)
         {
-            vignette.intensity.value = 0;
+            _Vignette.intensity.value = 0;
         }
         hurt = true;
     }

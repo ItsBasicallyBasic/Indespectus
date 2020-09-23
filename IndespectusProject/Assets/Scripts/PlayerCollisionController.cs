@@ -70,7 +70,10 @@ public class PlayerCollisionController : MonoBehaviour
                 print("You've been damaged!");
                 playerResources.LooseHealth(30, otherID);
 
-                if(!cn.networked) {
+                // Post processing placeholder hurt effect
+                GameManager.GM.postProcessingModifier.EnableHurtEffect();
+
+                if (!cn.networked) {
                     //enemy.hitOrMiss = true;
                 }
 

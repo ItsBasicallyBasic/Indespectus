@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] internal float gameTime;
 
     public GameObject collisionParticleEffect;
+    public PostProcessingModifier postProcessingModifier;
 
     void Awake() {
         // Singleton
