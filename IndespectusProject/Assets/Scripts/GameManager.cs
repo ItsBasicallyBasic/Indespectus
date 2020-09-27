@@ -105,9 +105,9 @@ public class GameManager : MonoBehaviour {
     private IEnumerator endGame() {
         gameOver = true;
         yield return new WaitForSeconds(5);
-        if(PhotonNetwork.IsMasterClient) {
+        // if(PhotonNetwork.IsMasterClient) {
             PhotonNetwork.LoadLevel(MultiplayerSettings.multiplayerSettings.endScene);
-        }
+        // }
     }
     
     internal void updateKDFromPlayer(int deadID, int killID) {
