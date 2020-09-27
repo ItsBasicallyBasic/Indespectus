@@ -124,7 +124,7 @@ Material:
     - _Transition: 1.5
     - _UVSec: 0
     - _ZWrite: 1
-    - __dirty: 1
+    - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveEdge: {r: 2, g: 0.16301307, b: 0, a: 1}
@@ -132,3 +132,4 @@ Material:
     - _GlowColor: {r: 0, g: 1.1686275, b: 1.8745098, a: 0}
     - _Tiling: {r: 5, g: 5, b: 0, a: 0}
     - _Tint: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
+  m_BuildTextureStacks: []

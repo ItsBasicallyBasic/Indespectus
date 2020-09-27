@@ -103,7 +103,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Transition: 0.016795458
+    - _Transition: 0.0005173595
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
@@ -112,3 +112,4 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlowColor: {r: 0.0006, g: 0.0173, b: 0.0186, a: 1}
     - _Tint: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
+  m_BuildTextureStacks: []

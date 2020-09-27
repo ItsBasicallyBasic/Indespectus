@@ -8,9 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MenuFloor
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: c543caefdcbff464a8e5615aaad4264a, type: 3}
   m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 2
+  m_LightmapFlags: 6
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -100,7 +100,8 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 4.8138824, g: 0.6130887, b: 2.6878698, a: 0.67058825}
     - _EmissionColor: {r: 5.3403134, g: 0.9320358, b: 2.3860755, a: 1}
     - _GlowColor: {r: 2.682353, g: 0, b: 4, a: 0}
     - _Tint: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
