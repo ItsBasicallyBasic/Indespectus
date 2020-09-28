@@ -52,7 +52,7 @@ public class PlayerDeath : MonoBehaviour {
         if(dissolveMaterial.GetFloat("_DissolveValue") >= 1) {
             if(deathOverlay != null)
                 deathOverlay.SetActive(true);
-            PostProcessing.EnableGreyscale();
+            // PostProcessing.EnableGreyscale();
             PhotonNetwork.Destroy(PlayerAvatar);
         }
     }

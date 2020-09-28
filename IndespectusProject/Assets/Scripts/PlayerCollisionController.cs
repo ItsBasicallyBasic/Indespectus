@@ -71,7 +71,7 @@ public class PlayerCollisionController : MonoBehaviour
                 playerResources.LooseHealth(30, otherID);
 
                 // Post processing placeholder hurt effect
-                GameManager.GM.postProcessingModifier.EnableHurtEffect();
+                // GameManager.GM.postProcessingModifier.EnableHurtEffect();
 
                 if (!cn.networked) {
                     //enemy.hitOrMiss = true;
