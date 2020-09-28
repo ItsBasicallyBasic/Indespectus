@@ -49,10 +49,12 @@ public class EndScreen : MonoBehaviourPunCallbacks  {
 
     }
 
-    // // Update is called once per frame
-    // void Update() {
-        
-    // }
+    // Update is called once per frame
+    void Update() {
+        if(OVRInput.GetDown(OVRInput.Button.One)) {
+            OnHomeClick();
+        }
+    }
     
     public override void OnDisconnected	(DisconnectCause cause)	{
         SceneManager.LoadScene(MultiplayerSettings.multiplayerSettings.menuScene);
