@@ -14,6 +14,7 @@ namespace AmplifyShaderEditor
 		private const string QueueIndexStr = "Index";
 		private const string QueueLabelStr = "Queue";
 		private const string RenderTypeLabelStr = "Type";
+		private const string CustomRenderTypeLabelStr = "Custom";
 
 		private const float ShaderKeywordButtonLayoutWidth = 15;
 		private UndoParentNode m_currentOwner;
@@ -83,6 +84,10 @@ namespace AmplifyShaderEditor
 					else if( m_availableTags[ m_tagNameCheckItemId ].TagName.Equals( Constants.RenderTypeHelperStr ) )
 					{
 						m_availableTags[ m_tagNameCheckItemId ].SpecialTag = TemplateSpecialTags.RenderType;
+					}
+					else if( m_availableTags[ m_tagNameCheckItemId ].TagName.Equals( Constants.DisableBatchingHelperStr ) )
+					{
+						m_availableTags[ m_tagNameCheckItemId ].SpecialTag = TemplateSpecialTags.DisableBatching;
 					}
 					else
 					{
@@ -164,9 +169,19 @@ namespace AmplifyShaderEditor
 						//Tag Value
 						switch( m_availableTags[ i ].SpecialTag )
 						{
+							case TemplateSpecialTags.DisableBatching:
+							{
+								m_availableTags[ i ].Batching = (DisableBatching)m_currentOwner.EditorGUILayoutEnumPopup( RenderTypeLabelStr, m_availableTags[ i ].Batching );
+								m_availableTags[ i ].TagValue = m_availableTags[ i ].Batching.ToString();
+							}
+							break;
 							case TemplateSpecialTags.RenderType:
 							{
 								m_availableTags[ i ].RenderType = (RenderType)m_currentOwner.EditorGUILayoutEnumPopup( RenderTypeLabelStr, m_availableTags[ i ].RenderType );
+								if( m_availableTags[ i ].RenderType == RenderType.Custom )
+								{
+									m_availableTags[ i ].TagValue = m_currentOwner.EditorGUILayoutTextField( CustomRenderTypeLabelStr, m_availableTags[ i ].TagValue );
+								}
 							}
 							break;
 							case TemplateSpecialTags.Queue:
@@ -249,6 +264,11 @@ namespace AmplifyShaderEditor
 				{
 					switch( tag )
 					{
+						case TemplateSpecialTags.DisableBatching:
+						{
+							m_availableTags[ i ].Batching = TemplateHelperFunctions.StringToDisableBatching[ item.ActionData ];
+							return;
+						}
 						case TemplateSpecialTags.RenderType:
 						{
 							m_availableTags[ i ].RenderType = TemplateHelperFunctions.StringToRenderType[ item.ActionData ];
@@ -269,13 +289,24 @@ namespace AmplifyShaderEditor
 			CustomTagData data = new CustomTagData();
 			switch( tag )
 			{
+				case TemplateSpecialTags.DisableBatching:
+				{
+					data.SpecialTag = TemplateSpecialTags.DisableBatching;
+					data.TagName = "DisableBatching";
+					data.Batching = TemplateHelperFunctions.StringToDisableBatching[ item.ActionData ];
+				}
+				break;
 				case TemplateSpecialTags.RenderType:
 				{
+					data.SpecialTag = TemplateSpecialTags.RenderType;
+					data.TagName = "RenderType";
 					data.RenderType = TemplateHelperFunctions.StringToRenderType[ item.ActionData ];
 				}
 				break;
 				case TemplateSpecialTags.Queue:
 				{
+					data.SpecialTag = TemplateSpecialTags.Queue;
+					data.TagName = "Queue";
 					data.RenderQueue = TemplateHelperFunctions.StringToRenderQueue[ item.ActionData ];
 					data.RenderQueueOffset = item.ActionDataIdx;
 					data.BuildQueueTagValue();

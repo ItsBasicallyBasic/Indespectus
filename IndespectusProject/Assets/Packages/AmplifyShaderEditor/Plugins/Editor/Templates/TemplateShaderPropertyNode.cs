@@ -308,6 +308,16 @@ namespace AmplifyShaderEditor
 						PreviewMaterial.SetTexture( SamplerCubePropertyId, value );
 					}
 					break;
+					case WirePortDataType.SAMPLER2DARRAY:
+					{
+						Texture value = currMat.GetTexture( m_propertyNameId );
+						if( value )
+							SetAdditonalTitleText( string.Format( Constants.SubTitleValueFormatStr, value.name ) );
+						else
+							SetAdditonalTitleText( string.Empty );
+						PreviewMaterial.SetTexture( SamplerCubePropertyId, value );
+					}
+					break;
 				}
 			}
 			else
@@ -423,6 +433,7 @@ namespace AmplifyShaderEditor
 					case WirePortDataType.SAMPLER2D:
 					case WirePortDataType.SAMPLER3D:
 					case WirePortDataType.SAMPLERCUBE:
+					case WirePortDataType.SAMPLER2DARRAY:
 					m_outputPorts[ 0 ].ChangeProperties( "Tex", m_shaderProperties[ m_currentPropertyIdx ].PropertyDataType, false );
 					m_headerColor = UIUtils.GetColorFromCategory( "Textures" );
 					break;
@@ -526,13 +537,13 @@ namespace AmplifyShaderEditor
 		{
 			if( dataCollector.MasterNodeCategory != AvailableShaderTypes.Template )
 			{
-				UIUtils.ShowMessage( "Template Parameter node is only intended for templates use only" );
+				UIUtils.ShowMessage( UniqueId, "Template Parameter node is only intended for templates use only" );
 				return m_outputPorts[ outputId ].ErrorValue;
 			}
 
 			if( m_shaderProperties == null || m_shaderProperties.Count ==0  )
 			{
-				UIUtils.ShowMessage( "Attempting to fetch inexistant parameter on " + m_nodeAttribs.Name +" node");
+				UIUtils.ShowMessage( UniqueId, "Attempting to fetch inexistant parameter on " + m_nodeAttribs.Name +" node");
 				return m_outputPorts[ outputId ].ErrorValue;
 			}
 
@@ -544,7 +555,7 @@ namespace AmplifyShaderEditor
 					{
 						if( dataCollector.TemplateDataCollectorInstance.MultipassSubshaderIdx != SubShaderIdx )
 						{
-							UIUtils.ShowMessage( string.Format( "{0} is only intended for subshader {1}", m_propertyLabels[ m_currentPropertyIdx ], SubShaderIdx ) );
+							UIUtils.ShowMessage( UniqueId, string.Format( "{0} is only intended for subshader {1}", m_propertyLabels[ m_currentPropertyIdx ], SubShaderIdx ) );
 							return m_outputPorts[ outputId ].ErrorValue;
 						}
 					}
@@ -555,7 +566,7 @@ namespace AmplifyShaderEditor
 							dataCollector.TemplateDataCollectorInstance.MultipassPassIdx != PassIdx
 							)
 						{
-							UIUtils.ShowMessage( string.Format( "{0} is only intended for subshader {1} and pass {2}", m_propertyLabels[ m_currentPropertyIdx ], SubShaderIdx, PassIdx ) );
+							UIUtils.ShowMessage( UniqueId, string.Format( "{0} is only intended for subshader {1} and pass {2}", m_propertyLabels[ m_currentPropertyIdx ], SubShaderIdx, PassIdx ) );
 							return m_outputPorts[ outputId ].ErrorValue;
 						}
 					}

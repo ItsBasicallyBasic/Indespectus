@@ -68,6 +68,9 @@ namespace AmplifyShaderEditor
 		[SerializeField]
 		protected System.Type m_textureType = typeof( Texture2D );
 
+		[SerializeField]
+		protected int m_useSamplerArrayIdx = -1;
+
 		//[SerializeField]
 		//protected bool m_isTextureFetched;
 
@@ -112,7 +115,8 @@ namespace AmplifyShaderEditor
 			m_defaultTextureValue = TexturePropertyValues.white;
 			m_insideSize.Set( PreviewSizeX, PreviewSizeY + 5 );
 			AddOutputPort( WirePortDataType.SAMPLER2D, "Tex" );
-			m_outputPorts[ 0 ].CreatePortRestrictions( WirePortDataType.SAMPLER1D, WirePortDataType.SAMPLER2D, WirePortDataType.SAMPLER3D, WirePortDataType.SAMPLERCUBE, WirePortDataType.OBJECT );
+			AddOutputPort( WirePortDataType.SAMPLERSTATE, "SS" );
+			m_outputPorts[ 0 ].CreatePortRestrictions( WirePortDataType.SAMPLER1D, WirePortDataType.SAMPLER2D, WirePortDataType.SAMPLER3D, WirePortDataType.SAMPLERCUBE, WirePortDataType.SAMPLER2DARRAY, WirePortDataType.OBJECT );
 			m_currentParameterType = PropertyType.Property;
 			m_customPrefix = "Texture ";
 			m_drawPrecisionUI = false;
@@ -124,6 +128,7 @@ namespace AmplifyShaderEditor
 			m_longNameSize = 225;
 			m_availableAttribs.Add( new PropertyAttributes( "No Scale Offset", "[NoScaleOffset]" ) );
 			m_availableAttribs.Add( new PropertyAttributes( "Normal", "[Normal]" ) );
+			m_availableAttribs.Add( new PropertyAttributes( "Single Line Texture", "[SingleLineTexture]" ) );
 			m_showPreview = true;
 			m_drawPreviewExpander = false;
 			m_drawPreview = false;
@@ -187,6 +192,7 @@ namespace AmplifyShaderEditor
 					m_defaultId = Shader.PropertyToID( "_Default" );
 
 				PreviewMaterial.SetInt( m_defaultId, ( (int)m_defaultTextureValue ) + 1 );
+				m_previewMaterialPassId = 0;
 			}
 			else
 			{
@@ -198,6 +204,7 @@ namespace AmplifyShaderEditor
 				if( m_typeId == -1 )
 					m_typeId = Shader.PropertyToID( "_Type" );
 
+				m_previewMaterialPassId = 1; 
 				SetPreviewTexture( Value );
 				//if( Value is Cubemap )
 				//{
@@ -356,16 +363,10 @@ namespace AmplifyShaderEditor
 
 		public string GetTexture2DUniformValue()
 		{
-			if( m_containerGraph.SamplingThroughMacros )
-			{
-				if( m_containerGraph.IsSRP )
-					return string.Format( Constants.TexDeclarationSRPMacros[ TextureType.Texture2D ], PropertyName );
-
-					return string.Format( Constants.TexDeclarationStandardMacros[ TextureType.Texture2D ], PropertyName );
-
-			}
-
-			return "uniform sampler2D " + PropertyName + ";";
+			if( PropertyName == "_CameraDepthTexture" )
+				return Constants.CameraDepthTextureValue;
+			else
+				return GeneratorUtils.GetPropertyDeclaraction( PropertyName, TextureType.Texture2D, ";" );
 		}
 
 		//Texture3D
@@ -376,14 +377,7 @@ namespace AmplifyShaderEditor
 
 		public string GetTexture3DUniformValue()
 		{
-			if( m_containerGraph.SamplingThroughMacros )
-			{
-				if( m_containerGraph.IsSRP )
-					return string.Format( Constants.TexDeclarationSRPMacros[ TextureType.Texture3D ], PropertyName );
-
-				return string.Format( Constants.TexDeclarationStandardMacros[ TextureType.Texture3D ], PropertyName );
-			}
-			return "uniform sampler3D " + PropertyName + ";";
+			return GeneratorUtils.GetPropertyDeclaraction( PropertyName, TextureType.Texture3D, ";" );
 		}
 
 		// Cube
@@ -394,15 +388,7 @@ namespace AmplifyShaderEditor
 
 		public string GetCubeUniformValue()
 		{
-			if( m_containerGraph.SamplingThroughMacros )
-			{
-				if( m_containerGraph.IsSRP )
-					return string.Format( Constants.TexDeclarationSRPMacros[ TextureType.Cube ], PropertyName );
-
-				return string.Format( Constants.TexDeclarationStandardMacros[ TextureType.Cube ], PropertyName );
-			}
-
-			return "uniform samplerCUBE " + PropertyName + ";";
+			return GeneratorUtils.GetPropertyDeclaraction( PropertyName, TextureType.Cube, ";" );
 		}
 
 		// Texture2DArray
@@ -413,15 +399,7 @@ namespace AmplifyShaderEditor
 
 		public string GetTexture2DArrayUniformValue()
 		{
-			if( m_containerGraph.SamplingThroughMacros )
-			{
-				if( m_containerGraph.IsSRP )
-					return string.Format( Constants.TexDeclarationSRPMacros[ TextureType.Texture2DArray ], PropertyName );
-
-				return string.Format( Constants.TexDeclarationStandardMacros[ TextureType.Texture2DArray ], PropertyName );
-			}
-
-			return "uniform TEXTURE2D_ARRAY( " + PropertyName + " );" + "\nuniform SAMPLER( sampler" + PropertyName + " );";
+			return GeneratorUtils.GetPropertyDeclaraction( PropertyName, TextureType.Texture2DArray, ";" );
 		}
 
 		public override void DrawMainPropertyBlock()
@@ -433,6 +411,8 @@ namespace AmplifyShaderEditor
 		public override void DrawSubProperties()
 		{
 			ShowDefaults();
+
+
 			EditorGUI.BeginChangeCheck();
 			Type currType = ( m_autocastMode == AutoCastType.Auto ) ? typeof( Texture ) : m_textureType;
 			m_defaultValue = EditorGUILayoutObjectField( Constants.DefaultValueLabel, m_defaultValue, currType, false ) as Texture;
@@ -500,7 +480,7 @@ namespace AmplifyShaderEditor
 				m_outputPorts[ 0 ].ChangeType( WirePortDataType.SAMPLERCUBE, false );
 				break;
 				case TextureType.Texture2DArray:
-				m_outputPorts[ 0 ].ChangeType( WirePortDataType.SAMPLER2D, false );
+				m_outputPorts[ 0 ].ChangeType( WirePortDataType.SAMPLER2DARRAY, false );
 				break;
 			}
 
@@ -640,15 +620,15 @@ namespace AmplifyShaderEditor
 			base.Draw( drawInfo );
 			if( m_dropdownEditing )
 			{
-				PropertyType parameterType = (PropertyType)EditorGUIIntPopup( m_dropdownRect,(int)m_currentParameterType, AvailablePropertyTypeLabels, AvailablePropertyTypeValues , UIUtils.PropertyPopUp );
+				PropertyType parameterType = (PropertyType)EditorGUIIntPopup( m_dropdownRect, (int)m_currentParameterType, AvailablePropertyTypeLabels, AvailablePropertyTypeValues, UIUtils.PropertyPopUp );
 				if( parameterType != m_currentParameterType )
 				{
 					ChangeParameterType( parameterType );
-					m_dropdownEditing = false;
+					DropdownEditing = false;
 				}
 			}
 
-			if( m_isEditingPicker && m_drawPicker && m_currentParameterType != PropertyType.Global)
+			if( m_isEditingPicker && m_drawPicker && m_currentParameterType != PropertyType.Global )
 			{
 				Rect hitRect = m_previewRect;
 				hitRect.height = 14 * drawInfo.InvertedZoom;
@@ -684,6 +664,7 @@ namespace AmplifyShaderEditor
 					ConfigureInputPorts();
 					ConfigureOutputPorts();
 					BeginDelayedDirtyProperty();
+					PreviewIsDirty = true;
 				}
 				//else if( drawInfo.CurrentEventType == EventType.ExecuteCommand )
 				//{
@@ -761,7 +742,10 @@ namespace AmplifyShaderEditor
 		public string BaseGenerateShaderForOutput( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalVar )
 		{
 			base.GenerateShaderForOutput( outputId, ref dataCollector, ignoreLocalVar );
-			return PropertyName;
+			if( outputId > 0 )
+				return GeneratorUtils.GenerateSamplerState( ref dataCollector, UniqueId, PropertyName );
+			else
+				return PropertyName;
 		}
 
 		public override string GenerateShaderForOutput( int outputId, ref MasterNodeDataCollector dataCollector, bool ignoreLocalVar )
@@ -801,6 +785,7 @@ namespace AmplifyShaderEditor
 			{
 				m_materialValue = material.GetTexture( PropertyName );
 				CheckTextureImporter( false, false );
+				PreviewIsDirty = true;
 			}
 		}
 
@@ -814,10 +799,19 @@ namespace AmplifyShaderEditor
 			return true;
 		}
 
+		public void ReadFromStringArray( ref string[] nodeParams )
+		{
+			base.ReadFromString( ref nodeParams );
+		}
+
 		public override void ReadFromString( ref string[] nodeParams )
 		{
 			base.ReadFromString( ref nodeParams );
 			ReadAdditionalData( ref nodeParams );
+			if( UIUtils.CurrentShaderVersion() > 17101 )
+			{
+				m_useSamplerArrayIdx = Convert.ToInt32( GetCurrentParam( ref nodeParams ) );
+			}
 		}
 
 		public virtual void ReadAdditionalData( ref string[] nodeParams )
@@ -846,7 +840,7 @@ namespace AmplifyShaderEditor
 			{
 				m_currentType = TextureType.Texture2D;
 			}
-			
+
 			ConfigTextureData( m_currentType );
 
 			//ConfigFromObject( m_defaultValue );
@@ -862,6 +856,13 @@ namespace AmplifyShaderEditor
 			ConfigureOutputPorts();
 		}
 
+		public override void RefreshExternalReferences()
+		{
+			base.RefreshExternalReferences();
+			ConfigureInputPorts();
+			ConfigureOutputPorts();
+		}
+
 		public override void ReadAdditionalClipboardData( ref string[] nodeParams )
 		{
 			base.ReadAdditionalClipboardData( ref nodeParams );
@@ -873,6 +874,15 @@ namespace AmplifyShaderEditor
 		{
 			base.WriteToString( ref nodeInfo, ref connectionsInfo );
 			WriteAdditionalToString( ref nodeInfo, ref connectionsInfo );
+			if( m_useSamplerArrayIdx > 0 )
+			{
+				TexturePropertyNode samplerNode = UIUtils.GetTexturePropertyNode( m_useSamplerArrayIdx - 1 );
+				IOUtils.AddFieldValueToString( ref nodeInfo, ( samplerNode != null ? samplerNode.UniqueId : -1 ) );
+			}
+			else
+			{
+				IOUtils.AddFieldValueToString( ref nodeInfo, -1 );
+			}
 		}
 
 		public virtual void WriteAdditionalToString( ref string nodeInfo, ref string connectionsInfo )
@@ -968,13 +978,19 @@ namespace AmplifyShaderEditor
 
 		public override bool GetUniformData( out string dataType, out string dataName, ref bool fullValue )
 		{
-			if( m_containerGraph.SamplingThroughMacros )
+			m_excludeUniform = false;
+			ParentGraph outsideGraph = UIUtils.CurrentWindow.OutsideGraph;
+#if UNITY_2018_1_OR_NEWER
+			if( outsideGraph.SamplingMacros || m_currentType == TextureType.Texture2DArray )
+#else
+			if( ( outsideGraph.SamplingMacros && !outsideGraph.IsStandardSurface ) || m_currentType == TextureType.Texture2DArray )
+#endif
 			{
-				if( m_containerGraph.IsSRP )
+				if( outsideGraph.IsSRP )
 				{
 					if( Constants.TexDeclarationSRPMacros.ContainsKey( m_currentType ) )
 					{
-						dataName = string.Format( Constants.TexDeclarationSRPMacros[ m_currentType ], PropertyName );
+						dataName = GeneratorUtils.GetPropertyDeclaraction( PropertyName, m_currentType, ";" );
 						dataType = string.Empty;
 						fullValue = true;
 						return true;
@@ -982,27 +998,26 @@ namespace AmplifyShaderEditor
 				}
 				else if( Constants.TexDeclarationStandardMacros.ContainsKey( m_currentType ) )
 				{
-					dataName = string.Format( Constants.TexDeclarationStandardMacros[ m_currentType ], PropertyName );
+#if !UNITY_2018_1_OR_NEWER
+					if( m_currentType == TextureType.Texture2DArray && outsideGraph.IsStandardSurface )
+						dataName = string.Format( Constants.TexDeclarationStandardMacros[ m_currentType ], PropertyName );
+					else
+#endif
+						dataName = GeneratorUtils.GetPropertyDeclaraction( PropertyName, m_currentType, ";" );
 					dataType = string.Empty;
 					fullValue = true;
 					return true;
 				}
 			}
 
-			if( m_currentType == TextureType.Texture2DArray )
+			//TODO: this is a hack and needs to be properly fixed
+			if( PropertyName == "_CameraDepthTexture" )
 			{
-				MasterNode masterNode = UIUtils.CurrentWindow.OutsideGraph.CurrentMasterNode;
-				if( masterNode.CurrentDataCollector.IsTemplate && masterNode.CurrentDataCollector.IsSRP )
-				{
-					dataType = "TEXTURE2D_ARRAY( " + PropertyName + "";
-					dataName = ");\nuniform SAMPLER( sampler" + PropertyName + " )";
-					return true;
-				}
-				dataType = "UNITY_DECLARE_TEX2DARRAY(";
+				m_excludeUniform = true;
+				dataType = "UNITY_DECLARE_DEPTH_TEXTURE(";
 				dataName = m_propertyName + " )";
 				return true;
 			}
-			
 
 			dataType = UIUtils.TextureTypeToCgType( m_currentType );
 			dataName = m_propertyName;
@@ -1061,12 +1076,12 @@ namespace AmplifyShaderEditor
 		public override void OnPropertyNameChanged()
 		{
 			base.OnPropertyNameChanged();
-			UIUtils.UpdateTexturePropertyDataNode( UniqueId, PropertyInspectorName );
+			UIUtils.UpdateTexturePropertyDataNode( UniqueId, PropertyName );
 		}
 
 		public override void SetGlobalValue() { Shader.SetGlobalTexture( m_propertyName, m_defaultValue ); }
 		public override void FetchGlobalValue() { m_materialValue = Shader.GetGlobalTexture( m_propertyName ); }
-		public override string DataToArray { get { return PropertyInspectorName; } }
+		public override string DataToArray { get { return PropertyName; } }
 		public TextureType CurrentType { get { return m_currentType; } }
 
 		public bool DrawAutocast
