@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GlowEmission
   m_EditorClassIdentifier: 
   m_functionInfo: "// Made with Amplify Shader Editor\n// Available at the Unity
-    Asset Store - http://u3d.as/y3X \n/*ASEBEGIN\nVersion=16700\n-1680;110;1042;906;1275.819;1392.053;2.530136;True;False\nNode;AmplifyShaderEditor.ColorNode;7;257.5262,-453.7939;Float;False;Property;_GlowColor;Glow
-    Color;7;1;[HDR];Create;True;0;0;False;0;0,0,0,0;215.6256,26.184,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode;8;555.3552,-498.4081;Float;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0\nNode;AmplifyShaderEditor.SamplerNode;9;187.161,-764.6648;Float;True;Property;_EmissiveTex;EmissiveTex;9;0;Create;True;0;0;False;0;None;9e2ed0a463ae2ef488ddf30afc146f96;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.FunctionOutput;0;799.5228,-435.1835;Float;False;True;Output;0;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0\nWireConnection;8;0;9;0\nWireConnection;8;1;7;0\nWireConnection;0;0;8;0\nASEEND*/\n//CHKSM=A8F295EE17B593D2DBF8A144EC7B3D9B4BCAE28F"
+    Asset Store - http://u3d.as/y3X \n/*ASEBEGIN\nVersion=18500\n1920;0;1920;1019;1489.507;1181.476;1.703133;True;False\nNode;AmplifyShaderEditor.SimpleMultiplyOpNode;8;555.3552,-498.4081;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0\nNode;AmplifyShaderEditor.ColorNode;7;257.5262,-453.7939;Float;False;Property;_GlowColor;Glow
+    Color;7;1;[HDR];Create;True;0;0;False;0;False;0,0,0,0;215.6256,26.184,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.SamplerNode;9;187.161,-764.6648;Inherit;True;Property;_EmissiveTex;EmissiveTex;9;0;Create;True;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4\nNode;AmplifyShaderEditor.FunctionOutput;0;799.5228,-435.1835;Inherit;False;True;-1;Output;0;False;1;0;COLOR;0,0,0,0;False;1;COLOR;0\nWireConnection;8;0;9;0\nWireConnection;8;1;7;0\nWireConnection;0;0;8;0\nASEEND*/\n//CHKSM=95F2D46AFAC56E02E6D169C2F3145C0D9146B07B"
   m_functionName: 
   m_description: 
   m_additionalIncludes:
@@ -31,6 +31,7 @@ MonoBehaviour:
     m_additionalDirectives: []
     m_shaderFunctionDirectives: []
     m_nativeDirectives: []
+    m_nativeDirectivesIndex: -1
     m_nativeDirectivesFoldout: 0
     m_directivesSaveItems: []
   m_nodeCategory: 3
