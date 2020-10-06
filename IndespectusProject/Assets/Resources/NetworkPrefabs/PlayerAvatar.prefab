@@ -8559,7 +8559,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9048306520803379934}
   m_LocalRotation: {x: -0.70710677, y: 0.00000008428467, z: -0.000000040628937, w: 0.7071068}
-  m_LocalPosition: {x: -0.0006, y: 0.0163, z: 0.0006}
+  m_LocalPosition: {x: -0.0006, y: 0.0134, z: 0.0006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8864128514513510617}
@@ -8661,7 +8661,7 @@ LineRenderer:
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
-  m_UseWorldSpace: 1
+  m_UseWorldSpace: 0
   m_Loop: 0
 --- !u!114 &6367277080934137731
 MonoBehaviour:

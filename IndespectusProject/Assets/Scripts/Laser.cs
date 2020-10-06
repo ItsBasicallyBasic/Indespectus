@@ -16,18 +16,18 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lr.SetPosition(0, transform.position);
+        lr.SetPosition(0, transform.worldToLocalMatrix.MultiplyPoint3x4(transform.position));
         RaycastHit hit;
         if(Physics.Raycast(transform.position, transform.forward, out hit))
         {
             if (hit.collider && hit.transform.tag != "Bullet")
             {
-                lr.SetPosition(1, hit.point);
+                lr.SetPosition(1, transform.worldToLocalMatrix.MultiplyPoint3x4(hit.point));
             }
         }
         else
         {
-            lr.SetPosition(1, transform.position + transform.forward * 5000);
+            lr.SetPosition(1, transform.worldToLocalMatrix.MultiplyPoint3x4(transform.position + transform.forward * 5000));
         }
     }
 }
