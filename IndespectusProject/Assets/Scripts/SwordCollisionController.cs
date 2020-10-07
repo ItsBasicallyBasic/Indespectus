@@ -11,6 +11,9 @@ public class SwordCollisionController : MonoBehaviour
     public WeaponBehaviour weaponBehaviour;
     public PlayerVelocity playerVelocity;
 
+    [SerializeField] private GameObject swordBlock;
+    [SerializeField] private GameObject damagedParticleEffect;
+
     private GameObject currentSpark;
     [SerializeField] private Transform raycastPoint;
 
@@ -26,15 +29,22 @@ public class SwordCollisionController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
+        //Instantiate(damagedParticleEffect, transform.position + transform.up * 0.5f, transform.rotation);
+        //Instantiate(swordBlock, transform.position + transform.up * 0.5f, transform.rotation);
         PhotonView otherPhotonView = other.transform.GetComponent<PhotonView>();
 
         if (otherPhotonView != null && !otherPhotonView.IsMine && PV.IsMine /*|| !cn.networked*/) {
             if(other.gameObject.tag == "Sword" || other.gameObject.tag == "Shield")
             {
                 print("Blocked!");
+                Instantiate(swordBlock, transform.position + transform.up * 0.5f, transform.rotation);
                 GameManager.GM.audioManager.PlaySound(GetComponent<AudioSource>(), "swordBreak", 1);
                 weaponBehaviour.swordBroken = true;
+            }
+
+            if(other.gameObject.tag == "Player")
+            {
+                Instantiate(damagedParticleEffect, transform.position + transform.up * 0.5f, transform.rotation);
             }
         }
 
@@ -123,7 +133,9 @@ public class SwordCollisionController : MonoBehaviour
 
     public void ForceDestroySpark()
     {
-        if(currentSpark != null)
+        GameManager.GM.audioManager.StopRepeatingSound(GetComponentInParent<AudioSource>());
+
+        if (currentSpark != null)
         {
             currentSpark.GetComponent<ParticleSystem>().Stop();
             Destroy(currentSpark, 1);

@@ -8,6 +8,10 @@ public class BulletCollision : MonoBehaviour
 {
 
     [SerializeField] private GameObject bulletHit;
+    [SerializeField] private GameObject bulletBlocked;
+    [SerializeField] private GameObject bulletDamage;
+
+    private Vector3 hitPos;
 
     [SerializeField]
     private PhotonView PV;
@@ -18,6 +22,15 @@ public class BulletCollision : MonoBehaviour
     void Awake() {
         if(PV == null) {PV = gameObject.GetComponent<PhotonView>();}
         if(cn == null) {cn = GameObject.FindGameObjectWithTag("NetworkCheck").GetComponent<CheckNetworked>();}
+    }
+
+    void Update()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, transform.forward, out hit, 1))
+        {
+            hitPos = hit.point;
+        }
     }
 
     [PunRPC]
@@ -64,12 +77,23 @@ public class BulletCollision : MonoBehaviour
         //if(PV.IsMine) {
             //PV.RPC("RPC_HitOther", RpcTarget.All, other);
 
-            if(other.tag == "Shield" || other.tag == "Sword" || other.tag == "Player" || other.tag == "Untagged")
+            if(other.tag == "Shield" || other.tag == "Sword")
+            {
+                // blocked particle effect
+                Instantiate(bulletBlocked, hitPos, transform.rotation);
+                Instantiate(bulletHit, hitPos, transform.rotation);
+
+                Destroy(gameObject);
+            }
+
+            if(other.tag == "Player" || other.tag == "Untagged")
             {
                 print("hit shield or sword!");
 
                 // bullet explosion particle effect
-                Instantiate(bulletHit, transform.position, transform.rotation);
+                Instantiate(bulletHit, hitPos, transform.rotation);
+                //Instantiate(bulletDamage, hitPos, transform.rotation);
+                //Instantiate(bulletBlocked, hitPos, transform.rotation);
 
                 Destroy(gameObject);
             }

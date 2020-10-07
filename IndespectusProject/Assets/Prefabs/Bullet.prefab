@@ -5019,6 +5019,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletHit: {fileID: 3967509421571495775, guid: 995925bcc06cb144c9fb2e1c33834a15,
     type: 3}
+  bulletBlocked: {fileID: 0}
+  bulletDamage: {fileID: 0}
   PV: {fileID: 1542342851671045005}
   cn: {fileID: 0}
 --- !u!114 &1542342851671045005

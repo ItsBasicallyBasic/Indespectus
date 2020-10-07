@@ -250,6 +250,7 @@ public class WeaponBehaviour : MonoBehaviour
     [PunRPC]
     void DeactivateSword()
     {
+        GetComponentInChildren<SwordCollisionController>().ForceDestroySpark();
         swordActive = false;
         sword.SetActive(false);
     }
