@@ -121,6 +121,16 @@ public class SwordCollisionController : MonoBehaviour
         }
     }
 
+    public void ForceDestroySpark()
+    {
+        if(currentSpark != null)
+        {
+            currentSpark.GetComponent<ParticleSystem>().Stop();
+            Destroy(currentSpark, 1);
+            currentSpark = null;
+        }
+    }
+
     // private void OnCollisionEnter(Collision collision)
     // {
     //     if(collision.gameObject.tag == "Shield")
