@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 85669350}
   - component: {fileID: 85669349}
   - component: {fileID: 85669348}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ConnectBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 104429666}
   - component: {fileID: 104429668}
   - component: {fileID: 104429667}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1199,6 +1199,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Table (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4432539974282382876, guid: 5d763c19360988f47bf3144e11e621c1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5945956163403381126, guid: 5d763c19360988f47bf3144e11e621c1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1423,7 +1428,7 @@ GameObject:
   - component: {fileID: 381582175}
   - component: {fileID: 381582177}
   - component: {fileID: 381582176}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1891,6 +1896,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PostProcessingVolume
       objectReference: {fileID: 0}
+    - target: {fileID: 3532873262495743490, guid: e471d76f37a19314c89f6d7cb4315b96,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3532873262495743548, guid: e471d76f37a19314c89f6d7cb4315b96,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2024,7 +2034,7 @@ GameObject:
   - component: {fileID: 591643397}
   - component: {fileID: 591643399}
   - component: {fileID: 591643398}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2546,7 +2556,7 @@ GameObject:
   - component: {fileID: 793243688}
   - component: {fileID: 793243690}
   - component: {fileID: 793243689}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: starting in
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2890,7 +2900,7 @@ GameObject:
   - component: {fileID: 844954941}
   - component: {fileID: 844954943}
   - component: {fileID: 844954942}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: number of players
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3835,7 +3845,7 @@ GameObject:
   - component: {fileID: 1010704978}
   - component: {fileID: 1010704980}
   - component: {fileID: 1010704979}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4044,7 +4054,7 @@ GameObject:
   - component: {fileID: 1101921603}
   - component: {fileID: 1101921605}
   - component: {fileID: 1101921604}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ErrorText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4319,7 +4329,7 @@ GameObject:
   - component: {fileID: 1177954532}
   - component: {fileID: 1177954534}
   - component: {fileID: 1177954533}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Waiting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4485,6 +4495,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -32.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5789303846668966921, guid: 4bbcd8c77b19b0a46aad374806244e89,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6344521281331139929, guid: 4bbcd8c77b19b0a46aad374806244e89,
         type: 3}
       propertyPath: m_IsKinematic
@@ -4588,6 +4603,11 @@ PrefabInstance:
     - target: {fileID: 7437000742487505052, guid: 4bbcd8c77b19b0a46aad374806244e89,
         type: 3}
       propertyPath: EnableLaughter
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7437000742497703928, guid: 4bbcd8c77b19b0a46aad374806244e89,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8831822563362506878, guid: 4bbcd8c77b19b0a46aad374806244e89,
@@ -5201,6 +5221,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lobby Room
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: a2f70834e4bdd434a9bc2852493c6cd1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2f70834e4bdd434a9bc2852493c6cd1, type: 3}
 --- !u!1 &1444809573
@@ -5533,6 +5558,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Buildings
       objectReference: {fileID: 0}
+    - target: {fileID: 7137579468162127552, guid: 93bf562cf28959843b0d647e4493898c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7137579468162127559, guid: 93bf562cf28959843b0d647e4493898c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5612,7 +5642,7 @@ GameObject:
   - component: {fileID: 1616852148}
   - component: {fileID: 1616852147}
   - component: {fileID: 1616852146}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: waiting menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6377,7 +6407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1719658312}
   - component: {fileID: 1719658313}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6508,7 +6538,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1768408855
 Transform:
@@ -6536,7 +6566,7 @@ GameObject:
   - component: {fileID: 1806777221}
   - component: {fileID: 1806777220}
   - component: {fileID: 1806777219}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CancelBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6668,7 +6698,7 @@ GameObject:
   - component: {fileID: 1816928936}
   - component: {fileID: 1816928938}
   - component: {fileID: 1816928937}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7078,7 +7108,7 @@ GameObject:
   - component: {fileID: 1951061067}
   - component: {fileID: 1951061066}
   - component: {fileID: 1951061065}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LoadingBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7435,7 +7465,7 @@ GameObject:
   - component: {fileID: 2040698111}
   - component: {fileID: 2040698110}
   - component: {fileID: 2040698109}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: RefreshBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7707,7 +7737,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &194010516534348089
 GameObject:
@@ -8211,7 +8241,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &1699770036447492275
 MonoBehaviour:
@@ -8713,7 +8743,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!33 &3868127910462830913
 MeshFilter:
@@ -9002,7 +9032,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &4621907209976612482
 MeshRenderer:
@@ -9098,7 +9128,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &4621907210598256282
 MeshRenderer:
@@ -9180,7 +9210,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &4621907210686389462
 MeshRenderer:
@@ -9290,7 +9320,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &4621907210960746670
 MeshRenderer:
@@ -9372,7 +9402,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &4621907211465937522
 MeshRenderer:
@@ -9597,7 +9627,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &5815757381066392460
 MeshRenderer:
@@ -9795,6 +9825,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Table
       objectReference: {fileID: 0}
+    - target: {fileID: 4432539974282382876, guid: 5d763c19360988f47bf3144e11e621c1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5945956163403381126, guid: 5d763c19360988f47bf3144e11e621c1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9970,7 +10005,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7256312026881910477
 Transform:
