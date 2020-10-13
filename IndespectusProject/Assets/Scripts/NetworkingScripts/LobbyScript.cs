@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+using TMPro;
 
 public class LobbyScript : MonoBehaviourPunCallbacks {
     
@@ -18,6 +19,12 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
     public GameObject errorText;
     private int connectAttempts = 0;
     private float findFail = 0;
+    
+    [SerializeField]
+    private TMP_Text findTimer;
+    
+    [SerializeField]
+    private GameObject findFailTxt;
 
     void Awake() {
         lobby = this;
@@ -37,6 +44,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
         connectAttempts = 0;
         findBtn.interactable = true;
         connectButton.interactable = true;
+        findFail = 5;
     }
 
     public void OnRefreshButtonClicked() {
@@ -51,21 +59,28 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
         // PhotonNetwork.JoinRandomRoom();
         // cancelButton.SetActive(true);
         CreateRoom();
+        findFailTxt.SetActive(false);
     }
     
     public void OnFindRoomButtonClicked() {
         PhotonNetwork.JoinRandomRoom();
         findBtn.interactable = false;
+        findFail = 5;
+        findFailTxt.SetActive(false);
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message) {
-        // Debug.Log("tried to join random room but failed");
-        findFail += Time.deltaTime;
+        Debug.Log("tried to join random room but failed");
+        findFail -= Time.deltaTime;
+        findTimer.text = "" + (int) findFail;
         if(findFail > 0) {
             PhotonNetwork.JoinRandomRoom();
+            Debug.Log("trying again");
         } else {
             findFail = 5;
             findBtn.interactable = true;
+            Debug.Log("Found no rooms");
+            findFailTxt.SetActive(true);
         }
         // CreateRoom();
     }
@@ -93,8 +108,8 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
         // connectButton.SetActive(true);
         // refreshButton.SetActive(true);
         // loadingButton.SetActive(false);
-        roomPannel.SetActive(true);
-        lobbyPannel.SetActive(false);
+        roomPannel.SetActive(false);
+        lobbyPannel.SetActive(true);
     }
 
     // Update is called once per frame

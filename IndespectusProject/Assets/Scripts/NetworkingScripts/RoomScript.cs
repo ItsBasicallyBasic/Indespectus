@@ -41,8 +41,8 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     string disconnected = "Not connected to Master Server";
 
     public Button StartBtn;
-    private GameObject roomPannel;
-    private GameObject lobbyPannel;
+    public GameObject roomPannel;
+    public GameObject lobbyPannel;
 
     private void Awake() {
         if(RoomScript.room == null) {
@@ -69,8 +69,8 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     }
 
     public override void OnJoinedRoom() {
-        roomPannel.SetActive(false);
-        lobbyPannel.SetActive(true);
+        roomPannel.SetActive(true);
+        lobbyPannel.SetActive(false);
         base.OnJoinedRoom();
         Debug.Log("Joined a room");
         photonPlayers = PhotonNetwork.PlayerList;

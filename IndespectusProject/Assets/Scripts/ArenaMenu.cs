@@ -38,15 +38,15 @@ public class ArenaMenu : MonoBehaviourPunCallbacks {
             Pointer.SetActive(handsActive);
         }
         arenaMenu.SetActive(menuActive);
-        Hands.SetActive(handsActive);
+        // Hands.SetActive(handsActive);
 
         
     }
 
-    public override void OnDisconnected(DisconnectCause cause) {
-        base.OnDisconnected(cause);
-        SceneManager.LoadScene(MultiplayerSettings.multiplayerSettings.endScene);
-    }
+    // public override void OnDisconnected(DisconnectCause cause) {
+    //     base.OnDisconnected(cause);
+    //     SceneManager.LoadScene(MultiplayerSettings.multiplayerSettings.endScene);
+    // }
     
     public void OnExitClick(){
         Application.Quit();
