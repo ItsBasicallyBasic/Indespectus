@@ -1481,7 +1481,7 @@ public class OVRManager : MonoBehaviour
 		// Dispatch HMD events.
 
 		isHmdPresent = OVRNodeStateProperties.IsHmdPresent();
-
+		OVRManager.instance.useRecommendedMSAALevel = false;
 		if (useRecommendedMSAALevel && QualitySettings.antiAliasing != display.recommendedMSAALevel)
 		{
 			Debug.Log("The current MSAA level is " + QualitySettings.antiAliasing +

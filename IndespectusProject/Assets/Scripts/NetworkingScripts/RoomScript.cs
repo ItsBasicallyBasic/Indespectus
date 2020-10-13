@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using UnityEngine.UI;
 
 public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     
@@ -35,7 +36,14 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     public TMP_Text numPlayersText;
     public TMP_Text countdownText;
 
-    
+    public TMP_Text connectionState;
+    string connected = "Connected to Master Server";
+    string disconnected = "Not connected to Master Server";
+
+    public Button StartBtn;
+    private GameObject roomPannel;
+    private GameObject lobbyPannel;
+
     private void Awake() {
         if(RoomScript.room == null) {
             RoomScript.room = this;
@@ -61,6 +69,8 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     }
 
     public override void OnJoinedRoom() {
+        roomPannel.SetActive(false);
+        lobbyPannel.SetActive(true);
         base.OnJoinedRoom();
         Debug.Log("Joined a room");
         photonPlayers = PhotonNetwork.PlayerList;
@@ -104,7 +114,7 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
         }
     }
 
-    internal void StartGame() {
+    public void StartGame() {
         
         isGameLoaded = true;
         if(!PhotonNetwork.IsMasterClient)
@@ -144,30 +154,31 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
         if(currentScene == 0) {
             if(MultiplayerSettings.multiplayerSettings.delayStart) {
                 if(playersInGame == 1) {
-                    RestartTimer();
+                    // RestartTimer();
+                    StartBtn.interactable = false;
                 } 
                 
                 
                 if(readyToCount || readyToStart) {
-                    countdownText.SetText("Starting in: " + (int)timeToStart);
-                } else {countdownText.SetText("Game starting in: n/a");}
-                if(!isGameLoaded) {
-                    if(readyToStart) {
-                        atMaxPlayers -= Time.deltaTime;
-                        lessThanMaxPlayers = atMaxPlayers;
-                        timeToStart = atMaxPlayers;
-                    } else if(readyToCount) {
-                        lessThanMaxPlayers -= Time.deltaTime;
-                        timeToStart = lessThanMaxPlayers;
-                    }
-                    if(timeToStart <= 0) {
-                        StartGame();
-                    }
-                }
+                    StartBtn.interactable = true;
+                } else {StartBtn.interactable = false;}
+                // if(!isGameLoaded) {
+                //     if(readyToStart) {
+                //         atMaxPlayers -= Time.deltaTime;
+                //         lessThanMaxPlayers = atMaxPlayers;
+                //         timeToStart = atMaxPlayers;
+                //     } else if(readyToCount) {
+                //         lessThanMaxPlayers -= Time.deltaTime;
+                //         timeToStart = lessThanMaxPlayers;
+                //     }
+                //     if(timeToStart <= 0) {
+                //         StartGame();
+                //     }
+                // }
             }
-            if(!PhotonNetwork.InRoom) {
-                numPlayersText.SetText("Players in room out of max players possible (n/a), not in room");
-            }
+            // if(!PhotonNetwork.InRoom) {
+            //     numPlayersText.SetText("Players in room out of max players possible (n/a), not in room");
+            // }
         }
     }
 
