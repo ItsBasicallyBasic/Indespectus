@@ -4585,6 +4585,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7437000742487505052, guid: 4bbcd8c77b19b0a46aad374806244e89,
+        type: 3}
+      propertyPath: EnableLaughter
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8831822563362506878, guid: 4bbcd8c77b19b0a46aad374806244e89,
         type: 3}
       propertyPath: m_AnchorMin.y
