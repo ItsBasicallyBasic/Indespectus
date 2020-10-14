@@ -15,6 +15,9 @@ public class EndScreen : MonoBehaviourPunCallbacks  {
 
     [SerializeField] GameObject leaving;
     [SerializeField] GameObject results;
+    [SerializeField] GameObject win;
+    [SerializeField] GameObject lose;
+    int playerNum;
 
     private string winner =  "";
 
@@ -25,25 +28,31 @@ public class EndScreen : MonoBehaviourPunCallbacks  {
             int j = -1;
             for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++) {
                 if(PhotonNetwork.PlayerList[i].IsLocal) {
-                    yourNum.SetText("You were Player " + (i + 1));
+                    // yourNum.SetText("You were Player " + (i + 1));
+                    playerNum = i;
                 }
                 if(j < GameManager.GM.players[i].Kills) {
                     j = i;
                 }
             }
+            if(j == (playerNum)) {
+                win.SetActive(true);
+            } else {
+                lose.SetActive(true);
+            }
         // }
-        for(int i = 0; i < 4; i++){
-            if(i == j) {
-                winner = "Winner";
-            } else {
-                winner = "";
-            }
-            if(i < PhotonNetwork.PlayerList.Length) {
-                PlayerResults[i].SetText("Player " + (i + 1) + " " + GameManager.GM.players[i].Kills  + " | " + GameManager.GM.players[i].Deaths + " | " + winner);
-            } else {
-                PlayerResults[i].SetText("");
-            }
-        }
+        // for(int i = 0; i < 4; i++){
+        //     if(i == j) {
+        //         winner = "Winner";
+        //     } else {
+        //         winner = "";
+        //     }
+        //     if(i < PhotonNetwork.PlayerList.Length) {
+        //         PlayerResults[i].SetText("Player " + (i + 1) + " " + GameManager.GM.players[i].Kills  + " | " + GameManager.GM.players[i].Deaths + " | " + winner);
+        //     } else {
+        //         PlayerResults[i].SetText("");
+        //     }
+        // }
         
         PhotonNetwork.DestroyAll();
 
