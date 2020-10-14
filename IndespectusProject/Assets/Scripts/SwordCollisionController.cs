@@ -42,6 +42,10 @@ public class SwordCollisionController : MonoBehaviour
                 Instantiate(swordBreak, transform.position, transform.rotation);
                 GameManager.GM.audioManager.PlaySound(transform.parent.GetComponent<AudioSource>(), "swordBreak", 1);
                 weaponBehaviour.swordBroken = true;
+                if(other.gameObject.tag == "Sword")
+                {
+                    other.gameObject.GetComponent<WeaponBehaviour>().swordBroken = true;
+                }
                 
             }
 
