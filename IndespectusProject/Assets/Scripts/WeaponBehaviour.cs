@@ -77,7 +77,7 @@ public class WeaponBehaviour : MonoBehaviour
     void Update()
     {
 
-        if (PV.IsMine /*|| !cn.networked*/) {
+        //if (PV.IsMine /*|| !cn.networked*/) {
             switch (multitoolState)
             {
                 case MultitoolStates.Sword:
@@ -131,7 +131,7 @@ public class WeaponBehaviour : MonoBehaviour
             }
         }
 
-    }
+    //}
 
     void SwordEquipped() {
         // if(PV.IsMine) {
@@ -167,14 +167,18 @@ public class WeaponBehaviour : MonoBehaviour
 
             if (swordBroken && swordActive)
             {
-                // DeactivateSword();
-                PV.RPC("DeactivateSword", RpcTarget.AllBuffered);
+            // DeactivateSword();
+            //swordActive = false;
+            //sword.SetActive(false);
+            PV.RPC("DeactivateSword", RpcTarget.AllBuffered);
             }
 
             if (!swordBroken && !swordActive)
             {
-                // ActivateSword();
-                PV.RPC("ActivateSword", RpcTarget.AllBuffered);
+            // ActivateSword();
+            //swordActive = true;
+            //sword.SetActive(true);
+            PV.RPC("ActivateSword", RpcTarget.AllBuffered);
             }
         // }
     }

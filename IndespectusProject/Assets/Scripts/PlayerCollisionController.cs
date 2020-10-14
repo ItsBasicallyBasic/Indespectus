@@ -18,6 +18,8 @@ public class PlayerCollisionController : MonoBehaviour
     private AudioClip hapticAudioClip;
     [SerializeField] CheckNetworked cn;
 
+    [SerializeField] private GameObject damage;
+
     private void Start() {
         if(PV == null) {PV = gameObject.GetComponent<PhotonView>();}
         if(cn == null) {cn = GameObject.FindGameObjectWithTag("NetworkCheck").GetComponent<CheckNetworked>();}
@@ -81,6 +83,7 @@ public class PlayerCollisionController : MonoBehaviour
                 GameManager.GM.audioManager.PlaySound(GetComponent<AudioSource>(), "Damaged1", 1);
 
                 // Play visual effect
+                //Instantiate(damage, transform.position, transform.rotation);
 
                 // Haptic feedback
                 OVRHapticsClip hapticsClip = new OVRHapticsClip(hapticAudioClip);
