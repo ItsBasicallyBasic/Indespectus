@@ -68,9 +68,13 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     }
 
     public override void OnJoinedRoom() {
+        
         roomPannel.SetActive(true);
         lobbyPannel.SetActive(false);
         base.OnJoinedRoom();
+        if(!PhotonNetwork.IsMasterClient) {
+            StartBtn.gameObject.SetActive(false);
+        }
         // Debug.Log("Joined a room");
         var temp = PhotonNetwork.CurrentRoom.Name;
         roomNo.text = ("Room #" + temp);
