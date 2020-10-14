@@ -3778,6 +3778,8 @@ MonoBehaviour:
   playerVelocity: {fileID: 4770890048818956326}
   swordBlock: {fileID: 7160944073540595902, guid: 95f2ffa2f7a3ce248b704924a1e0ade5,
     type: 3}
+  swordBreak: {fileID: 7963545800565679880, guid: 1c469c64e952405448c0a8b1662c9dc5,
+    type: 3}
   damagedParticleEffect: {fileID: 8993941265930680405, guid: 56e037a86198d104fa62d63c8fdb1af5,
     type: 3}
   raycastPoint: {fileID: 6812568413872609215}

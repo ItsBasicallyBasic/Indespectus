@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7963545800565679927}
   - component: {fileID: 7963545800565679926}
   - component: {fileID: 7963545800565679881}
+  - component: {fileID: 170044086338858573}
   m_Layer: 0
   m_Name: SwordBreak
   m_TagString: Untagged
@@ -4871,3 +4872,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &170044086338858573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7963545800565679880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3119c811920078b4881a44d45e39e776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeUntilDestroy: 1

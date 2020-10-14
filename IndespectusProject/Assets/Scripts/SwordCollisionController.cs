@@ -12,6 +12,7 @@ public class SwordCollisionController : MonoBehaviour
     public PlayerVelocity playerVelocity;
 
     [SerializeField] private GameObject swordBlock;
+    [SerializeField] private GameObject swordBreak;
     [SerializeField] private GameObject damagedParticleEffect;
 
     private GameObject currentSpark;
@@ -38,6 +39,7 @@ public class SwordCollisionController : MonoBehaviour
             {
                 print("Blocked!");
                 Instantiate(swordBlock, transform.position + transform.up * 0.5f, transform.rotation);
+                Instantiate(swordBreak, transform.position, transform.rotation);
                 GameManager.GM.audioManager.PlaySound(transform.parent.GetComponent<AudioSource>(), "swordBreak", 1);
                 weaponBehaviour.swordBroken = true;
                 
