@@ -134,7 +134,7 @@ public class WeaponBehaviour : MonoBehaviour
     //}
 
     void SwordEquipped() {
-        // if(PV.IsMine) {
+         if(PV.IsMine) {
             gunLaser.SetActive(false);
 
             if (OVRInput.GetDown(OVRInput.Button.Two)/*  && gameObject.tag == "Player" */)
@@ -168,19 +168,19 @@ public class WeaponBehaviour : MonoBehaviour
             if (swordBroken && swordActive)
             {
             // DeactivateSword();
-            //swordActive = false;
-            //sword.SetActive(false);
-            PV.RPC("DeactivateSword", RpcTarget.AllBuffered);
+            swordActive = false;
+            sword.SetActive(false);
+            //PV.RPC("DeactivateSword", RpcTarget.AllBuffered);
             }
 
             if (!swordBroken && !swordActive)
             {
             // ActivateSword();
-            //swordActive = true;
-            //sword.SetActive(true);
-            PV.RPC("ActivateSword", RpcTarget.AllBuffered);
+            swordActive = true;
+            sword.SetActive(true);
+            //PV.RPC("ActivateSword", RpcTarget.AllBuffered);
             }
-        // }
+         }
     }
 
     void GunEquipped()
