@@ -21,9 +21,10 @@ public class SwordCollisionController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(PV == null) {PV = gameObject.GetComponent<PhotonView>();}
-        if(cn == null) {cn = GameObject.FindGameObjectWithTag("NetworkCheck").GetComponent<CheckNetworked>();} 
-        if(PV.IsMine /*|| !cn.networked*/) {
+        if (PV == null) { PV = gameObject.GetComponent<PhotonView>(); }
+        if (cn == null) { cn = GameObject.FindGameObjectWithTag("NetworkCheck").GetComponent<CheckNetworked>(); }
+        if (PV.IsMine /*|| !cn.networked*/)
+        {
             weaponBehaviour = GetComponentInParent<WeaponBehaviour>();
         }
     }
@@ -34,30 +35,31 @@ public class SwordCollisionController : MonoBehaviour
         //Instantiate(swordBlock, transform.position + transform.up * 0.5f, transform.rotation);
         PhotonView otherPhotonView = other.transform.GetComponent<PhotonView>();
 
-        if (otherPhotonView != null && !otherPhotonView.IsMine && PV.IsMine /*|| !cn.networked*/) {
-            if(other.gameObject.tag == "Sword" || other.gameObject.tag == "Shield")
+        if (otherPhotonView != null && !otherPhotonView.IsMine && PV.IsMine /*|| !cn.networked*/)
+        {
+            if (other.gameObject.tag == "Sword" || other.gameObject.tag == "Shield")
             {
                 print("Blocked!");
                 Instantiate(swordBlock, transform.position + transform.up * 0.5f, transform.rotation);
                 Instantiate(swordBreak, transform.position, transform.rotation);
                 GameManager.GM.audioManager.PlaySound(transform.parent.GetComponent<AudioSource>(), "swordBreak", 1);
                 weaponBehaviour.swordBroken = true;
-                if(other.gameObject.tag == "Sword")
+                if (other.gameObject.tag == "Sword")
                 {
                     other.transform.parent.gameObject.GetComponent<WeaponBehaviour>().swordBroken = true;
-                    Instantiate(swordBreak, other.parent.transform.position, other.parent.transform.rotation);
+                    Instantiate(swordBreak, other.gameObject.transform.parent.position, other.gameObject.transform.parent.rotation);
                 }
-                
+
             }
 
-            if(other.gameObject.tag == "Player")
+            if (other.gameObject.tag == "Player")
             {
                 Instantiate(damagedParticleEffect, transform.position + transform.up * 0.5f, transform.rotation);
                 GameManager.GM.audioManager.PlaySound(transform.parent.GetComponent<AudioSource>(), "Damaged1", 1);
             }
         }
 
-        if(other.gameObject.tag == "Sword" || other.gameObject.tag == "Shield")
+        if (other.gameObject.tag == "Sword" || other.gameObject.tag == "Shield")
         {
             Instantiate(swordBlock, transform.position + transform.up * 0.5f, transform.rotation);
         }
@@ -86,20 +88,20 @@ public class SwordCollisionController : MonoBehaviour
             layerMask = ~layerMask;
             if (Physics.Raycast(raycastPoint.position, transform.up, out hit, 1, layerMask))
             {
-                if(currentSpark != null)
+                if (currentSpark != null)
                 {
                     currentSpark.transform.position = hit.point;
                     currentSpark.transform.rotation = Quaternion.LookRotation(hit.normal);
                 }
 
-                if(currentSpark == null)
+                if (currentSpark == null)
                 {
                     currentSpark = Instantiate(GameManager.GM.collisionParticleEffect, transform.position, Quaternion.identity);
                 }
             }
             else
             {
-                if(currentSpark != null)
+                if (currentSpark != null)
                 {
                     currentSpark.GetComponent<ParticleSystem>().Stop();
                     Destroy(currentSpark, 1);
@@ -171,7 +173,4 @@ public class SwordCollisionController : MonoBehaviour
     {
         weaponBehaviour.swordBroken = true;
     }
-
-    [PunRPC]
-    void 
 }
