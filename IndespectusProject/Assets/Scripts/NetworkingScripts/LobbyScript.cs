@@ -51,7 +51,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
         connectAttempts = 0;
         findBtn.interactable = true;
         connectButton.interactable = true;
-        findFail = 5;
+        findFail = -1;
     }
 
     public void OnRefreshButtonClicked() {
@@ -78,13 +78,12 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
 
     public override void OnJoinRandomFailed(short returnCode, string message) {
         Debug.Log("tried to join random room but failed");
-        findFail -= Time.deltaTime;
         findTimer.text = "" + (int) findFail;
-        if(findFail > 0) {
+        if(findFail >= 0) {
             PhotonNetwork.JoinRandomRoom();
             Debug.Log("trying again");
         } else {
-            findFail = 5;
+            findFail = -1;
             findBtn.interactable = true;
             Debug.Log("Found no rooms");
             findFailTxt.SetActive(true);
@@ -133,6 +132,12 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
         }
         if(connectAttempts > 5) {
             errorText.SetActive(true);
+        }
+        
+        if(findFail != -1) {
+            findFail -= Time.deltaTime;
+        } else {
+            findTimer.text = "";
         }
         // if(Input.GetKey(KeyCode.Return) || OVRInput.GetDown(OVRInput.Button.One))  {
         //     OnConnectButtonClicked();
