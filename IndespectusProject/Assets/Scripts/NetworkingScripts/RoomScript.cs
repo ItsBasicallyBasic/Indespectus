@@ -37,8 +37,7 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     public TMP_Text countdownText;
 
     public TMP_Text connectionState;
-    string connected = "Connected to Master Server";
-    string disconnected = "Not connected to Master Server";
+    public TMP_Text roomNo;
 
     public Button StartBtn;
     public GameObject roomPannel;
@@ -72,14 +71,17 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
         roomPannel.SetActive(true);
         lobbyPannel.SetActive(false);
         base.OnJoinedRoom();
-        Debug.Log("Joined a room");
+        // Debug.Log("Joined a room");
+        var temp = PhotonNetwork.CurrentRoom.Name;
+        roomNo.text = ("Room #" + temp);
         photonPlayers = PhotonNetwork.PlayerList;
         playersInRoom = photonPlayers.Length;
         myNumberInRoom = playersInRoom;
         PhotonNetwork.NickName = myNumberInRoom.ToString();
 
         if(MultiplayerSettings.multiplayerSettings.delayStart) {
-            numPlayersText.SetText("Players in room out of max players possible (" + playersInRoom + "/" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
+            numPlayersText.SetText(playersInRoom + "/" + MultiplayerSettings.multiplayerSettings.maxPlayers + " players in room.");
+            // numPlayersText.SetText("Players in room out of max players possible (" + playersInRoom + "/" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
             if(playersInRoom > 1) {
                 readyToCount = true;
             }
@@ -100,7 +102,8 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
         photonPlayers = PhotonNetwork.PlayerList;
         playersInRoom++;
         if(MultiplayerSettings.multiplayerSettings.delayStart) {
-            numPlayersText.SetText("Players in room out of max players possible (" + playersInRoom + "/" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
+            // numPlayersText.SetText("Players in room out of max players possible (" + playersInRoom + "/" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
+            numPlayersText.SetText(playersInRoom + "/" + MultiplayerSettings.multiplayerSettings.maxPlayers + " players in room.");
             if(playersInRoom > 1) {
                 readyToCount = true;
             }
@@ -201,6 +204,7 @@ public class RoomScript : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     public override void OnPlayerLeftRoom(Player otherPlayer) {
         base.OnPlayerLeftRoom(otherPlayer);
         playersInRoom--;
-        numPlayersText.SetText("Players in room out of max players possible (" + playersInRoom + "/" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
+        // numPlayersText.SetText("Players in room out of max players possible (" + playersInRoom + "/" + MultiplayerSettings.multiplayerSettings.maxPlayers + ")");
+        numPlayersText.SetText(playersInRoom + "/" + MultiplayerSettings.multiplayerSettings.maxPlayers + " players in room.");
     }
 }

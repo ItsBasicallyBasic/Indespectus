@@ -26,8 +26,14 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
     [SerializeField]
     private GameObject findFailTxt;
 
+    public TMP_Text connectionStatus;
+    
+    string connected = "Connected to Master Server";
+    string disconnected = "Not connected to Master Server";
+
     void Awake() {
         lobby = this;
+        connectionStatus.text = disconnected;
     }
     // Start is called before the first frame update
     void Start() {
@@ -39,7 +45,8 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
     }
 
     public override void OnConnectedToMaster() {
-        Debug.Log("Player has connected to master server");
+        // Debug.Log("Player has connected to master server");
+        connectionStatus.text = connected;
         PhotonNetwork.AutomaticallySyncScene = true;
         connectAttempts = 0;
         findBtn.interactable = true;
@@ -93,7 +100,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
             IsOpen = true, 
             MaxPlayers = (byte)MultiplayerSettings.multiplayerSettings.maxPlayers
         };
-        PhotonNetwork.CreateRoom("Room" + rRoomName, roomOps);
+        PhotonNetwork.CreateRoom("" + rRoomName, roomOps);
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message) {
