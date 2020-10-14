@@ -22,7 +22,7 @@ public class SwordCollisionController : MonoBehaviour
     {
         if(PV == null) {PV = gameObject.GetComponent<PhotonView>();}
         if(cn == null) {cn = GameObject.FindGameObjectWithTag("NetworkCheck").GetComponent<CheckNetworked>();} 
-        if(PV.IsMine || !cn.networked) {
+        if(PV.IsMine /*|| !cn.networked*/) {
             weaponBehaviour = GetComponentInParent<WeaponBehaviour>();
         }
     }
@@ -38,8 +38,9 @@ public class SwordCollisionController : MonoBehaviour
             {
                 print("Blocked!");
                 Instantiate(swordBlock, transform.position + transform.up * 0.5f, transform.rotation);
-                GameManager.GM.audioManager.PlaySound(GetComponent<AudioSource>(), "swordBreak", 1);
+                GameManager.GM.audioManager.PlaySound(transform.parent.GetComponent<AudioSource>(), "swordBreak", 1);
                 weaponBehaviour.swordBroken = true;
+                
             }
 
             if(other.gameObject.tag == "Player")
@@ -151,4 +152,10 @@ public class SwordCollisionController : MonoBehaviour
     //         //weaponBehaviour.swordBroken = true;
     //     }
     // }
+
+    [PunRPC]
+    void BreakSword()
+    {
+        weaponBehaviour.swordBroken = true;
+    }
 }
