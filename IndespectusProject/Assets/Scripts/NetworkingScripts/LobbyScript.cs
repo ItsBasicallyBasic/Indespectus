@@ -45,7 +45,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
     }
 
     public override void OnConnectedToMaster() {
-        // Debug.Log("Player has connected to master server");
+        Debug.Log("Player has connected to master server");
         connectionStatus.text = connected;
         PhotonNetwork.AutomaticallySyncScene = true;
         connectAttempts = 0;
@@ -59,7 +59,7 @@ public class LobbyScript : MonoBehaviourPunCallbacks {
     }
 
     public void OnCreateButtonClicked() {
-        // Debug.Log("Connecting...");
+        Debug.Log("Connecting...");
         // connectButton.SetActive(false);
         // refreshButton.SetActive(false);
         // // loadingButton.SetActive(false);
