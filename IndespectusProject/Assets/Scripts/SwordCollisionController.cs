@@ -52,7 +52,7 @@ public class SwordCollisionController : MonoBehaviour
 
             }
 
-            if (other.gameObject.tag == "Player")
+            if (other.gameObject.tag == "PlayerCollider")
             {
                 Instantiate(damagedParticleEffect, transform.position + transform.up * 0.5f, transform.rotation);
                 GameManager.GM.audioManager.PlaySound(transform.parent.GetComponent<AudioSource>(), "Damaged1", 1);
