@@ -37,6 +37,12 @@ public class SwordCollisionController : MonoBehaviour
 
         if (otherPhotonView != null && !otherPhotonView.IsMine && PV.IsMine /*|| !cn.networked*/)
         {
+            if (other.gameObject.tag == "PlayerCollider")
+            {
+                Instantiate(damagedParticleEffect, transform.position + transform.up * 0.5f, transform.rotation);
+                GameManager.GM.audioManager.PlaySound(transform.parent.GetComponent<AudioSource>(), "Damaged1", 1);
+            }
+
             if (other.gameObject.tag == "Sword" || other.gameObject.tag == "Shield")
             {
                 print("Blocked!");
@@ -50,12 +56,6 @@ public class SwordCollisionController : MonoBehaviour
                     Instantiate(swordBreak, other.gameObject.transform.parent.position, other.gameObject.transform.parent.rotation);
                 }
 
-            }
-
-            if (other.gameObject.tag == "PlayerCollider")
-            {
-                Instantiate(damagedParticleEffect, transform.position + transform.up * 0.5f, transform.rotation);
-                GameManager.GM.audioManager.PlaySound(transform.parent.GetComponent<AudioSource>(), "Damaged1", 1);
             }
         }
 
