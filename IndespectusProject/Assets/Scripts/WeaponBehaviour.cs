@@ -165,16 +165,16 @@ public class WeaponBehaviour : MonoBehaviour
                 }
             }
 
-            if (!swordBroken && !swordActive)
-            {
-                // ActivateSword();
-                PV.RPC("ActivateSword", RpcTarget.AllBuffered);
-            }
-
             if (swordBroken && swordActive)
             {
                 // DeactivateSword();
                 PV.RPC("DeactivateSword", RpcTarget.AllBuffered);
+            }
+
+            if (!swordBroken && !swordActive)
+            {
+                // ActivateSword();
+                PV.RPC("ActivateSword", RpcTarget.AllBuffered);
             }
         // }
     }
