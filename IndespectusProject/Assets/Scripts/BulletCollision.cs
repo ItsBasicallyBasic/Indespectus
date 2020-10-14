@@ -86,16 +86,21 @@ public class BulletCollision : MonoBehaviour
                 Destroy(gameObject);
             }
 
-            if(other.tag == "Player" || other.tag == "Untagged")
+            if(other.tag == "Player")
             {
                 print("hit shield or sword!");
 
                 // bullet explosion particle effect
                 Instantiate(bulletHit, hitPos, transform.rotation);
-                //Instantiate(bulletDamage, hitPos, transform.rotation);
+                Instantiate(bulletDamage, hitPos, transform.rotation);
                 //Instantiate(bulletBlocked, hitPos, transform.rotation);
 
                 Destroy(gameObject);
+            }
+
+            if(other.tag == "Untagged")
+            {
+                Instantiate(bulletHit, hitPos, transform.rotation);
             }
         //}
         if(!cn.networked) {
