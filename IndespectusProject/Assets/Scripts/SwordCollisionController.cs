@@ -44,7 +44,8 @@ public class SwordCollisionController : MonoBehaviour
                 weaponBehaviour.swordBroken = true;
                 if(other.gameObject.tag == "Sword")
                 {
-                    other.gameObject.GetComponent<WeaponBehaviour>().swordBroken = true;
+                    other.transform.parent.gameObject.GetComponent<WeaponBehaviour>().swordBroken = true;
+                    Instantiate(swordBreak, other.parent.transform.position, other.parent.transform.rotation);
                 }
                 
             }
@@ -56,7 +57,12 @@ public class SwordCollisionController : MonoBehaviour
             }
         }
 
-        if(other.gameObject.layer == 0)
+        if(other.gameObject.tag == "Sword" || other.gameObject.tag == "Shield")
+        {
+            Instantiate(swordBlock, transform.position + transform.up * 0.5f, transform.rotation);
+        }
+
+        if (other.gameObject.layer == 0)
         {
             GameManager.GM.audioManager.PlayRepeatingSound(GetComponentInParent<AudioSource>(), "swordCollide");
 
@@ -165,4 +171,7 @@ public class SwordCollisionController : MonoBehaviour
     {
         weaponBehaviour.swordBroken = true;
     }
+
+    [PunRPC]
+    void 
 }
